@@ -1,0 +1,4 @@
+package org.apache.commons.text.jmh.jmh_generated;
+public class LongestCommonSubsequencePerformance_InputData_jmhType extends LongestCommonSubsequencePerformance_InputData_jmhType_B3 {
+}
+
