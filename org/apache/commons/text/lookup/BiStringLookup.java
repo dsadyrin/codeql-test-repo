@@ -68,7 +68,7 @@ public interface BiStringLookup<U> extends StringLookup {
      * @param object ignored by default.
      * @return The matching value, null if no match.
      */
-    default String lookup(final String key, final U object) {
+    default String lookup( String key, final U object) {
         return lookup(key);
     }
 
