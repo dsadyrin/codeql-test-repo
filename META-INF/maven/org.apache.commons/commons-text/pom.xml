@@ -20,10 +20,10 @@
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>54</version>
+    <version>51</version>
   </parent>
   <artifactId>commons-text</artifactId>
-  <version>1.10.0-SNAPSHOT</version>
+  <version>1.9</version>
   <name>Apache Commons Text</name>
   <description>Apache Commons Text is a library focused on algorithms working on strings.</description>
   <url>https://commons.apache.org/proper/commons-text</url>
@@ -37,7 +37,7 @@
     <commons.componentid>text</commons.componentid>
     <commons.module.name>org.apache.commons.text</commons.module.name>
 
-    <commons.release.version>1.10.0</commons.release.version>
+    <commons.release.version>1.9</commons.release.version>
     <commons.release.desc>(Java 8+)</commons.release.desc>
 
     <commons.jira.id>TEXT</commons.jira.id>
@@ -47,40 +47,29 @@
     <commons.scmPubUrl>https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-text</commons.scmPubUrl>
     <commons.scmPubCheckoutDirectory>site-content</commons.scmPubCheckoutDirectory>
 
-    <checkstyle.plugin.version>3.2.0</checkstyle.plugin.version>
-    <checkstyle.version>9.3</checkstyle.version>
+    <commons.mockito.version>3.4.4</commons.mockito.version>
+    <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
+    <checkstyle.version>8.34</checkstyle.version>
 
-    <commons.spotbugs.plugin.version>4.7.2.0</commons.spotbugs.plugin.version>
-    <commons.spotbugs.impl.version>4.7.2</commons.spotbugs.impl.version>
-    <commons.pmd.version>3.19.0</commons.pmd.version>
-    <commons.pmd-impl.version>6.49.0</commons.pmd-impl.version>
+    <spotbugs.plugin.version>4.0.0</spotbugs.plugin.version>
+    <spotbugs.impl.version>4.0.6</spotbugs.impl.version>
+    
+    <commons.jacoco.version>0.8.5</commons.jacoco.version>
 
-    <commons.mockito.version>4.8.0</commons.mockito.version>
-    <commons.jacoco.version>0.8.8</commons.jacoco.version>
+    <commons.javadoc.version>3.2.0</commons.javadoc.version>
 
-    <!-- apache-rat-plugin 0.13 and jdepend-maven-plugin 2.0 both fail with LinkageError when generating reports 
-    with maven site plugin 3.11+. However, javadoc 3.4.0+ fails with site plugin versions lower than 3.11. So, we'll 
-    use slightly older site and javadoc versions here in order to be able to generate all reports. -->
-    <commons.site-plugin.version>3.10.0</commons.site-plugin.version>
-    <commons.javadoc.version>3.3.2</commons.javadoc.version> 
-
-    <!-- 22.1.0 requires Java 11 -->
-    <graalvm.version>22.0.0.2</graalvm.version>
-    <commons.rng.version>1.4</commons.rng.version>
-
-    <commons.japicmp.version>0.15.7</commons.japicmp.version>
+    <!-- generate report even if there are binary incompatible changes -->
+    <commons.japicmp.breakBuildOnBinaryIncompatibleModifications>true</commons.japicmp.breakBuildOnBinaryIncompatibleModifications>
+    <commons.japicmp.version>0.14.3</commons.japicmp.version>
     <japicmp.skip>false</japicmp.skip>
     <clirr.skip>true</clirr.skip>
 
-    <jmh.version>1.35</jmh.version>
-    <commons.project-info.version>3.1.2</commons.project-info.version>
-
     <!-- Commons Release Plugin -->
-    <commons.bc.version>1.9</commons.bc.version>
+    <commons.bc.version>1.8</commons.bc.version>
     <commons.rc.version>RC1</commons.rc.version>
     <commons.release.isDistModule>true</commons.release.isDistModule>
     <commons.distSvnStagingUrl>scm:svn:https://dist.apache.org/repos/dist/dev/commons/${commons.componentid}</commons.distSvnStagingUrl>
-    <commons.releaseManagerName>Gary Gregory</commons.releaseManagerName>
+    <commons.releaseManagerName>Gary Gregory</commons.releaseManagerName>    
     <commons.releaseManagerKey>86fdc7e2a11262cb</commons.releaseManagerKey>
   </properties>
 
@@ -88,25 +77,25 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.12.0</version>
+      <version>3.11</version>
     </dependency>
     <!-- testing -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.9.1</version>
+      <version>5.6.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.23.1</version>
+      <version>3.16.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.11.0</version>
+      <version>2.7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -116,40 +105,10 @@
       <version>${commons.mockito.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.graalvm.js</groupId>
-      <artifactId>js</artifactId>
-      <version>${graalvm.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.graalvm.js</groupId>
-      <artifactId>js-scriptengine</artifactId>
-      <version>${graalvm.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-rng-simple</artifactId>
-      <version>${commons.rng.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.openjdk.jmh</groupId>
-      <artifactId>jmh-core</artifactId>
-      <version>${jmh.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.openjdk.jmh</groupId>
-      <artifactId>jmh-generator-annprocess</artifactId>
-      <version>${jmh.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
-    <defaultGoal>clean verify apache-rat:check japicmp:cmp checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
+    <defaultGoal>clean verify apache-rat:check clirr:check japicmp:cmp checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -159,8 +118,7 @@
             <excludes>
               <exclude>site-content/**</exclude>
               <exclude>src/site/resources/download_lang.cgi</exclude>
-              <exclude>src/test/resources/org/apache/commons/text/stringEscapeUtilsTestData.txt</exclude>
-              <exclude>src/test/resources/org/apache/commons/text/lcs-perf-analysis-inputs.csv</exclude>
+              <exclude>src/test/resources/stringEscapeUtilsTestData.txt</exclude>
               <exclude>src/site/resources/release-notes/RELEASE-NOTES-*.txt</exclude>
             </excludes>
           </configuration>
@@ -178,35 +136,7 @@
             </parameter>
           </configuration>
         </plugin>
-        <plugin>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>${commons.pmd.version}</version>
-          <configuration>
-            <targetJdk>${maven.compiler.target}</targetJdk>
-          </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-core</artifactId>
-              <version>${commons.pmd-impl.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-java</artifactId>
-              <version>${commons.pmd-impl.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-javascript</artifactId>
-              <version>${commons.pmd-impl.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-jsp</artifactId>
-              <version>${commons.pmd-impl.version}</version>
-            </dependency>
-          </dependencies>
-        </plugin>
+
       </plugins>
     </pluginManagement>
     <plugins>
@@ -215,12 +145,11 @@
         <version>${checkstyle.plugin.version}</version>
         <configuration>
           <enableRulesSummary>false</enableRulesSummary>
-          <configLocation>src/conf/checkstyle.xml</configLocation>
-          <headerLocation>src/conf/checkstyle-header.txt</headerLocation>
-          <suppressionsLocation>src/conf/checkstyle-suppressions.xml</suppressionsLocation>
-          <suppressionsFileExpression>src/conf/checkstyle-suppressions.xml</suppressionsFileExpression>
+          <configLocation>${basedir}/checkstyle.xml</configLocation>
+          <headerLocation>${basedir}/license-header.txt</headerLocation>
+          <suppressionsLocation>${basedir}/checkstyle-suppressions.xml</suppressionsLocation>
+          <suppressionsFileExpression>${basedir}/checkstyle-suppressions.xml</suppressionsFileExpression>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
-          <excludes>**/generated/**.java,**/jmh_generated/**.java</excludes>
         </configuration>
         <dependencies>
           <dependency>
@@ -233,16 +162,16 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${commons.spotbugs.plugin.version}</version>
+        <version>${spotbugs.plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>${commons.spotbugs.impl.version}</version>
+            <version>${spotbugs.impl.version}</version>
          </dependency>
         </dependencies>
         <configuration>
-          <excludeFilterFile>src/conf/spotbugs-exclude-filter.xml</excludeFilterFile>
+          <excludeFilterFile>${basedir}/sb-excludes.xml</excludeFilterFile>
         </configuration>
       </plugin>
       <plugin>
@@ -299,12 +228,11 @@
         <version>${checkstyle.plugin.version}</version>
         <configuration>
           <enableRulesSummary>false</enableRulesSummary>
-          <configLocation>src/conf/checkstyle.xml</configLocation>
-          <headerLocation>src/conf/checkstyle-header.txt</headerLocation>
-          <suppressionsLocation>src/conf/checkstyle-suppressions.xml</suppressionsLocation>
-          <suppressionsFileExpression>src/conf/checkstyle-suppressions.xml</suppressionsFileExpression>
+          <configLocation>${basedir}/checkstyle.xml</configLocation>
+          <headerLocation>${basedir}/license-header.txt</headerLocation>
+          <suppressionsLocation>${basedir}/checkstyle-suppressions.xml</suppressionsLocation>
+          <suppressionsFileExpression>${basedir}/checkstyle-suppressions.xml</suppressionsFileExpression>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
-          <excludes>**/generated/**.java,**/jmh_generated/**.java</excludes>
         </configuration>
         <reportSets>
           <reportSet>
@@ -318,18 +246,21 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${commons.spotbugs.plugin.version}</version>
+        <version>${spotbugs.plugin.version}</version>
         <configuration>
-          <excludeFilterFile>src/conf/spotbugs-exclude-filter.xml</excludeFilterFile>
+          <excludeFilterFile>${basedir}/sb-excludes.xml</excludeFilterFile>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>com.github.siom79.japicmp</groupId>
-        <artifactId>japicmp-maven-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>clirr-maven-plugin</artifactId>
+        <configuration>
+          <minSeverity>info</minSeverity>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.19.0</version>
+        <version>3.13.0</version>
         <configuration>
           <targetJdk>${maven.compiler.target}</targetJdk>
         </configuration>
@@ -345,7 +276,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>taglist-maven-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>2.4</version>
         <configuration>
           <tagListOptions>
             <tagClasses>
@@ -411,17 +342,7 @@
     <developer>
       <id>ggregory</id>
       <name>Gary Gregory</name>
-      <email>ggregory at apache.org</email>
-      <url>https://www.garygregory.com</url>
-      <organization>The Apache Software Foundation</organization>
-      <organizationUrl>https://www.apache.org/</organizationUrl>
-      <roles>
-        <role>PMC Member</role>
-      </roles>
-      <timezone>America/New_York</timezone>
-      <properties>
-        <picUrl>https://people.apache.org/~ggregory/img/garydgregory80.png</picUrl>
-      </properties>
+      <email>ggregory@apache.org</email>
     </developer>
     <developer>
       <id>djones</id>
@@ -469,10 +390,6 @@
     <contributor>
       <name>Nick Wong</name>
     </contributor>
-    <contributor>
-      <name>Ali Ghanbari</name>
-      <url>https://ali-ghanbari.github.io/</url>
-    </contributor>
   </contributors>
 
   <scm>
@@ -515,7 +432,7 @@
                 </goals>
                 <phase>pre-site</phase>
                 <configuration>
-                  <target>
+                  <tasks>
                     <exec executable="svn">
                       <arg line="checkout --depth immediates ${commons.scmPubUrl} ${commons.scmPubCheckoutDirectory}"/>
                     </exec>
@@ -528,7 +445,7 @@
                     <exec executable="svn">
                       <arg line="update --set-depth infinity ${dirs}"/>
                     </exec>
-                  </target>
+                  </tasks>
                 </configuration>
               </execution>
             </executions>
@@ -555,65 +472,6 @@
         <!-- jacoco does not work with java 13 yet -->
         <jacoco.skip>true</jacoco.skip>
       </properties>
-    </profile>
-    <profile>
-      <id>java16-ea</id>
-      <!-- bytebuddy Java 16 support is experimental (Mockito uses bytebuddy) -->
-      <activation>
-        <jdk>16-ea</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <systemPropertyVariables>
-                <net.bytebuddy.experimental>true</net.bytebuddy.experimental>
-              </systemPropertyVariables>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>benchmark</id>
-      <properties>
-        <skipTests>true</skipTests>
-        <benchmark>org.apache</benchmark>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-              <execution>
-                <id>benchmark</id>
-                <phase>test</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <classpathScope>test</classpathScope>
-                  <executable>java</executable>
-                  <arguments>
-                    <argument>-classpath</argument>
-                    <classpath/>
-                    <argument>org.openjdk.jmh.Main</argument>
-                    <argument>-rf</argument>
-                    <argument>json</argument>
-                    <argument>-rff</argument>
-                    <argument>target/jmh-result.${benchmark}.json</argument>
-                    <argument>${benchmark}</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
