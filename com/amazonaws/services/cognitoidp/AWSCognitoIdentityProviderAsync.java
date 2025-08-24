@@ -1,0 +1,7692 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.cognitoidp;
+
+import javax.annotation.Generated;
+
+import com.amazonaws.services.cognitoidp.model.*;
+
+/**
+ * Interface for accessing Amazon Cognito Identity Provider asynchronously. Each asynchronous method will return a Java
+ * Future object representing the asynchronous operation; overloads which accept an {@code AsyncHandler} can be used to
+ * receive notification when an asynchronous operation completes.
+ * <p>
+ * <b>Note:</b> Do not directly implement this interface, new methods are added to it regularly. Extend from
+ * {@link com.amazonaws.services.cognitoidp.AbstractAWSCognitoIdentityProviderAsync} instead.
+ * </p>
+ * <p>
+ * <p>
+ * With the Amazon Cognito user pools API, you can configure user pools and authenticate users. To authenticate users
+ * from third-party identity providers (IdPs) in this API, you can <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html"
+ * >link IdP users to native user profiles</a>. Learn more about the authentication and authorization of federated users
+ * at <a
+ * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html">Adding
+ * user pool sign-in through a third party</a> and in the <a
+ * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html"
+ * >User pool federation endpoints and hosted UI reference</a>.
+ * </p>
+ * <p>
+ * This API reference provides detailed information about API operations and object types in Amazon Cognito.
+ * </p>
+ * <p>
+ * Along with resource management operations, the Amazon Cognito user pools API includes classes of operations and
+ * authorization models for client-side and server-side authentication of users. You can interact with operations in the
+ * Amazon Cognito user pools API as any of the following subjects.
+ * </p>
+ * <ol>
+ * <li>
+ * <p>
+ * An administrator who wants to configure user pools, app clients, users, groups, or other user pool functions.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A server-side app, like a web application, that wants to use its Amazon Web Services privileges to manage,
+ * authenticate, or authorize a user.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A client-side app, like a mobile app, that wants to make unauthenticated requests to manage, authenticate, or
+ * authorize a user.
+ * </p>
+ * </li>
+ * </ol>
+ * <p>
+ * For more information, see <a
+ * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+ * Cognito user pools API and user pool endpoints</a> in the <i>Amazon Cognito Developer Guide</i>.
+ * </p>
+ * <p>
+ * With your Amazon Web Services SDK, you can build the logic to support operational flows in every use case for this
+ * API. You can also make direct REST API requests to <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/cognito_identity.html#cognito_identity_your_user_pools_region"
+ * >Amazon Cognito user pools service endpoints</a>. The following links can get you started with the
+ * <code>CognitoIdentityProvider</code> client in other supported Amazon Web Services SDKs.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href="https://docs.aws.amazon.com/cli/latest/reference/cognito-idp/index.html#cli-aws-cognito-idp">Amazon Web
+ * Services Command Line Interface</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/CognitoIdentityProvider/TCognitoIdentityProviderClient.html"
+ * >Amazon Web Services SDK for .NET</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://sdk.amazonaws.com/cpp/api/LATEST/aws-cpp-sdk-cognito-idp/html/class_aws_1_1_cognito_identity_provider_1_1_cognito_identity_provider_client.html"
+ * >Amazon Web Services SDK for C++</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="https://docs.aws.amazon.com/sdk-for-go/api/service/cognitoidentityprovider/#CognitoIdentityProvider">Amazon
+ * Web Services SDK for Go</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/cognitoidentityprovider/CognitoIdentityProviderClient.html"
+ * >Amazon Web Services SDK for Java V2</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html">Amazon Web
+ * Services SDK for JavaScript</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-cognito-idp-2016-04-18.html">Amazon Web Services SDK for
+ * PHP V3</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cognito-idp.html">Amazon Web
+ * Services SDK for Python</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/CognitoIdentityProvider/Client.html">Amazon Web Services
+ * SDK for Ruby V3</a>
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * To get started with an Amazon Web Services SDK, see <a href="http://aws.amazon.com/developer/tools/">Tools to Build
+ * on Amazon Web Services</a>. For example actions and scenarios, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/service_code_examples_cognito-identity-provider.html">Code
+ * examples for Amazon Cognito Identity Provider using Amazon Web Services SDKs</a>.
+ * </p>
+ */
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public interface AWSCognitoIdentityProviderAsync extends AWSCognitoIdentityProvider {
+
+    /**
+     * <p>
+     * Adds additional user attributes to the user pool schema.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param addCustomAttributesRequest
+     *        Represents the request to add custom attributes.
+     * @return A Java Future containing the result of the AddCustomAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AddCustomAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AddCustomAttributesResult> addCustomAttributesAsync(AddCustomAttributesRequest addCustomAttributesRequest);
+
+    /**
+     * <p>
+     * Adds additional user attributes to the user pool schema.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param addCustomAttributesRequest
+     *        Represents the request to add custom attributes.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AddCustomAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AddCustomAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AddCustomAttributesResult> addCustomAttributesAsync(AddCustomAttributesRequest addCustomAttributesRequest,
+            com.amazonaws.handlers.AsyncHandler<AddCustomAttributesRequest, AddCustomAttributesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Adds a user to a group. A user who is in a group can present a preferred-role claim to an identity pool, and
+     * populates a <code>cognito:groups</code> claim to their access and identity tokens.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminAddUserToGroupRequest
+     * @return A Java Future containing the result of the AdminAddUserToGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminAddUserToGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminAddUserToGroupResult> adminAddUserToGroupAsync(AdminAddUserToGroupRequest adminAddUserToGroupRequest);
+
+    /**
+     * <p>
+     * Adds a user to a group. A user who is in a group can present a preferred-role claim to an identity pool, and
+     * populates a <code>cognito:groups</code> claim to their access and identity tokens.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminAddUserToGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminAddUserToGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminAddUserToGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminAddUserToGroupResult> adminAddUserToGroupAsync(AdminAddUserToGroupRequest adminAddUserToGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminAddUserToGroupRequest, AdminAddUserToGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * This IAM-authenticated API operation provides a code that Amazon Cognito sent to your user when they signed up in
+     * your user pool. After your user enters their code, they confirm ownership of the email address or phone number
+     * that they provided, and their user account becomes active. Depending on your user pool configuration, your users
+     * will receive their confirmation code in an email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who can confirm sign-up with a code. Users
+     * who federate through an external identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users confirm their accounts when they respond to their invitation email message and choose
+     * a password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminConfirmSignUpRequest
+     *        Confirm a user's registration as a user pool administrator.
+     * @return A Java Future containing the result of the AdminConfirmSignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminConfirmSignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUp" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminConfirmSignUpResult> adminConfirmSignUpAsync(AdminConfirmSignUpRequest adminConfirmSignUpRequest);
+
+    /**
+     * <p>
+     * This IAM-authenticated API operation provides a code that Amazon Cognito sent to your user when they signed up in
+     * your user pool. After your user enters their code, they confirm ownership of the email address or phone number
+     * that they provided, and their user account becomes active. Depending on your user pool configuration, your users
+     * will receive their confirmation code in an email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who can confirm sign-up with a code. Users
+     * who federate through an external identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users confirm their accounts when they respond to their invitation email message and choose
+     * a password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminConfirmSignUpRequest
+     *        Confirm a user's registration as a user pool administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminConfirmSignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminConfirmSignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUp" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminConfirmSignUpResult> adminConfirmSignUpAsync(AdminConfirmSignUpRequest adminConfirmSignUpRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminConfirmSignUpRequest, AdminConfirmSignUpResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates a new user in the specified user pool.
+     * </p>
+     * <p>
+     * If <code>MessageAction</code> isn't set, the default is to send a welcome message via email or phone (SMS).
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * This message is based on a template that you configured in your call to create or update a user pool. This
+     * template includes your custom sign-up instructions and placeholders for user name and temporary password.
+     * </p>
+     * <p>
+     * Alternatively, you can call <code>AdminCreateUser</code> with <code>SUPPRESS</code> for the
+     * <code>MessageAction</code> parameter, and Amazon Cognito won't send any email.
+     * </p>
+     * <p>
+     * In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code> state until they sign in and change
+     * their password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminCreateUserRequest
+     *        Represents the request to create a user in the specified user pool.
+     * @return A Java Future containing the result of the AdminCreateUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminCreateUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminCreateUserResult> adminCreateUserAsync(AdminCreateUserRequest adminCreateUserRequest);
+
+    /**
+     * <p>
+     * Creates a new user in the specified user pool.
+     * </p>
+     * <p>
+     * If <code>MessageAction</code> isn't set, the default is to send a welcome message via email or phone (SMS).
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * This message is based on a template that you configured in your call to create or update a user pool. This
+     * template includes your custom sign-up instructions and placeholders for user name and temporary password.
+     * </p>
+     * <p>
+     * Alternatively, you can call <code>AdminCreateUser</code> with <code>SUPPRESS</code> for the
+     * <code>MessageAction</code> parameter, and Amazon Cognito won't send any email.
+     * </p>
+     * <p>
+     * In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code> state until they sign in and change
+     * their password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminCreateUserRequest
+     *        Represents the request to create a user in the specified user pool.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminCreateUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminCreateUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminCreateUserResult> adminCreateUserAsync(AdminCreateUserRequest adminCreateUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminCreateUserRequest, AdminCreateUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes a user as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDeleteUserRequest
+     *        Represents the request to delete a user as an administrator.
+     * @return A Java Future containing the result of the AdminDeleteUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminDeleteUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDeleteUserResult> adminDeleteUserAsync(AdminDeleteUserRequest adminDeleteUserRequest);
+
+    /**
+     * <p>
+     * Deletes a user as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDeleteUserRequest
+     *        Represents the request to delete a user as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminDeleteUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminDeleteUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDeleteUserResult> adminDeleteUserAsync(AdminDeleteUserRequest adminDeleteUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminDeleteUserRequest, AdminDeleteUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes the user attributes in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDeleteUserAttributesRequest
+     *        Represents the request to delete user attributes as an administrator.
+     * @return A Java Future containing the result of the AdminDeleteUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminDeleteUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDeleteUserAttributesResult> adminDeleteUserAttributesAsync(
+            AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest);
+
+    /**
+     * <p>
+     * Deletes the user attributes in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDeleteUserAttributesRequest
+     *        Represents the request to delete user attributes as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminDeleteUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminDeleteUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDeleteUserAttributesResult> adminDeleteUserAttributesAsync(
+            AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Prevents the user from signing in with the specified external (SAML or social) identity provider (IdP). If the
+     * user that you want to deactivate is a Amazon Cognito user pools native username + password user, they can't use
+     * their password to sign in. If the user to deactivate is a linked external IdP user, any link between that user
+     * and an existing user is removed. When the external user signs in again, and the user is no longer attached to the
+     * previously linked <code>DestinationUser</code>, the user must create a new user account. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a>.
+     * </p>
+     * <p>
+     * The <code>ProviderName</code> must match the value specified when creating an IdP for the pool.
+     * </p>
+     * <p>
+     * To deactivate a native username + password user, the <code>ProviderName</code> value must be <code>Cognito</code>
+     * and the <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code>. The
+     * <code>ProviderAttributeValue</code> must be the name that is used in the user pool for the user.
+     * </p>
+     * <p>
+     * The <code>ProviderAttributeName</code> must always be <code>Cognito_Subject</code> for social IdPs. The
+     * <code>ProviderAttributeValue</code> must always be the exact subject that was used when the user was originally
+     * linked as a source user.
+     * </p>
+     * <p>
+     * For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign in,
+     * the <code>ProviderAttributeName</code> and <code>ProviderAttributeValue</code> must be the same values that were
+     * used for the <code>SourceUser</code> when the identities were originally linked using
+     * <code> AdminLinkProviderForUser</code> call. (If the linking was done with <code>ProviderAttributeName</code> set
+     * to <code>Cognito_Subject</code>, the same applies here). However, if the user has already signed in, the
+     * <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code> and <code>ProviderAttributeValue</code>
+     * must be the subject of the SAML assertion.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDisableProviderForUserRequest
+     * @return A Java Future containing the result of the AdminDisableProviderForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminDisableProviderForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableProviderForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDisableProviderForUserResult> adminDisableProviderForUserAsync(
+            AdminDisableProviderForUserRequest adminDisableProviderForUserRequest);
+
+    /**
+     * <p>
+     * Prevents the user from signing in with the specified external (SAML or social) identity provider (IdP). If the
+     * user that you want to deactivate is a Amazon Cognito user pools native username + password user, they can't use
+     * their password to sign in. If the user to deactivate is a linked external IdP user, any link between that user
+     * and an existing user is removed. When the external user signs in again, and the user is no longer attached to the
+     * previously linked <code>DestinationUser</code>, the user must create a new user account. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a>.
+     * </p>
+     * <p>
+     * The <code>ProviderName</code> must match the value specified when creating an IdP for the pool.
+     * </p>
+     * <p>
+     * To deactivate a native username + password user, the <code>ProviderName</code> value must be <code>Cognito</code>
+     * and the <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code>. The
+     * <code>ProviderAttributeValue</code> must be the name that is used in the user pool for the user.
+     * </p>
+     * <p>
+     * The <code>ProviderAttributeName</code> must always be <code>Cognito_Subject</code> for social IdPs. The
+     * <code>ProviderAttributeValue</code> must always be the exact subject that was used when the user was originally
+     * linked as a source user.
+     * </p>
+     * <p>
+     * For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign in,
+     * the <code>ProviderAttributeName</code> and <code>ProviderAttributeValue</code> must be the same values that were
+     * used for the <code>SourceUser</code> when the identities were originally linked using
+     * <code> AdminLinkProviderForUser</code> call. (If the linking was done with <code>ProviderAttributeName</code> set
+     * to <code>Cognito_Subject</code>, the same applies here). However, if the user has already signed in, the
+     * <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code> and <code>ProviderAttributeValue</code>
+     * must be the subject of the SAML assertion.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDisableProviderForUserRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminDisableProviderForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminDisableProviderForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableProviderForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDisableProviderForUserResult> adminDisableProviderForUserAsync(
+            AdminDisableProviderForUserRequest adminDisableProviderForUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminDisableProviderForUserRequest, AdminDisableProviderForUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deactivates a user and revokes all access tokens for the user. A deactivated user can't sign in, but still
+     * appears in the responses to <code>GetUser</code> and <code>ListUsers</code> API requests.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDisableUserRequest
+     *        Represents the request to disable the user as an administrator.
+     * @return A Java Future containing the result of the AdminDisableUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminDisableUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDisableUserResult> adminDisableUserAsync(AdminDisableUserRequest adminDisableUserRequest);
+
+    /**
+     * <p>
+     * Deactivates a user and revokes all access tokens for the user. A deactivated user can't sign in, but still
+     * appears in the responses to <code>GetUser</code> and <code>ListUsers</code> API requests.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminDisableUserRequest
+     *        Represents the request to disable the user as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminDisableUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminDisableUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminDisableUserResult> adminDisableUserAsync(AdminDisableUserRequest adminDisableUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminDisableUserRequest, AdminDisableUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Enables the specified user as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminEnableUserRequest
+     *        Represents the request that enables the user as an administrator.
+     * @return A Java Future containing the result of the AdminEnableUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminEnableUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminEnableUserResult> adminEnableUserAsync(AdminEnableUserRequest adminEnableUserRequest);
+
+    /**
+     * <p>
+     * Enables the specified user as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminEnableUserRequest
+     *        Represents the request that enables the user as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminEnableUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminEnableUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUser" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminEnableUserResult> adminEnableUserAsync(AdminEnableUserRequest adminEnableUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminEnableUserRequest, AdminEnableUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Forgets the device, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminForgetDeviceRequest
+     *        Sends the forgot device request, as an administrator.
+     * @return A Java Future containing the result of the AdminForgetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminForgetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDevice" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminForgetDeviceResult> adminForgetDeviceAsync(AdminForgetDeviceRequest adminForgetDeviceRequest);
+
+    /**
+     * <p>
+     * Forgets the device, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminForgetDeviceRequest
+     *        Sends the forgot device request, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminForgetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminForgetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDevice" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminForgetDeviceResult> adminForgetDeviceAsync(AdminForgetDeviceRequest adminForgetDeviceRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminForgetDeviceRequest, AdminForgetDeviceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the device, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminGetDeviceRequest
+     *        Represents the request to get the device, as an administrator.
+     * @return A Java Future containing the result of the AdminGetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminGetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<AdminGetDeviceResult> adminGetDeviceAsync(AdminGetDeviceRequest adminGetDeviceRequest);
+
+    /**
+     * <p>
+     * Gets the device, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminGetDeviceRequest
+     *        Represents the request to get the device, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminGetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminGetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<AdminGetDeviceResult> adminGetDeviceAsync(AdminGetDeviceRequest adminGetDeviceRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminGetDeviceRequest, AdminGetDeviceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the specified user by user name in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminGetUserRequest
+     *        Represents the request to get the specified user as an administrator.
+     * @return A Java Future containing the result of the AdminGetUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminGetUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<AdminGetUserResult> adminGetUserAsync(AdminGetUserRequest adminGetUserRequest);
+
+    /**
+     * <p>
+     * Gets the specified user by user name in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminGetUserRequest
+     *        Represents the request to get the specified user as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminGetUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminGetUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<AdminGetUserResult> adminGetUserAsync(AdminGetUserRequest adminGetUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminGetUserRequest, AdminGetUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Initiates the authentication flow, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminInitiateAuthRequest
+     *        Initiates the authorization request, as an administrator.
+     * @return A Java Future containing the result of the AdminInitiateAuth operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminInitiateAuth
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuth" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminInitiateAuthResult> adminInitiateAuthAsync(AdminInitiateAuthRequest adminInitiateAuthRequest);
+
+    /**
+     * <p>
+     * Initiates the authentication flow, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminInitiateAuthRequest
+     *        Initiates the authorization request, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminInitiateAuth operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminInitiateAuth
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuth" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminInitiateAuthResult> adminInitiateAuthAsync(AdminInitiateAuthRequest adminInitiateAuthRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminInitiateAuthRequest, AdminInitiateAuthResult> asyncHandler);
+
+    /**
+     * <p>
+     * Links an existing user account in a user pool (<code>DestinationUser</code>) to an identity from an external IdP
+     * (<code>SourceUser</code>) based on a specified attribute name and value from the external IdP. This allows you to
+     * create a link from the existing user account to an external federated user identity that has not yet been used to
+     * sign in. You can then use the federated user identity to sign in as the existing user account.
+     * </p>
+     * <p>
+     * For example, if there is an existing user with a username and password, this API links that user to a federated
+     * user identity. When the user signs in with a federated user identity, they sign in as the existing user account.
+     * </p>
+     * <note>
+     * <p>
+     * The maximum number of federated identities linked to a user is five.
+     * </p>
+     * </note> <important>
+     * <p>
+     * Because this API allows a user with an external federated identity to sign in as an existing user in the user
+     * pool, it is critical that it only be used with external IdPs and provider attributes that have been trusted by
+     * the application owner.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminLinkProviderForUserRequest
+     * @return A Java Future containing the result of the AdminLinkProviderForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminLinkProviderForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminLinkProviderForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminLinkProviderForUserResult> adminLinkProviderForUserAsync(AdminLinkProviderForUserRequest adminLinkProviderForUserRequest);
+
+    /**
+     * <p>
+     * Links an existing user account in a user pool (<code>DestinationUser</code>) to an identity from an external IdP
+     * (<code>SourceUser</code>) based on a specified attribute name and value from the external IdP. This allows you to
+     * create a link from the existing user account to an external federated user identity that has not yet been used to
+     * sign in. You can then use the federated user identity to sign in as the existing user account.
+     * </p>
+     * <p>
+     * For example, if there is an existing user with a username and password, this API links that user to a federated
+     * user identity. When the user signs in with a federated user identity, they sign in as the existing user account.
+     * </p>
+     * <note>
+     * <p>
+     * The maximum number of federated identities linked to a user is five.
+     * </p>
+     * </note> <important>
+     * <p>
+     * Because this API allows a user with an external federated identity to sign in as an existing user in the user
+     * pool, it is critical that it only be used with external IdPs and provider attributes that have been trusted by
+     * the application owner.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminLinkProviderForUserRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminLinkProviderForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminLinkProviderForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminLinkProviderForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminLinkProviderForUserResult> adminLinkProviderForUserAsync(AdminLinkProviderForUserRequest adminLinkProviderForUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminLinkProviderForUserRequest, AdminLinkProviderForUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists devices, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListDevicesRequest
+     *        Represents the request to list devices, as an administrator.
+     * @return A Java Future containing the result of the AdminListDevices operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminListDevices
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevices" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListDevicesResult> adminListDevicesAsync(AdminListDevicesRequest adminListDevicesRequest);
+
+    /**
+     * <p>
+     * Lists devices, as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListDevicesRequest
+     *        Represents the request to list devices, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminListDevices operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminListDevices
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevices" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListDevicesResult> adminListDevicesAsync(AdminListDevicesRequest adminListDevicesRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminListDevicesRequest, AdminListDevicesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the groups that a user belongs to.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListGroupsForUserRequest
+     * @return A Java Future containing the result of the AdminListGroupsForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminListGroupsForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListGroupsForUserResult> adminListGroupsForUserAsync(AdminListGroupsForUserRequest adminListGroupsForUserRequest);
+
+    /**
+     * <p>
+     * Lists the groups that a user belongs to.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListGroupsForUserRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminListGroupsForUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminListGroupsForUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUser"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListGroupsForUserResult> adminListGroupsForUserAsync(AdminListGroupsForUserRequest adminListGroupsForUserRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminListGroupsForUserRequest, AdminListGroupsForUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * A history of user activity and any risks detected as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListUserAuthEventsRequest
+     * @return A Java Future containing the result of the AdminListUserAuthEvents operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminListUserAuthEvents
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListUserAuthEvents"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListUserAuthEventsResult> adminListUserAuthEventsAsync(AdminListUserAuthEventsRequest adminListUserAuthEventsRequest);
+
+    /**
+     * <p>
+     * A history of user activity and any risks detected as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminListUserAuthEventsRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminListUserAuthEvents operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminListUserAuthEvents
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListUserAuthEvents"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminListUserAuthEventsResult> adminListUserAuthEventsAsync(AdminListUserAuthEventsRequest adminListUserAuthEventsRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminListUserAuthEventsRequest, AdminListUserAuthEventsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Removes the specified user from the specified group.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminRemoveUserFromGroupRequest
+     * @return A Java Future containing the result of the AdminRemoveUserFromGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminRemoveUserFromGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminRemoveUserFromGroupResult> adminRemoveUserFromGroupAsync(AdminRemoveUserFromGroupRequest adminRemoveUserFromGroupRequest);
+
+    /**
+     * <p>
+     * Removes the specified user from the specified group.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminRemoveUserFromGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminRemoveUserFromGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminRemoveUserFromGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminRemoveUserFromGroupResult> adminRemoveUserFromGroupAsync(AdminRemoveUserFromGroupRequest adminRemoveUserFromGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminRemoveUserFromGroupRequest, AdminRemoveUserFromGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Resets the specified user's password in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Deactivates a user's password, requiring them to change it. If a user tries to sign in after the API is called,
+     * Amazon Cognito responds with a <code>PasswordResetRequiredException</code> error. Your app must then perform the
+     * actions that reset your user's password: the forgot-password flow. In addition, if the user pool has phone
+     * verification selected and a verified phone number exists for the user, or if email verification is selected and a
+     * verified email exists for the user, calling this API will also result in sending a message to the end user with
+     * the code to change their password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminResetUserPasswordRequest
+     *        Represents the request to reset a user's password as an administrator.
+     * @return A Java Future containing the result of the AdminResetUserPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminResetUserPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminResetUserPasswordResult> adminResetUserPasswordAsync(AdminResetUserPasswordRequest adminResetUserPasswordRequest);
+
+    /**
+     * <p>
+     * Resets the specified user's password in a user pool as an administrator. Works on any user.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Deactivates a user's password, requiring them to change it. If a user tries to sign in after the API is called,
+     * Amazon Cognito responds with a <code>PasswordResetRequiredException</code> error. Your app must then perform the
+     * actions that reset your user's password: the forgot-password flow. In addition, if the user pool has phone
+     * verification selected and a verified phone number exists for the user, or if email verification is selected and a
+     * verified email exists for the user, calling this API will also result in sending a message to the end user with
+     * the code to change their password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminResetUserPasswordRequest
+     *        Represents the request to reset a user's password as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminResetUserPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminResetUserPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminResetUserPasswordResult> adminResetUserPasswordAsync(AdminResetUserPasswordRequest adminResetUserPasswordRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminResetUserPasswordRequest, AdminResetUserPasswordResult> asyncHandler);
+
+    /**
+     * <p>
+     * Some API operations in a user pool generate a challenge, like a prompt for an MFA code, for device authentication
+     * that bypasses MFA, or for a custom authentication challenge. An <code>AdminRespondToAuthChallenge</code> API
+     * request provides the answer to that challenge, like a code or a secure remote password (SRP). The parameters of a
+     * response to an authentication challenge vary with the type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">Custom
+     * authentication challenge Lambda triggers</a>.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminRespondToAuthChallengeRequest
+     *        The request to respond to the authentication challenge, as an administrator.
+     * @return A Java Future containing the result of the AdminRespondToAuthChallenge operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminRespondToAuthChallenge
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallenge"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminRespondToAuthChallengeResult> adminRespondToAuthChallengeAsync(
+            AdminRespondToAuthChallengeRequest adminRespondToAuthChallengeRequest);
+
+    /**
+     * <p>
+     * Some API operations in a user pool generate a challenge, like a prompt for an MFA code, for device authentication
+     * that bypasses MFA, or for a custom authentication challenge. An <code>AdminRespondToAuthChallenge</code> API
+     * request provides the answer to that challenge, like a code or a secure remote password (SRP). The parameters of a
+     * response to an authentication challenge vary with the type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">Custom
+     * authentication challenge Lambda triggers</a>.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminRespondToAuthChallengeRequest
+     *        The request to respond to the authentication challenge, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminRespondToAuthChallenge operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminRespondToAuthChallenge
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallenge"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminRespondToAuthChallengeResult> adminRespondToAuthChallengeAsync(
+            AdminRespondToAuthChallengeRequest adminRespondToAuthChallengeRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminRespondToAuthChallengeRequest, AdminRespondToAuthChallengeResult> asyncHandler);
+
+    /**
+     * <p>
+     * The user's multi-factor authentication (MFA) preference, including which MFA options are activated, and if any
+     * are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a
+     * user if multiple factors are activated. If multiple options are activated and no preference is set, a challenge
+     * to choose an MFA option will be returned during sign-in.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserMFAPreferenceRequest
+     * @return A Java Future containing the result of the AdminSetUserMFAPreference operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminSetUserMFAPreference
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserMFAPreference"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserMFAPreferenceResult> adminSetUserMFAPreferenceAsync(
+            AdminSetUserMFAPreferenceRequest adminSetUserMFAPreferenceRequest);
+
+    /**
+     * <p>
+     * The user's multi-factor authentication (MFA) preference, including which MFA options are activated, and if any
+     * are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a
+     * user if multiple factors are activated. If multiple options are activated and no preference is set, a challenge
+     * to choose an MFA option will be returned during sign-in.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserMFAPreferenceRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminSetUserMFAPreference operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminSetUserMFAPreference
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserMFAPreference"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserMFAPreferenceResult> adminSetUserMFAPreferenceAsync(
+            AdminSetUserMFAPreferenceRequest adminSetUserMFAPreferenceRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminSetUserMFAPreferenceRequest, AdminSetUserMFAPreferenceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Sets the specified user's password in a user pool as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * The password can be temporary or permanent. If it is temporary, the user status enters the
+     * <code>FORCE_CHANGE_PASSWORD</code> state. When the user next tries to sign in, the InitiateAuth/AdminInitiateAuth
+     * response will contain the <code>NEW_PASSWORD_REQUIRED</code> challenge. If the user doesn't sign in before it
+     * expires, the user won't be able to sign in, and an administrator must reset their password.
+     * </p>
+     * <p>
+     * Once the user has set a new password, or the password is permanent, the user status is set to
+     * <code>Confirmed</code>.
+     * </p>
+     * <p>
+     * <code>AdminSetUserPassword</code> can set a password for the user profile that Amazon Cognito creates for
+     * third-party federated users. When you set a password, the federated user's status changes from
+     * <code>EXTERNAL_PROVIDER</code> to <code>CONFIRMED</code>. A user in this state can sign in as a federated user,
+     * and initiate authentication flows in the API like a linked native user. They can also modify their password and
+     * attributes in token-authenticated API requests like <code>ChangePassword</code> and
+     * <code>UpdateUserAttributes</code>. As a best security practice and to keep users in sync with your external IdP,
+     * don't set passwords on federated user profiles. To set up a federated user for native sign-in with a linked
+     * native user, refer to <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html"
+     * >Linking federated users to an existing user profile</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserPasswordRequest
+     * @return A Java Future containing the result of the AdminSetUserPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminSetUserPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserPasswordResult> adminSetUserPasswordAsync(AdminSetUserPasswordRequest adminSetUserPasswordRequest);
+
+    /**
+     * <p>
+     * Sets the specified user's password in a user pool as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * The password can be temporary or permanent. If it is temporary, the user status enters the
+     * <code>FORCE_CHANGE_PASSWORD</code> state. When the user next tries to sign in, the InitiateAuth/AdminInitiateAuth
+     * response will contain the <code>NEW_PASSWORD_REQUIRED</code> challenge. If the user doesn't sign in before it
+     * expires, the user won't be able to sign in, and an administrator must reset their password.
+     * </p>
+     * <p>
+     * Once the user has set a new password, or the password is permanent, the user status is set to
+     * <code>Confirmed</code>.
+     * </p>
+     * <p>
+     * <code>AdminSetUserPassword</code> can set a password for the user profile that Amazon Cognito creates for
+     * third-party federated users. When you set a password, the federated user's status changes from
+     * <code>EXTERNAL_PROVIDER</code> to <code>CONFIRMED</code>. A user in this state can sign in as a federated user,
+     * and initiate authentication flows in the API like a linked native user. They can also modify their password and
+     * attributes in token-authenticated API requests like <code>ChangePassword</code> and
+     * <code>UpdateUserAttributes</code>. As a best security practice and to keep users in sync with your external IdP,
+     * don't set passwords on federated user profiles. To set up a federated user for native sign-in with a linked
+     * native user, refer to <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html"
+     * >Linking federated users to an existing user profile</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserPasswordRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminSetUserPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminSetUserPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserPasswordResult> adminSetUserPasswordAsync(AdminSetUserPasswordRequest adminSetUserPasswordRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminSetUserPasswordRequest, AdminSetUserPasswordResult> asyncHandler);
+
+    /**
+     * <p>
+     * <i>This action is no longer supported.</i> You can use it to configure only SMS MFA. You can't use it to
+     * configure time-based one-time password (TOTP) software token MFA. To configure either type of MFA, use <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html"
+     * >AdminSetUserMFAPreference</a> instead.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserSettingsRequest
+     *        You can use this parameter to set an MFA configuration that uses the SMS delivery medium.
+     * @return A Java Future containing the result of the AdminSetUserSettings operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminSetUserSettings
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettings"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserSettingsResult> adminSetUserSettingsAsync(AdminSetUserSettingsRequest adminSetUserSettingsRequest);
+
+    /**
+     * <p>
+     * <i>This action is no longer supported.</i> You can use it to configure only SMS MFA. You can't use it to
+     * configure time-based one-time password (TOTP) software token MFA. To configure either type of MFA, use <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html"
+     * >AdminSetUserMFAPreference</a> instead.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminSetUserSettingsRequest
+     *        You can use this parameter to set an MFA configuration that uses the SMS delivery medium.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminSetUserSettings operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminSetUserSettings
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettings"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminSetUserSettingsResult> adminSetUserSettingsAsync(AdminSetUserSettingsRequest adminSetUserSettingsRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminSetUserSettingsRequest, AdminSetUserSettingsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Provides feedback for an authentication event indicating if it was from a valid user. This feedback is used for
+     * improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateAuthEventFeedbackRequest
+     * @return A Java Future containing the result of the AdminUpdateAuthEventFeedback operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminUpdateAuthEventFeedback
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateAuthEventFeedback"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateAuthEventFeedbackResult> adminUpdateAuthEventFeedbackAsync(
+            AdminUpdateAuthEventFeedbackRequest adminUpdateAuthEventFeedbackRequest);
+
+    /**
+     * <p>
+     * Provides feedback for an authentication event indicating if it was from a valid user. This feedback is used for
+     * improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateAuthEventFeedbackRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminUpdateAuthEventFeedback operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminUpdateAuthEventFeedback
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateAuthEventFeedback"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateAuthEventFeedbackResult> adminUpdateAuthEventFeedbackAsync(
+            AdminUpdateAuthEventFeedbackRequest adminUpdateAuthEventFeedbackRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the device status as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateDeviceStatusRequest
+     *        The request to update the device status, as an administrator.
+     * @return A Java Future containing the result of the AdminUpdateDeviceStatus operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminUpdateDeviceStatus
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatus"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateDeviceStatusResult> adminUpdateDeviceStatusAsync(AdminUpdateDeviceStatusRequest adminUpdateDeviceStatusRequest);
+
+    /**
+     * <p>
+     * Updates the device status as an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateDeviceStatusRequest
+     *        The request to update the device status, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminUpdateDeviceStatus operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminUpdateDeviceStatus
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatus"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateDeviceStatusResult> adminUpdateDeviceStatusAsync(AdminUpdateDeviceStatusRequest adminUpdateDeviceStatusRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResult> asyncHandler);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
+     * To delete an attribute from your user, submit the attribute in your API request with a blank value.
+     * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute name.
+     * </p>
+     * <p>
+     * In addition to updating user attributes, this API can also be used to mark phone and email as verified.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateUserAttributesRequest
+     *        Represents the request to update the user's attributes as an administrator.
+     * @return A Java Future containing the result of the AdminUpdateUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminUpdateUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateUserAttributesResult> adminUpdateUserAttributesAsync(
+            AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
+     * To delete an attribute from your user, submit the attribute in your API request with a blank value.
+     * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute name.
+     * </p>
+     * <p>
+     * In addition to updating user attributes, this API can also be used to mark phone and email as verified.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUpdateUserAttributesRequest
+     *        Represents the request to update the user's attributes as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminUpdateUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminUpdateUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUpdateUserAttributesResult> adminUpdateUserAttributesAsync(
+            AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminUpdateUserAttributesRequest, AdminUpdateUserAttributesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call this operation
+     * with your administrative credentials when your user signs out of your app. This results in the following
+     * behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that you authorize with a signed-out
+     * user's access tokens. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito user pools API and user pool endpoints</a>.
+     * </p>
+     * <p>
+     * Amazon Cognito returns an <code>Access Token has been revoked</code> error when your app attempts to authorize a
+     * user pools API request with a revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html">GetId </a> request to an
+     * identity pool with <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration in <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUserGlobalSignOutRequest
+     *        The request to sign out of all devices, as an administrator.
+     * @return A Java Future containing the result of the AdminUserGlobalSignOut operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AdminUserGlobalSignOut
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOut"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUserGlobalSignOutResult> adminUserGlobalSignOutAsync(AdminUserGlobalSignOutRequest adminUserGlobalSignOutRequest);
+
+    /**
+     * <p>
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call this operation
+     * with your administrative credentials when your user signs out of your app. This results in the following
+     * behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that you authorize with a signed-out
+     * user's access tokens. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito user pools API and user pool endpoints</a>.
+     * </p>
+     * <p>
+     * Amazon Cognito returns an <code>Access Token has been revoked</code> error when your app attempts to authorize a
+     * user pools API request with a revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html">GetId </a> request to an
+     * identity pool with <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration in <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param adminUserGlobalSignOutRequest
+     *        The request to sign out of all devices, as an administrator.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AdminUserGlobalSignOut operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AdminUserGlobalSignOut
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOut"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AdminUserGlobalSignOutResult> adminUserGlobalSignOutAsync(AdminUserGlobalSignOutRequest adminUserGlobalSignOutRequest,
+            com.amazonaws.handlers.AsyncHandler<AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResult> asyncHandler);
+
+    /**
+     * <p>
+     * Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA) for a user, with a unique
+     * private key that Amazon Cognito generates and returns in the API response. You can authorize an
+     * <code>AssociateSoftwareToken</code> request with either the user's access token, or a session string from a
+     * challenge response that you received from Amazon Cognito.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito disassociates an existing software token when you verify the new token in a <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html">
+     * VerifySoftwareToken</a> API request. If you don't verify the software token and your user pool doesn't require
+     * MFA, the user can then authenticate with user name and password credentials alone. If your user pool requires
+     * TOTP MFA, Amazon Cognito generates an <code>MFA_SETUP</code> or <code>SOFTWARE_TOKEN_SETUP</code> challenge each
+     * time your user signs. Complete setup with <code>AssociateSoftwareToken</code> and
+     * <code>VerifySoftwareToken</code>.
+     * </p>
+     * <p>
+     * After you set up software token MFA for your user, Amazon Cognito generates a <code>SOFTWARE_TOKEN_MFA</code>
+     * challenge when they authenticate. Respond to this challenge with your user's TOTP.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param associateSoftwareTokenRequest
+     * @return A Java Future containing the result of the AssociateSoftwareToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.AssociateSoftwareToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AssociateSoftwareToken"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AssociateSoftwareTokenResult> associateSoftwareTokenAsync(AssociateSoftwareTokenRequest associateSoftwareTokenRequest);
+
+    /**
+     * <p>
+     * Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA) for a user, with a unique
+     * private key that Amazon Cognito generates and returns in the API response. You can authorize an
+     * <code>AssociateSoftwareToken</code> request with either the user's access token, or a session string from a
+     * challenge response that you received from Amazon Cognito.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito disassociates an existing software token when you verify the new token in a <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html">
+     * VerifySoftwareToken</a> API request. If you don't verify the software token and your user pool doesn't require
+     * MFA, the user can then authenticate with user name and password credentials alone. If your user pool requires
+     * TOTP MFA, Amazon Cognito generates an <code>MFA_SETUP</code> or <code>SOFTWARE_TOKEN_SETUP</code> challenge each
+     * time your user signs. Complete setup with <code>AssociateSoftwareToken</code> and
+     * <code>VerifySoftwareToken</code>.
+     * </p>
+     * <p>
+     * After you set up software token MFA for your user, Amazon Cognito generates a <code>SOFTWARE_TOKEN_MFA</code>
+     * challenge when they authenticate. Respond to this challenge with your user's TOTP.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param associateSoftwareTokenRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the AssociateSoftwareToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.AssociateSoftwareToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AssociateSoftwareToken"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<AssociateSoftwareTokenResult> associateSoftwareTokenAsync(AssociateSoftwareTokenRequest associateSoftwareTokenRequest,
+            com.amazonaws.handlers.AsyncHandler<AssociateSoftwareTokenRequest, AssociateSoftwareTokenResult> asyncHandler);
+
+    /**
+     * <p>
+     * Changes the password for a specified user in a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param changePasswordRequest
+     *        Represents the request to change a user password.
+     * @return A Java Future containing the result of the ChangePassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ChangePassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePassword" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ChangePasswordResult> changePasswordAsync(ChangePasswordRequest changePasswordRequest);
+
+    /**
+     * <p>
+     * Changes the password for a specified user in a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param changePasswordRequest
+     *        Represents the request to change a user password.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ChangePassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ChangePassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePassword" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ChangePasswordResult> changePasswordAsync(ChangePasswordRequest changePasswordRequest,
+            com.amazonaws.handlers.AsyncHandler<ChangePasswordRequest, ChangePasswordResult> asyncHandler);
+
+    /**
+     * <p>
+     * Confirms tracking of the device. This API call is the call that begins device tracking.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmDeviceRequest
+     *        Confirms the device request.
+     * @return A Java Future containing the result of the ConfirmDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ConfirmDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmDeviceResult> confirmDeviceAsync(ConfirmDeviceRequest confirmDeviceRequest);
+
+    /**
+     * <p>
+     * Confirms tracking of the device. This API call is the call that begins device tracking.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmDeviceRequest
+     *        Confirms the device request.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ConfirmDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ConfirmDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmDeviceResult> confirmDeviceAsync(ConfirmDeviceRequest confirmDeviceRequest,
+            com.amazonaws.handlers.AsyncHandler<ConfirmDeviceRequest, ConfirmDeviceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Allows a user to enter a confirmation code to reset a forgotten password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmForgotPasswordRequest
+     *        The request representing the confirmation for a password reset.
+     * @return A Java Future containing the result of the ConfirmForgotPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ConfirmForgotPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmForgotPasswordResult> confirmForgotPasswordAsync(ConfirmForgotPasswordRequest confirmForgotPasswordRequest);
+
+    /**
+     * <p>
+     * Allows a user to enter a confirmation code to reset a forgotten password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmForgotPasswordRequest
+     *        The request representing the confirmation for a password reset.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ConfirmForgotPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ConfirmForgotPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPassword"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmForgotPasswordResult> confirmForgotPasswordAsync(ConfirmForgotPasswordRequest confirmForgotPasswordRequest,
+            com.amazonaws.handlers.AsyncHandler<ConfirmForgotPasswordRequest, ConfirmForgotPasswordResult> asyncHandler);
+
+    /**
+     * <p>
+     * This public API operation provides a code that Amazon Cognito sent to your user when they signed up in your user
+     * pool via the <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html">SignUp</a> API
+     * operation. After your user enters their code, they confirm ownership of the email address or phone number that
+     * they provided, and their user account becomes active. Depending on your user pool configuration, your users will
+     * receive their confirmation code in an email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who can confirm sign-up with a code. Users
+     * who federate through an external identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users, users created with the <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html"
+     * >AdminCreateUser</a> API operation, confirm their accounts when they respond to their invitation email message
+     * and choose a password. They do not receive a confirmation code. Instead, they receive a temporary password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmSignUpRequest
+     *        Represents the request to confirm registration of a user.
+     * @return A Java Future containing the result of the ConfirmSignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ConfirmSignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUp" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmSignUpResult> confirmSignUpAsync(ConfirmSignUpRequest confirmSignUpRequest);
+
+    /**
+     * <p>
+     * This public API operation provides a code that Amazon Cognito sent to your user when they signed up in your user
+     * pool via the <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html">SignUp</a> API
+     * operation. After your user enters their code, they confirm ownership of the email address or phone number that
+     * they provided, and their user account becomes active. Depending on your user pool configuration, your users will
+     * receive their confirmation code in an email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who can confirm sign-up with a code. Users
+     * who federate through an external identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users, users created with the <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html"
+     * >AdminCreateUser</a> API operation, confirm their accounts when they respond to their invitation email message
+     * and choose a password. They do not receive a confirmation code. Instead, they receive a temporary password.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param confirmSignUpRequest
+     *        Represents the request to confirm registration of a user.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ConfirmSignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ConfirmSignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUp" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ConfirmSignUpResult> confirmSignUpAsync(ConfirmSignUpRequest confirmSignUpRequest,
+            com.amazonaws.handlers.AsyncHandler<ConfirmSignUpRequest, ConfirmSignUpResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates a new group in the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createGroupRequest
+     * @return A Java Future containing the result of the CreateGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<CreateGroupResult> createGroupAsync(CreateGroupRequest createGroupRequest);
+
+    /**
+     * <p>
+     * Creates a new group in the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<CreateGroupResult> createGroupAsync(CreateGroupRequest createGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateGroupRequest, CreateGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates an IdP for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createIdentityProviderRequest
+     * @return A Java Future containing the result of the CreateIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateIdentityProviderResult> createIdentityProviderAsync(CreateIdentityProviderRequest createIdentityProviderRequest);
+
+    /**
+     * <p>
+     * Creates an IdP for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createIdentityProviderRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateIdentityProviderResult> createIdentityProviderAsync(CreateIdentityProviderRequest createIdentityProviderRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateIdentityProviderRequest, CreateIdentityProviderResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates a new OAuth2.0 resource server and defines custom scopes within it.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createResourceServerRequest
+     * @return A Java Future containing the result of the CreateResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateResourceServerResult> createResourceServerAsync(CreateResourceServerRequest createResourceServerRequest);
+
+    /**
+     * <p>
+     * Creates a new OAuth2.0 resource server and defines custom scopes within it.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createResourceServerRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateResourceServerResult> createResourceServerAsync(CreateResourceServerRequest createResourceServerRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateResourceServerRequest, CreateResourceServerResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates a user import job.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserImportJobRequest
+     *        Represents the request to create the user import job.
+     * @return A Java Future containing the result of the CreateUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJob"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserImportJobResult> createUserImportJobAsync(CreateUserImportJobRequest createUserImportJobRequest);
+
+    /**
+     * <p>
+     * Creates a user import job.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserImportJobRequest
+     *        Represents the request to create the user import job.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJob"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserImportJobResult> createUserImportJobAsync(CreateUserImportJobRequest createUserImportJobRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateUserImportJobRequest, CreateUserImportJobResult> asyncHandler);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Creates a new Amazon Cognito user pool and sets the password policy for the pool.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolRequest
+     *        Represents the request to create a user pool.
+     * @return A Java Future containing the result of the CreateUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolResult> createUserPoolAsync(CreateUserPoolRequest createUserPoolRequest);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Creates a new Amazon Cognito user pool and sets the password policy for the pool.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolRequest
+     *        Represents the request to create a user pool.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolResult> createUserPoolAsync(CreateUserPoolRequest createUserPoolRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateUserPoolRequest, CreateUserPoolResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates the user pool client.
+     * </p>
+     * <p>
+     * When you create a new user pool client, token revocation is automatically activated. For more information about
+     * revoking tokens, see <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolClientRequest
+     *        Represents the request to create a user pool client.
+     * @return A Java Future containing the result of the CreateUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolClientResult> createUserPoolClientAsync(CreateUserPoolClientRequest createUserPoolClientRequest);
+
+    /**
+     * <p>
+     * Creates the user pool client.
+     * </p>
+     * <p>
+     * When you create a new user pool client, token revocation is automatically activated. For more information about
+     * revoking tokens, see <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolClientRequest
+     *        Represents the request to create a user pool client.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolClientResult> createUserPoolClientAsync(CreateUserPoolClientRequest createUserPoolClientRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateUserPoolClientRequest, CreateUserPoolClientResult> asyncHandler);
+
+    /**
+     * <p>
+     * Creates a new domain for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolDomainRequest
+     * @return A Java Future containing the result of the CreateUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.CreateUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolDomainResult> createUserPoolDomainAsync(CreateUserPoolDomainRequest createUserPoolDomainRequest);
+
+    /**
+     * <p>
+     * Creates a new domain for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param createUserPoolDomainRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the CreateUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.CreateUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<CreateUserPoolDomainResult> createUserPoolDomainAsync(CreateUserPoolDomainRequest createUserPoolDomainRequest,
+            com.amazonaws.handlers.AsyncHandler<CreateUserPoolDomainRequest, CreateUserPoolDomainResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes a group.
+     * </p>
+     * <p>
+     * Calling this action requires developer credentials.
+     * </p>
+     * 
+     * @param deleteGroupRequest
+     * @return A Java Future containing the result of the DeleteGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteGroupResult> deleteGroupAsync(DeleteGroupRequest deleteGroupRequest);
+
+    /**
+     * <p>
+     * Deletes a group.
+     * </p>
+     * <p>
+     * Calling this action requires developer credentials.
+     * </p>
+     * 
+     * @param deleteGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteGroupResult> deleteGroupAsync(DeleteGroupRequest deleteGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteGroupRequest, DeleteGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes an IdP for a user pool.
+     * </p>
+     * 
+     * @param deleteIdentityProviderRequest
+     * @return A Java Future containing the result of the DeleteIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteIdentityProviderResult> deleteIdentityProviderAsync(DeleteIdentityProviderRequest deleteIdentityProviderRequest);
+
+    /**
+     * <p>
+     * Deletes an IdP for a user pool.
+     * </p>
+     * 
+     * @param deleteIdentityProviderRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteIdentityProviderResult> deleteIdentityProviderAsync(DeleteIdentityProviderRequest deleteIdentityProviderRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteIdentityProviderRequest, DeleteIdentityProviderResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes a resource server.
+     * </p>
+     * 
+     * @param deleteResourceServerRequest
+     * @return A Java Future containing the result of the DeleteResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteResourceServerResult> deleteResourceServerAsync(DeleteResourceServerRequest deleteResourceServerRequest);
+
+    /**
+     * <p>
+     * Deletes a resource server.
+     * </p>
+     * 
+     * @param deleteResourceServerRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteResourceServerResult> deleteResourceServerAsync(DeleteResourceServerRequest deleteResourceServerRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteResourceServerRequest, DeleteResourceServerResult> asyncHandler);
+
+    /**
+     * <p>
+     * Allows a user to delete their own user profile.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param deleteUserRequest
+     *        Represents the request to delete a user.
+     * @return A Java Future containing the result of the DeleteUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserResult> deleteUserAsync(DeleteUserRequest deleteUserRequest);
+
+    /**
+     * <p>
+     * Allows a user to delete their own user profile.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param deleteUserRequest
+     *        Represents the request to delete a user.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserResult> deleteUserAsync(DeleteUserRequest deleteUserRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteUserRequest, DeleteUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes the attributes for a user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param deleteUserAttributesRequest
+     *        Represents the request to delete user attributes.
+     * @return A Java Future containing the result of the DeleteUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserAttributesResult> deleteUserAttributesAsync(DeleteUserAttributesRequest deleteUserAttributesRequest);
+
+    /**
+     * <p>
+     * Deletes the attributes for a user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param deleteUserAttributesRequest
+     *        Represents the request to delete user attributes.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserAttributesResult> deleteUserAttributesAsync(DeleteUserAttributesRequest deleteUserAttributesRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteUserAttributesRequest, DeleteUserAttributesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes the specified Amazon Cognito user pool.
+     * </p>
+     * 
+     * @param deleteUserPoolRequest
+     *        Represents the request to delete a user pool.
+     * @return A Java Future containing the result of the DeleteUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolResult> deleteUserPoolAsync(DeleteUserPoolRequest deleteUserPoolRequest);
+
+    /**
+     * <p>
+     * Deletes the specified Amazon Cognito user pool.
+     * </p>
+     * 
+     * @param deleteUserPoolRequest
+     *        Represents the request to delete a user pool.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolResult> deleteUserPoolAsync(DeleteUserPoolRequest deleteUserPoolRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteUserPoolRequest, DeleteUserPoolResult> asyncHandler);
+
+    /**
+     * <p>
+     * Allows the developer to delete the user pool client.
+     * </p>
+     * 
+     * @param deleteUserPoolClientRequest
+     *        Represents the request to delete a user pool client.
+     * @return A Java Future containing the result of the DeleteUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolClientResult> deleteUserPoolClientAsync(DeleteUserPoolClientRequest deleteUserPoolClientRequest);
+
+    /**
+     * <p>
+     * Allows the developer to delete the user pool client.
+     * </p>
+     * 
+     * @param deleteUserPoolClientRequest
+     *        Represents the request to delete a user pool client.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolClientResult> deleteUserPoolClientAsync(DeleteUserPoolClientRequest deleteUserPoolClientRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteUserPoolClientRequest, DeleteUserPoolClientResult> asyncHandler);
+
+    /**
+     * <p>
+     * Deletes a domain for a user pool.
+     * </p>
+     * 
+     * @param deleteUserPoolDomainRequest
+     * @return A Java Future containing the result of the DeleteUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DeleteUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolDomainResult> deleteUserPoolDomainAsync(DeleteUserPoolDomainRequest deleteUserPoolDomainRequest);
+
+    /**
+     * <p>
+     * Deletes a domain for a user pool.
+     * </p>
+     * 
+     * @param deleteUserPoolDomainRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DeleteUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DeleteUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DeleteUserPoolDomainResult> deleteUserPoolDomainAsync(DeleteUserPoolDomainRequest deleteUserPoolDomainRequest,
+            com.amazonaws.handlers.AsyncHandler<DeleteUserPoolDomainRequest, DeleteUserPoolDomainResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets information about a specific IdP.
+     * </p>
+     * 
+     * @param describeIdentityProviderRequest
+     * @return A Java Future containing the result of the DescribeIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeIdentityProviderResult> describeIdentityProviderAsync(DescribeIdentityProviderRequest describeIdentityProviderRequest);
+
+    /**
+     * <p>
+     * Gets information about a specific IdP.
+     * </p>
+     * 
+     * @param describeIdentityProviderRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeIdentityProviderResult> describeIdentityProviderAsync(DescribeIdentityProviderRequest describeIdentityProviderRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeIdentityProviderRequest, DescribeIdentityProviderResult> asyncHandler);
+
+    /**
+     * <p>
+     * Describes a resource server.
+     * </p>
+     * 
+     * @param describeResourceServerRequest
+     * @return A Java Future containing the result of the DescribeResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeResourceServerResult> describeResourceServerAsync(DescribeResourceServerRequest describeResourceServerRequest);
+
+    /**
+     * <p>
+     * Describes a resource server.
+     * </p>
+     * 
+     * @param describeResourceServerRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeResourceServerResult> describeResourceServerAsync(DescribeResourceServerRequest describeResourceServerRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeResourceServerRequest, DescribeResourceServerResult> asyncHandler);
+
+    /**
+     * <p>
+     * Describes the risk configuration.
+     * </p>
+     * 
+     * @param describeRiskConfigurationRequest
+     * @return A Java Future containing the result of the DescribeRiskConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeRiskConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeRiskConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeRiskConfigurationResult> describeRiskConfigurationAsync(
+            DescribeRiskConfigurationRequest describeRiskConfigurationRequest);
+
+    /**
+     * <p>
+     * Describes the risk configuration.
+     * </p>
+     * 
+     * @param describeRiskConfigurationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeRiskConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeRiskConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeRiskConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeRiskConfigurationResult> describeRiskConfigurationAsync(
+            DescribeRiskConfigurationRequest describeRiskConfigurationRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeRiskConfigurationRequest, DescribeRiskConfigurationResult> asyncHandler);
+
+    /**
+     * <p>
+     * Describes the user import job.
+     * </p>
+     * 
+     * @param describeUserImportJobRequest
+     *        Represents the request to describe the user import job.
+     * @return A Java Future containing the result of the DescribeUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJob"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserImportJobResult> describeUserImportJobAsync(DescribeUserImportJobRequest describeUserImportJobRequest);
+
+    /**
+     * <p>
+     * Describes the user import job.
+     * </p>
+     * 
+     * @param describeUserImportJobRequest
+     *        Represents the request to describe the user import job.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJob"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserImportJobResult> describeUserImportJobAsync(DescribeUserImportJobRequest describeUserImportJobRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeUserImportJobRequest, DescribeUserImportJobResult> asyncHandler);
+
+    /**
+     * <p>
+     * Returns the configuration information and metadata of the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param describeUserPoolRequest
+     *        Represents the request to describe the user pool.
+     * @return A Java Future containing the result of the DescribeUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPool" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolResult> describeUserPoolAsync(DescribeUserPoolRequest describeUserPoolRequest);
+
+    /**
+     * <p>
+     * Returns the configuration information and metadata of the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param describeUserPoolRequest
+     *        Represents the request to describe the user pool.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPool" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolResult> describeUserPoolAsync(DescribeUserPoolRequest describeUserPoolRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeUserPoolRequest, DescribeUserPoolResult> asyncHandler);
+
+    /**
+     * <p>
+     * Client method for returning the configuration information and metadata of the specified user pool app client.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param describeUserPoolClientRequest
+     *        Represents the request to describe a user pool client.
+     * @return A Java Future containing the result of the DescribeUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolClientResult> describeUserPoolClientAsync(DescribeUserPoolClientRequest describeUserPoolClientRequest);
+
+    /**
+     * <p>
+     * Client method for returning the configuration information and metadata of the specified user pool app client.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param describeUserPoolClientRequest
+     *        Represents the request to describe a user pool client.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolClientResult> describeUserPoolClientAsync(DescribeUserPoolClientRequest describeUserPoolClientRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeUserPoolClientRequest, DescribeUserPoolClientResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets information about a domain.
+     * </p>
+     * 
+     * @param describeUserPoolDomainRequest
+     * @return A Java Future containing the result of the DescribeUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.DescribeUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolDomainResult> describeUserPoolDomainAsync(DescribeUserPoolDomainRequest describeUserPoolDomainRequest);
+
+    /**
+     * <p>
+     * Gets information about a domain.
+     * </p>
+     * 
+     * @param describeUserPoolDomainRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the DescribeUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.DescribeUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<DescribeUserPoolDomainResult> describeUserPoolDomainAsync(DescribeUserPoolDomainRequest describeUserPoolDomainRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeUserPoolDomainRequest, DescribeUserPoolDomainResult> asyncHandler);
+
+    /**
+     * <p>
+     * Forgets the specified device.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param forgetDeviceRequest
+     *        Represents the request to forget the device.
+     * @return A Java Future containing the result of the ForgetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ForgetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ForgetDeviceResult> forgetDeviceAsync(ForgetDeviceRequest forgetDeviceRequest);
+
+    /**
+     * <p>
+     * Forgets the specified device.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param forgetDeviceRequest
+     *        Represents the request to forget the device.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ForgetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ForgetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ForgetDeviceResult> forgetDeviceAsync(ForgetDeviceRequest forgetDeviceRequest,
+            com.amazonaws.handlers.AsyncHandler<ForgetDeviceRequest, ForgetDeviceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Calling this API causes a message to be sent to the end user with a confirmation code that is required to change
+     * the user's password. For the <code>Username</code> parameter, you can use the username or user alias. The method
+     * used to send the confirmation code is sent according to the specified AccountRecoverySetting. For more
+     * information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-recover-a-user-account.html">Recovering
+     * User Accounts</a> in the <i>Amazon Cognito Developer Guide</i>. To use the confirmation code for resetting the
+     * password, call <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html"
+     * >ConfirmForgotPassword</a>.
+     * </p>
+     * <p>
+     * If neither a verified phone number nor a verified email exists, this API returns
+     * <code>InvalidParameterException</code>. If your app client has a client secret and you don't provide a
+     * <code>SECRET_HASH</code> parameter, this API returns <code>NotAuthorizedException</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param forgotPasswordRequest
+     *        Represents the request to reset a user's password.
+     * @return A Java Future containing the result of the ForgotPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ForgotPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPassword" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ForgotPasswordResult> forgotPasswordAsync(ForgotPasswordRequest forgotPasswordRequest);
+
+    /**
+     * <p>
+     * Calling this API causes a message to be sent to the end user with a confirmation code that is required to change
+     * the user's password. For the <code>Username</code> parameter, you can use the username or user alias. The method
+     * used to send the confirmation code is sent according to the specified AccountRecoverySetting. For more
+     * information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-recover-a-user-account.html">Recovering
+     * User Accounts</a> in the <i>Amazon Cognito Developer Guide</i>. To use the confirmation code for resetting the
+     * password, call <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html"
+     * >ConfirmForgotPassword</a>.
+     * </p>
+     * <p>
+     * If neither a verified phone number nor a verified email exists, this API returns
+     * <code>InvalidParameterException</code>. If your app client has a client secret and you don't provide a
+     * <code>SECRET_HASH</code> parameter, this API returns <code>NotAuthorizedException</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param forgotPasswordRequest
+     *        Represents the request to reset a user's password.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ForgotPassword operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ForgotPassword
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPassword" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ForgotPasswordResult> forgotPasswordAsync(ForgotPasswordRequest forgotPasswordRequest,
+            com.amazonaws.handlers.AsyncHandler<ForgotPasswordRequest, ForgotPasswordResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the header information for the comma-separated value (CSV) file to be used as input for the user import job.
+     * </p>
+     * 
+     * @param getCSVHeaderRequest
+     *        Represents the request to get the header information of the CSV file for the user import job.
+     * @return A Java Future containing the result of the GetCSVHeader operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetCSVHeader
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeader" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetCSVHeaderResult> getCSVHeaderAsync(GetCSVHeaderRequest getCSVHeaderRequest);
+
+    /**
+     * <p>
+     * Gets the header information for the comma-separated value (CSV) file to be used as input for the user import job.
+     * </p>
+     * 
+     * @param getCSVHeaderRequest
+     *        Represents the request to get the header information of the CSV file for the user import job.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetCSVHeader operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetCSVHeader
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeader" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetCSVHeaderResult> getCSVHeaderAsync(GetCSVHeaderRequest getCSVHeaderRequest,
+            com.amazonaws.handlers.AsyncHandler<GetCSVHeaderRequest, GetCSVHeaderResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the device.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param getDeviceRequest
+     *        Represents the request to get the device.
+     * @return A Java Future containing the result of the GetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetDeviceResult> getDeviceAsync(GetDeviceRequest getDeviceRequest);
+
+    /**
+     * <p>
+     * Gets the device.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param getDeviceRequest
+     *        Represents the request to get the device.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetDevice operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetDevice
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDevice" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetDeviceResult> getDeviceAsync(GetDeviceRequest getDeviceRequest,
+            com.amazonaws.handlers.AsyncHandler<GetDeviceRequest, GetDeviceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets a group.
+     * </p>
+     * <p>
+     * Calling this action requires developer credentials.
+     * </p>
+     * 
+     * @param getGroupRequest
+     * @return A Java Future containing the result of the GetGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetGroupResult> getGroupAsync(GetGroupRequest getGroupRequest);
+
+    /**
+     * <p>
+     * Gets a group.
+     * </p>
+     * <p>
+     * Calling this action requires developer credentials.
+     * </p>
+     * 
+     * @param getGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetGroupResult> getGroupAsync(GetGroupRequest getGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<GetGroupRequest, GetGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the specified IdP.
+     * </p>
+     * 
+     * @param getIdentityProviderByIdentifierRequest
+     * @return A Java Future containing the result of the GetIdentityProviderByIdentifier operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsync.GetIdentityProviderByIdentifier
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetIdentityProviderByIdentifier"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetIdentityProviderByIdentifierResult> getIdentityProviderByIdentifierAsync(
+            GetIdentityProviderByIdentifierRequest getIdentityProviderByIdentifierRequest);
+
+    /**
+     * <p>
+     * Gets the specified IdP.
+     * </p>
+     * 
+     * @param getIdentityProviderByIdentifierRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetIdentityProviderByIdentifier operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetIdentityProviderByIdentifier
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetIdentityProviderByIdentifier"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetIdentityProviderByIdentifierResult> getIdentityProviderByIdentifierAsync(
+            GetIdentityProviderByIdentifierRequest getIdentityProviderByIdentifierRequest,
+            com.amazonaws.handlers.AsyncHandler<GetIdentityProviderByIdentifierRequest, GetIdentityProviderByIdentifierResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the detailed activity logging configuration for a user pool.
+     * </p>
+     * 
+     * @param getLogDeliveryConfigurationRequest
+     * @return A Java Future containing the result of the GetLogDeliveryConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetLogDeliveryConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetLogDeliveryConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetLogDeliveryConfigurationResult> getLogDeliveryConfigurationAsync(
+            GetLogDeliveryConfigurationRequest getLogDeliveryConfigurationRequest);
+
+    /**
+     * <p>
+     * Gets the detailed activity logging configuration for a user pool.
+     * </p>
+     * 
+     * @param getLogDeliveryConfigurationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetLogDeliveryConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetLogDeliveryConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetLogDeliveryConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetLogDeliveryConfigurationResult> getLogDeliveryConfigurationAsync(
+            GetLogDeliveryConfigurationRequest getLogDeliveryConfigurationRequest,
+            com.amazonaws.handlers.AsyncHandler<GetLogDeliveryConfigurationRequest, GetLogDeliveryConfigurationResult> asyncHandler);
+
+    /**
+     * <p>
+     * This method takes a user pool ID, and returns the signing certificate. The issued certificate is valid for 10
+     * years from the date of issue.
+     * </p>
+     * <p>
+     * Amazon Cognito issues and assigns a new signing certificate annually. This process returns a new value in the
+     * response to <code>GetSigningCertificate</code>, but doesn't invalidate the original certificate.
+     * </p>
+     * 
+     * @param getSigningCertificateRequest
+     *        Request to get a signing certificate from Amazon Cognito.
+     * @return A Java Future containing the result of the GetSigningCertificate operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetSigningCertificate
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetSigningCertificate"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetSigningCertificateResult> getSigningCertificateAsync(GetSigningCertificateRequest getSigningCertificateRequest);
+
+    /**
+     * <p>
+     * This method takes a user pool ID, and returns the signing certificate. The issued certificate is valid for 10
+     * years from the date of issue.
+     * </p>
+     * <p>
+     * Amazon Cognito issues and assigns a new signing certificate annually. This process returns a new value in the
+     * response to <code>GetSigningCertificate</code>, but doesn't invalidate the original certificate.
+     * </p>
+     * 
+     * @param getSigningCertificateRequest
+     *        Request to get a signing certificate from Amazon Cognito.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetSigningCertificate operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetSigningCertificate
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetSigningCertificate"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetSigningCertificateResult> getSigningCertificateAsync(GetSigningCertificateRequest getSigningCertificateRequest,
+            com.amazonaws.handlers.AsyncHandler<GetSigningCertificateRequest, GetSigningCertificateResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the user interface (UI) Customization information for a particular app client's app UI, if any such
+     * information exists for the client. If nothing is set for the particular client, but there is an existing pool
+     * level customization (the app <code>clientId</code> is <code>ALL</code>), then that information is returned. If
+     * nothing is present, then an empty shape is returned.
+     * </p>
+     * 
+     * @param getUICustomizationRequest
+     * @return A Java Future containing the result of the GetUICustomization operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetUICustomization
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUICustomization" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUICustomizationResult> getUICustomizationAsync(GetUICustomizationRequest getUICustomizationRequest);
+
+    /**
+     * <p>
+     * Gets the user interface (UI) Customization information for a particular app client's app UI, if any such
+     * information exists for the client. If nothing is set for the particular client, but there is an existing pool
+     * level customization (the app <code>clientId</code> is <code>ALL</code>), then that information is returned. If
+     * nothing is present, then an empty shape is returned.
+     * </p>
+     * 
+     * @param getUICustomizationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetUICustomization operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetUICustomization
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUICustomization" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUICustomizationResult> getUICustomizationAsync(GetUICustomizationRequest getUICustomizationRequest,
+            com.amazonaws.handlers.AsyncHandler<GetUICustomizationRequest, GetUICustomizationResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the user attributes and metadata for a user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param getUserRequest
+     *        Represents the request to get information about the user.
+     * @return A Java Future containing the result of the GetUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserResult> getUserAsync(GetUserRequest getUserRequest);
+
+    /**
+     * <p>
+     * Gets the user attributes and metadata for a user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param getUserRequest
+     *        Represents the request to get information about the user.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetUser operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetUser
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUser" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserResult> getUserAsync(GetUserRequest getUserRequest,
+            com.amazonaws.handlers.AsyncHandler<GetUserRequest, GetUserResult> asyncHandler);
+
+    /**
+     * <p>
+     * Generates a user attribute verification code for the specified attribute name. Sends a message to a user with a
+     * code that they must return in a VerifyUserAttribute request.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param getUserAttributeVerificationCodeRequest
+     *        Represents the request to get user attribute verification.
+     * @return A Java Future containing the result of the GetUserAttributeVerificationCode operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsync.GetUserAttributeVerificationCode
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCode"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserAttributeVerificationCodeResult> getUserAttributeVerificationCodeAsync(
+            GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest);
+
+    /**
+     * <p>
+     * Generates a user attribute verification code for the specified attribute name. Sends a message to a user with a
+     * code that they must return in a VerifyUserAttribute request.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param getUserAttributeVerificationCodeRequest
+     *        Represents the request to get user attribute verification.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetUserAttributeVerificationCode operation returned by the
+     *         service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetUserAttributeVerificationCode
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCode"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserAttributeVerificationCodeResult> getUserAttributeVerificationCodeAsync(
+            GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest,
+            com.amazonaws.handlers.AsyncHandler<GetUserAttributeVerificationCodeRequest, GetUserAttributeVerificationCodeResult> asyncHandler);
+
+    /**
+     * <p>
+     * Gets the user pool multi-factor authentication (MFA) configuration.
+     * </p>
+     * 
+     * @param getUserPoolMfaConfigRequest
+     * @return A Java Future containing the result of the GetUserPoolMfaConfig operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GetUserPoolMfaConfig
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserPoolMfaConfig"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserPoolMfaConfigResult> getUserPoolMfaConfigAsync(GetUserPoolMfaConfigRequest getUserPoolMfaConfigRequest);
+
+    /**
+     * <p>
+     * Gets the user pool multi-factor authentication (MFA) configuration.
+     * </p>
+     * 
+     * @param getUserPoolMfaConfigRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GetUserPoolMfaConfig operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GetUserPoolMfaConfig
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserPoolMfaConfig"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<GetUserPoolMfaConfigResult> getUserPoolMfaConfigAsync(GetUserPoolMfaConfigRequest getUserPoolMfaConfigRequest,
+            com.amazonaws.handlers.AsyncHandler<GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResult> asyncHandler);
+
+    /**
+     * <p>
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call this operation
+     * when your user signs out of your app. This results in the following behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that you authorize with a signed-out
+     * user's access tokens. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito user pools API and user pool endpoints</a>.
+     * </p>
+     * <p>
+     * Amazon Cognito returns an <code>Access Token has been revoked</code> error when your app attempts to authorize a
+     * user pools API request with a revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html">GetId </a> request to an
+     * identity pool with <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration in <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param globalSignOutRequest
+     *        Represents the request to sign out all devices.
+     * @return A Java Future containing the result of the GlobalSignOut operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.GlobalSignOut
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOut" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GlobalSignOutResult> globalSignOutAsync(GlobalSignOutRequest globalSignOutRequest);
+
+    /**
+     * <p>
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to a user. Call this operation
+     * when your user signs out of your app. This results in the following behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that you authorize with a signed-out
+     * user's access tokens. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito user pools API and user pool endpoints</a>.
+     * </p>
+     * <p>
+     * Amazon Cognito returns an <code>Access Token has been revoked</code> error when your app attempts to authorize a
+     * user pools API request with a revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html">GetId </a> request to an
+     * identity pool with <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration in <a
+     * href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param globalSignOutRequest
+     *        Represents the request to sign out all devices.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the GlobalSignOut operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.GlobalSignOut
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOut" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<GlobalSignOutResult> globalSignOutAsync(GlobalSignOutRequest globalSignOutRequest,
+            com.amazonaws.handlers.AsyncHandler<GlobalSignOutRequest, GlobalSignOutResult> asyncHandler);
+
+    /**
+     * <p>
+     * Initiates sign-in for a user in the Amazon Cognito user directory. You can't sign in a user with a federated IdP
+     * with <code>InitiateAuth</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html">
+     * Adding user pool sign-in through a third party</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param initiateAuthRequest
+     *        Initiates the authentication request.
+     * @return A Java Future containing the result of the InitiateAuth operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.InitiateAuth
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuth" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<InitiateAuthResult> initiateAuthAsync(InitiateAuthRequest initiateAuthRequest);
+
+    /**
+     * <p>
+     * Initiates sign-in for a user in the Amazon Cognito user directory. You can't sign in a user with a federated IdP
+     * with <code>InitiateAuth</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html">
+     * Adding user pool sign-in through a third party</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param initiateAuthRequest
+     *        Initiates the authentication request.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the InitiateAuth operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.InitiateAuth
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuth" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<InitiateAuthResult> initiateAuthAsync(InitiateAuthRequest initiateAuthRequest,
+            com.amazonaws.handlers.AsyncHandler<InitiateAuthRequest, InitiateAuthResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the sign-in devices that Amazon Cognito has registered to the current user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param listDevicesRequest
+     *        Represents the request to list the devices.
+     * @return A Java Future containing the result of the ListDevices operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListDevices
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevices" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListDevicesResult> listDevicesAsync(ListDevicesRequest listDevicesRequest);
+
+    /**
+     * <p>
+     * Lists the sign-in devices that Amazon Cognito has registered to the current user.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param listDevicesRequest
+     *        Represents the request to list the devices.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListDevices operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListDevices
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevices" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListDevicesResult> listDevicesAsync(ListDevicesRequest listDevicesRequest,
+            com.amazonaws.handlers.AsyncHandler<ListDevicesRequest, ListDevicesResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the groups associated with a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listGroupsRequest
+     * @return A Java Future containing the result of the ListGroups operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListGroups
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroups" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListGroupsResult> listGroupsAsync(ListGroupsRequest listGroupsRequest);
+
+    /**
+     * <p>
+     * Lists the groups associated with a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listGroupsRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListGroups operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListGroups
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroups" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListGroupsResult> listGroupsAsync(ListGroupsRequest listGroupsRequest,
+            com.amazonaws.handlers.AsyncHandler<ListGroupsRequest, ListGroupsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists information about all IdPs for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listIdentityProvidersRequest
+     * @return A Java Future containing the result of the ListIdentityProviders operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListIdentityProviders
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListIdentityProviders"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListIdentityProvidersResult> listIdentityProvidersAsync(ListIdentityProvidersRequest listIdentityProvidersRequest);
+
+    /**
+     * <p>
+     * Lists information about all IdPs for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listIdentityProvidersRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListIdentityProviders operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListIdentityProviders
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListIdentityProviders"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListIdentityProvidersResult> listIdentityProvidersAsync(ListIdentityProvidersRequest listIdentityProvidersRequest,
+            com.amazonaws.handlers.AsyncHandler<ListIdentityProvidersRequest, ListIdentityProvidersResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the resource servers for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listResourceServersRequest
+     * @return A Java Future containing the result of the ListResourceServers operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListResourceServers
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListResourceServers"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListResourceServersResult> listResourceServersAsync(ListResourceServersRequest listResourceServersRequest);
+
+    /**
+     * <p>
+     * Lists the resource servers for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listResourceServersRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListResourceServers operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListResourceServers
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListResourceServers"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListResourceServersResult> listResourceServersAsync(ListResourceServersRequest listResourceServersRequest,
+            com.amazonaws.handlers.AsyncHandler<ListResourceServersRequest, ListResourceServersResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the tags that are assigned to an Amazon Cognito user pool.
+     * </p>
+     * <p>
+     * A tag is a label that you can apply to user pools to categorize and manage them in different ways, such as by
+     * purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * You can use this action up to 10 times per second, per account.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return A Java Future containing the result of the ListTagsForResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListTagsForResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListTagsForResource"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListTagsForResourceResult> listTagsForResourceAsync(ListTagsForResourceRequest listTagsForResourceRequest);
+
+    /**
+     * <p>
+     * Lists the tags that are assigned to an Amazon Cognito user pool.
+     * </p>
+     * <p>
+     * A tag is a label that you can apply to user pools to categorize and manage them in different ways, such as by
+     * purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * You can use this action up to 10 times per second, per account.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListTagsForResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListTagsForResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListTagsForResource"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListTagsForResourceResult> listTagsForResourceAsync(ListTagsForResourceRequest listTagsForResourceRequest,
+            com.amazonaws.handlers.AsyncHandler<ListTagsForResourceRequest, ListTagsForResourceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists user import jobs for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserImportJobsRequest
+     *        Represents the request to list the user import jobs.
+     * @return A Java Future containing the result of the ListUserImportJobs operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListUserImportJobs
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobs" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserImportJobsResult> listUserImportJobsAsync(ListUserImportJobsRequest listUserImportJobsRequest);
+
+    /**
+     * <p>
+     * Lists user import jobs for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserImportJobsRequest
+     *        Represents the request to list the user import jobs.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListUserImportJobs operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListUserImportJobs
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobs" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserImportJobsResult> listUserImportJobsAsync(ListUserImportJobsRequest listUserImportJobsRequest,
+            com.amazonaws.handlers.AsyncHandler<ListUserImportJobsRequest, ListUserImportJobsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the clients that have been created for the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserPoolClientsRequest
+     *        Represents the request to list the user pool clients.
+     * @return A Java Future containing the result of the ListUserPoolClients operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListUserPoolClients
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClients"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserPoolClientsResult> listUserPoolClientsAsync(ListUserPoolClientsRequest listUserPoolClientsRequest);
+
+    /**
+     * <p>
+     * Lists the clients that have been created for the specified user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserPoolClientsRequest
+     *        Represents the request to list the user pool clients.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListUserPoolClients operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListUserPoolClients
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClients"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserPoolClientsResult> listUserPoolClientsAsync(ListUserPoolClientsRequest listUserPoolClientsRequest,
+            com.amazonaws.handlers.AsyncHandler<ListUserPoolClientsRequest, ListUserPoolClientsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the user pools associated with an Amazon Web Services account.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserPoolsRequest
+     *        Represents the request to list user pools.
+     * @return A Java Future containing the result of the ListUserPools operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListUserPools
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPools" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserPoolsResult> listUserPoolsAsync(ListUserPoolsRequest listUserPoolsRequest);
+
+    /**
+     * <p>
+     * Lists the user pools associated with an Amazon Web Services account.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUserPoolsRequest
+     *        Represents the request to list user pools.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListUserPools operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListUserPools
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPools" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListUserPoolsResult> listUserPoolsAsync(ListUserPoolsRequest listUserPoolsRequest,
+            com.amazonaws.handlers.AsyncHandler<ListUserPoolsRequest, ListUserPoolsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists users and their basic details in a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUsersRequest
+     *        Represents the request to list users.
+     * @return A Java Future containing the result of the ListUsers operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListUsers
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsers" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListUsersResult> listUsersAsync(ListUsersRequest listUsersRequest);
+
+    /**
+     * <p>
+     * Lists users and their basic details in a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUsersRequest
+     *        Represents the request to list users.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListUsers operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListUsers
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsers" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<ListUsersResult> listUsersAsync(ListUsersRequest listUsersRequest,
+            com.amazonaws.handlers.AsyncHandler<ListUsersRequest, ListUsersResult> asyncHandler);
+
+    /**
+     * <p>
+     * Lists the users in the specified group.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUsersInGroupRequest
+     * @return A Java Future containing the result of the ListUsersInGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ListUsersInGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroup" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUsersInGroupResult> listUsersInGroupAsync(ListUsersInGroupRequest listUsersInGroupRequest);
+
+    /**
+     * <p>
+     * Lists the users in the specified group.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param listUsersInGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ListUsersInGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ListUsersInGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroup" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<ListUsersInGroupResult> listUsersInGroupAsync(ListUsersInGroupRequest listUsersInGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<ListUsersInGroupRequest, ListUsersInGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param resendConfirmationCodeRequest
+     *        Represents the request to resend the confirmation code.
+     * @return A Java Future containing the result of the ResendConfirmationCode operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.ResendConfirmationCode
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCode"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ResendConfirmationCodeResult> resendConfirmationCodeAsync(ResendConfirmationCodeRequest resendConfirmationCodeRequest);
+
+    /**
+     * <p>
+     * Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param resendConfirmationCodeRequest
+     *        Represents the request to resend the confirmation code.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ResendConfirmationCode operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.ResendConfirmationCode
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCode"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<ResendConfirmationCodeResult> resendConfirmationCodeAsync(ResendConfirmationCodeRequest resendConfirmationCodeRequest,
+            com.amazonaws.handlers.AsyncHandler<ResendConfirmationCodeRequest, ResendConfirmationCodeResult> asyncHandler);
+
+    /**
+     * <p>
+     * Some API operations in a user pool generate a challenge, like a prompt for an MFA code, for device authentication
+     * that bypasses MFA, or for a custom authentication challenge. A <code>RespondToAuthChallenge</code> API request
+     * provides the answer to that challenge, like a code or a secure remote password (SRP). The parameters of a
+     * response to an authentication challenge vary with the type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">Custom
+     * authentication challenge Lambda triggers</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param respondToAuthChallengeRequest
+     *        The request to respond to an authentication challenge.
+     * @return A Java Future containing the result of the RespondToAuthChallenge operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.RespondToAuthChallenge
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallenge"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<RespondToAuthChallengeResult> respondToAuthChallengeAsync(RespondToAuthChallengeRequest respondToAuthChallengeRequest);
+
+    /**
+     * <p>
+     * Some API operations in a user pool generate a challenge, like a prompt for an MFA code, for device authentication
+     * that bypasses MFA, or for a custom authentication challenge. A <code>RespondToAuthChallenge</code> API request
+     * provides the answer to that challenge, like a code or a secure remote password (SRP). The parameters of a
+     * response to an authentication challenge vary with the type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html">Custom
+     * authentication challenge Lambda triggers</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param respondToAuthChallengeRequest
+     *        The request to respond to an authentication challenge.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the RespondToAuthChallenge operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.RespondToAuthChallenge
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallenge"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<RespondToAuthChallengeResult> respondToAuthChallengeAsync(RespondToAuthChallengeRequest respondToAuthChallengeRequest,
+            com.amazonaws.handlers.AsyncHandler<RespondToAuthChallengeRequest, RespondToAuthChallengeResult> asyncHandler);
+
+    /**
+     * <p>
+     * Revokes all of the access tokens generated by, and at the same time as, the specified refresh token. After a
+     * token is revoked, you can't use the revoked token to access Amazon Cognito user APIs, or to authorize access to
+     * your resource server.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param revokeTokenRequest
+     * @return A Java Future containing the result of the RevokeToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.RevokeToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RevokeToken" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<RevokeTokenResult> revokeTokenAsync(RevokeTokenRequest revokeTokenRequest);
+
+    /**
+     * <p>
+     * Revokes all of the access tokens generated by, and at the same time as, the specified refresh token. After a
+     * token is revoked, you can't use the revoked token to access Amazon Cognito user APIs, or to authorize access to
+     * your resource server.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param revokeTokenRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the RevokeToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.RevokeToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RevokeToken" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<RevokeTokenResult> revokeTokenAsync(RevokeTokenRequest revokeTokenRequest,
+            com.amazonaws.handlers.AsyncHandler<RevokeTokenRequest, RevokeTokenResult> asyncHandler);
+
+    /**
+     * <p>
+     * Sets up or modifies the detailed activity logging configuration of a user pool.
+     * </p>
+     * 
+     * @param setLogDeliveryConfigurationRequest
+     * @return A Java Future containing the result of the SetLogDeliveryConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetLogDeliveryConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetLogDeliveryConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetLogDeliveryConfigurationResult> setLogDeliveryConfigurationAsync(
+            SetLogDeliveryConfigurationRequest setLogDeliveryConfigurationRequest);
+
+    /**
+     * <p>
+     * Sets up or modifies the detailed activity logging configuration of a user pool.
+     * </p>
+     * 
+     * @param setLogDeliveryConfigurationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetLogDeliveryConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetLogDeliveryConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetLogDeliveryConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetLogDeliveryConfigurationResult> setLogDeliveryConfigurationAsync(
+            SetLogDeliveryConfigurationRequest setLogDeliveryConfigurationRequest,
+            com.amazonaws.handlers.AsyncHandler<SetLogDeliveryConfigurationRequest, SetLogDeliveryConfigurationResult> asyncHandler);
+
+    /**
+     * <p>
+     * Configures actions on detected risks. To delete the risk configuration for <code>UserPoolId</code> or
+     * <code>ClientId</code>, pass null values for all four configuration types.
+     * </p>
+     * <p>
+     * To activate Amazon Cognito advanced security features, update the user pool to include the
+     * <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.
+     * </p>
+     * 
+     * @param setRiskConfigurationRequest
+     * @return A Java Future containing the result of the SetRiskConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetRiskConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetRiskConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetRiskConfigurationResult> setRiskConfigurationAsync(SetRiskConfigurationRequest setRiskConfigurationRequest);
+
+    /**
+     * <p>
+     * Configures actions on detected risks. To delete the risk configuration for <code>UserPoolId</code> or
+     * <code>ClientId</code>, pass null values for all four configuration types.
+     * </p>
+     * <p>
+     * To activate Amazon Cognito advanced security features, update the user pool to include the
+     * <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.
+     * </p>
+     * 
+     * @param setRiskConfigurationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetRiskConfiguration operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetRiskConfiguration
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetRiskConfiguration"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetRiskConfigurationResult> setRiskConfigurationAsync(SetRiskConfigurationRequest setRiskConfigurationRequest,
+            com.amazonaws.handlers.AsyncHandler<SetRiskConfigurationRequest, SetRiskConfigurationResult> asyncHandler);
+
+    /**
+     * <p>
+     * Sets the user interface (UI) customization information for a user pool's built-in app UI.
+     * </p>
+     * <p>
+     * You can specify app UI customization settings for a single client (with a specific <code>clientId</code>) or for
+     * all clients (by setting the <code>clientId</code> to <code>ALL</code>). If you specify <code>ALL</code>, the
+     * default configuration is used for every client that has no previously set UI customization. If you specify UI
+     * customization settings for a particular client, it will no longer return to the <code>ALL</code> configuration.
+     * </p>
+     * <note>
+     * <p>
+     * To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the
+     * app's pages, and the service will throw an error.
+     * </p>
+     * </note>
+     * 
+     * @param setUICustomizationRequest
+     * @return A Java Future containing the result of the SetUICustomization operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetUICustomization
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUICustomization" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUICustomizationResult> setUICustomizationAsync(SetUICustomizationRequest setUICustomizationRequest);
+
+    /**
+     * <p>
+     * Sets the user interface (UI) customization information for a user pool's built-in app UI.
+     * </p>
+     * <p>
+     * You can specify app UI customization settings for a single client (with a specific <code>clientId</code>) or for
+     * all clients (by setting the <code>clientId</code> to <code>ALL</code>). If you specify <code>ALL</code>, the
+     * default configuration is used for every client that has no previously set UI customization. If you specify UI
+     * customization settings for a particular client, it will no longer return to the <code>ALL</code> configuration.
+     * </p>
+     * <note>
+     * <p>
+     * To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the
+     * app's pages, and the service will throw an error.
+     * </p>
+     * </note>
+     * 
+     * @param setUICustomizationRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetUICustomization operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetUICustomization
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUICustomization" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUICustomizationResult> setUICustomizationAsync(SetUICustomizationRequest setUICustomizationRequest,
+            com.amazonaws.handlers.AsyncHandler<SetUICustomizationRequest, SetUICustomizationResult> asyncHandler);
+
+    /**
+     * <p>
+     * Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are activated and
+     * if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to
+     * authenticate a user if multiple factors are activated. If multiple options are activated and no preference is
+     * set, a challenge to choose an MFA option will be returned during sign-in. If an MFA type is activated for a user,
+     * the user will be prompted for MFA during all sign-in attempts unless device tracking is turned on and the device
+     * has been trusted. If you want MFA to be applied selectively based on the assessed risk level of sign-in attempts,
+     * deactivate MFA for users and turn on Adaptive Authentication for the user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserMFAPreferenceRequest
+     * @return A Java Future containing the result of the SetUserMFAPreference operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetUserMFAPreference
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserMFAPreference"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserMFAPreferenceResult> setUserMFAPreferenceAsync(SetUserMFAPreferenceRequest setUserMFAPreferenceRequest);
+
+    /**
+     * <p>
+     * Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are activated and
+     * if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to
+     * authenticate a user if multiple factors are activated. If multiple options are activated and no preference is
+     * set, a challenge to choose an MFA option will be returned during sign-in. If an MFA type is activated for a user,
+     * the user will be prompted for MFA during all sign-in attempts unless device tracking is turned on and the device
+     * has been trusted. If you want MFA to be applied selectively based on the assessed risk level of sign-in attempts,
+     * deactivate MFA for users and turn on Adaptive Authentication for the user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserMFAPreferenceRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetUserMFAPreference operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetUserMFAPreference
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserMFAPreference"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserMFAPreferenceResult> setUserMFAPreferenceAsync(SetUserMFAPreferenceRequest setUserMFAPreferenceRequest,
+            com.amazonaws.handlers.AsyncHandler<SetUserMFAPreferenceRequest, SetUserMFAPreferenceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Sets the user pool multi-factor authentication (MFA) configuration.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserPoolMfaConfigRequest
+     * @return A Java Future containing the result of the SetUserPoolMfaConfig operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetUserPoolMfaConfig
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserPoolMfaConfig"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserPoolMfaConfigResult> setUserPoolMfaConfigAsync(SetUserPoolMfaConfigRequest setUserPoolMfaConfigRequest);
+
+    /**
+     * <p>
+     * Sets the user pool multi-factor authentication (MFA) configuration.
+     * </p>
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserPoolMfaConfigRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetUserPoolMfaConfig operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetUserPoolMfaConfig
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserPoolMfaConfig"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserPoolMfaConfigResult> setUserPoolMfaConfigAsync(SetUserPoolMfaConfigRequest setUserPoolMfaConfigRequest,
+            com.amazonaws.handlers.AsyncHandler<SetUserPoolMfaConfigRequest, SetUserPoolMfaConfigResult> asyncHandler);
+
+    /**
+     * <p>
+     * <i>This action is no longer supported.</i> You can use it to configure only SMS MFA. You can't use it to
+     * configure time-based one-time password (TOTP) software token MFA. To configure either type of MFA, use <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html"
+     * >SetUserMFAPreference</a> instead.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserSettingsRequest
+     *        Represents the request to set user settings.
+     * @return A Java Future containing the result of the SetUserSettings operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SetUserSettings
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettings" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserSettingsResult> setUserSettingsAsync(SetUserSettingsRequest setUserSettingsRequest);
+
+    /**
+     * <p>
+     * <i>This action is no longer supported.</i> You can use it to configure only SMS MFA. You can't use it to
+     * configure time-based one-time password (TOTP) software token MFA. To configure either type of MFA, use <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html"
+     * >SetUserMFAPreference</a> instead.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param setUserSettingsRequest
+     *        Represents the request to set user settings.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SetUserSettings operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SetUserSettings
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettings" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<SetUserSettingsResult> setUserSettingsAsync(SetUserSettingsRequest setUserSettingsRequest,
+            com.amazonaws.handlers.AsyncHandler<SetUserSettingsRequest, SetUserSettingsResult> asyncHandler);
+
+    /**
+     * <p>
+     * Registers the user in the specified user pool and creates a user name, password, and user attributes.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param signUpRequest
+     *        Represents the request to register a user.
+     * @return A Java Future containing the result of the SignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.SignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUp" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<SignUpResult> signUpAsync(SignUpRequest signUpRequest);
+
+    /**
+     * <p>
+     * Registers the user in the specified user pool and creates a user name, password, and user attributes.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param signUpRequest
+     *        Represents the request to register a user.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the SignUp operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.SignUp
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUp" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<SignUpResult> signUpAsync(SignUpRequest signUpRequest,
+            com.amazonaws.handlers.AsyncHandler<SignUpRequest, SignUpResult> asyncHandler);
+
+    /**
+     * <p>
+     * Starts the user import.
+     * </p>
+     * 
+     * @param startUserImportJobRequest
+     *        Represents the request to start the user import job.
+     * @return A Java Future containing the result of the StartUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.StartUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJob" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<StartUserImportJobResult> startUserImportJobAsync(StartUserImportJobRequest startUserImportJobRequest);
+
+    /**
+     * <p>
+     * Starts the user import.
+     * </p>
+     * 
+     * @param startUserImportJobRequest
+     *        Represents the request to start the user import job.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the StartUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.StartUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJob" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<StartUserImportJobResult> startUserImportJobAsync(StartUserImportJobRequest startUserImportJobRequest,
+            com.amazonaws.handlers.AsyncHandler<StartUserImportJobRequest, StartUserImportJobResult> asyncHandler);
+
+    /**
+     * <p>
+     * Stops the user import job.
+     * </p>
+     * 
+     * @param stopUserImportJobRequest
+     *        Represents the request to stop the user import job.
+     * @return A Java Future containing the result of the StopUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.StopUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJob" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<StopUserImportJobResult> stopUserImportJobAsync(StopUserImportJobRequest stopUserImportJobRequest);
+
+    /**
+     * <p>
+     * Stops the user import job.
+     * </p>
+     * 
+     * @param stopUserImportJobRequest
+     *        Represents the request to stop the user import job.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the StopUserImportJob operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.StopUserImportJob
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJob" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<StopUserImportJobResult> stopUserImportJobAsync(StopUserImportJobRequest stopUserImportJobRequest,
+            com.amazonaws.handlers.AsyncHandler<StopUserImportJobRequest, StopUserImportJobResult> asyncHandler);
+
+    /**
+     * <p>
+     * Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage
+     * user pools in different ways, such as by purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * Each tag consists of a key and value, both of which you define. A key is a general category for more specific
+     * values. For example, if you have two versions of a user pool, one for testing and another for production, you
+     * might assign an <code>Environment</code> tag key to both user pools. The value of this key might be
+     * <code>Test</code> for one user pool, and <code>Production</code> for the other.
+     * </p>
+     * <p>
+     * Tags are useful for cost tracking and access control. You can activate your tags so that they appear on the
+     * Billing and Cost Management console, where you can track the costs associated with your user pools. In an
+     * Identity and Access Management policy, you can constrain permissions for user pools based on specific tags or tag
+     * values.
+     * </p>
+     * <p>
+     * You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return A Java Future containing the result of the TagResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.TagResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/TagResource" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<TagResourceResult> tagResourceAsync(TagResourceRequest tagResourceRequest);
+
+    /**
+     * <p>
+     * Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage
+     * user pools in different ways, such as by purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * Each tag consists of a key and value, both of which you define. A key is a general category for more specific
+     * values. For example, if you have two versions of a user pool, one for testing and another for production, you
+     * might assign an <code>Environment</code> tag key to both user pools. The value of this key might be
+     * <code>Test</code> for one user pool, and <code>Production</code> for the other.
+     * </p>
+     * <p>
+     * Tags are useful for cost tracking and access control. You can activate your tags so that they appear on the
+     * Billing and Cost Management console, where you can track the costs associated with your user pools. In an
+     * Identity and Access Management policy, you can constrain permissions for user pools based on specific tags or tag
+     * values.
+     * </p>
+     * <p>
+     * You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the TagResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.TagResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/TagResource" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<TagResourceResult> tagResourceAsync(TagResourceRequest tagResourceRequest,
+            com.amazonaws.handlers.AsyncHandler<TagResourceRequest, TagResourceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second,
+     * per account.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return A Java Future containing the result of the UntagResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UntagResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UntagResource" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UntagResourceResult> untagResourceAsync(UntagResourceRequest untagResourceRequest);
+
+    /**
+     * <p>
+     * Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second,
+     * per account.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UntagResource operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UntagResource
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UntagResource" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UntagResourceResult> untagResourceAsync(UntagResourceRequest untagResourceRequest,
+            com.amazonaws.handlers.AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler);
+
+    /**
+     * <p>
+     * Provides the feedback for an authentication event, whether it was from a valid user or not. This feedback is used
+     * for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param updateAuthEventFeedbackRequest
+     * @return A Java Future containing the result of the UpdateAuthEventFeedback operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateAuthEventFeedback
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateAuthEventFeedback"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateAuthEventFeedbackResult> updateAuthEventFeedbackAsync(UpdateAuthEventFeedbackRequest updateAuthEventFeedbackRequest);
+
+    /**
+     * <p>
+     * Provides the feedback for an authentication event, whether it was from a valid user or not. This feedback is used
+     * for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param updateAuthEventFeedbackRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateAuthEventFeedback operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateAuthEventFeedback
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateAuthEventFeedback"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateAuthEventFeedbackResult> updateAuthEventFeedbackAsync(UpdateAuthEventFeedbackRequest updateAuthEventFeedbackRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the device status.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param updateDeviceStatusRequest
+     *        Represents the request to update the device status.
+     * @return A Java Future containing the result of the UpdateDeviceStatus operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateDeviceStatus
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatus" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateDeviceStatusResult> updateDeviceStatusAsync(UpdateDeviceStatusRequest updateDeviceStatusRequest);
+
+    /**
+     * <p>
+     * Updates the device status.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param updateDeviceStatusRequest
+     *        Represents the request to update the device status.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateDeviceStatus operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateDeviceStatus
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatus" target="_top">AWS
+     *      API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateDeviceStatusResult> updateDeviceStatusAsync(UpdateDeviceStatusRequest updateDeviceStatusRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateDeviceStatusRequest, UpdateDeviceStatusResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the specified group with the specified attributes.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateGroupRequest
+     * @return A Java Future containing the result of the UpdateGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateGroupResult> updateGroupAsync(UpdateGroupRequest updateGroupRequest);
+
+    /**
+     * <p>
+     * Updates the specified group with the specified attributes.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateGroupRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateGroup operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroup" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateGroupResult> updateGroupAsync(UpdateGroupRequest updateGroupRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateGroupRequest, UpdateGroupResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates IdP information for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateIdentityProviderRequest
+     * @return A Java Future containing the result of the UpdateIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateIdentityProviderResult> updateIdentityProviderAsync(UpdateIdentityProviderRequest updateIdentityProviderRequest);
+
+    /**
+     * <p>
+     * Updates IdP information for a user pool.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateIdentityProviderRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateIdentityProvider operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateIdentityProvider
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateIdentityProvider"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateIdentityProviderResult> updateIdentityProviderAsync(UpdateIdentityProviderRequest updateIdentityProviderRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateIdentityProviderRequest, UpdateIdentityProviderResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the name and scopes of resource server. All other fields are read-only.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, it is set to the default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateResourceServerRequest
+     * @return A Java Future containing the result of the UpdateResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateResourceServerResult> updateResourceServerAsync(UpdateResourceServerRequest updateResourceServerRequest);
+
+    /**
+     * <p>
+     * Updates the name and scopes of resource server. All other fields are read-only.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, it is set to the default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateResourceServerRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateResourceServer operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateResourceServer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateResourceServer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateResourceServerResult> updateResourceServerAsync(UpdateResourceServerRequest updateResourceServerRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateResourceServerRequest, UpdateResourceServerResult> asyncHandler);
+
+    /**
+     * <p>
+     * With this operation, your users can update one or more of their attributes with their own credentials. You
+     * authorize this API request with the user's access token. To delete an attribute from your user, submit the
+     * attribute in your API request with a blank value. Custom attribute values in this request must include the
+     * <code>custom:</code> prefix.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param updateUserAttributesRequest
+     *        Represents the request to update user attributes.
+     * @return A Java Future containing the result of the UpdateUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserAttributesResult> updateUserAttributesAsync(UpdateUserAttributesRequest updateUserAttributesRequest);
+
+    /**
+     * <p>
+     * With this operation, your users can update one or more of their attributes with their own credentials. You
+     * authorize this API request with the user's access token. To delete an attribute from your user, submit the
+     * attribute in your API request with a blank value. Custom attribute values in this request must include the
+     * <code>custom:</code> prefix.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param updateUserAttributesRequest
+     *        Represents the request to update user attributes.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateUserAttributes operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateUserAttributes
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserAttributesResult> updateUserAttributesAsync(UpdateUserAttributesRequest updateUserAttributesRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateUserAttributesRequest, UpdateUserAttributesResult> asyncHandler);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Updates the specified user pool with the specified attributes. You can get a list of the current user pool
+     * settings using <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html"
+     * >DescribeUserPool</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolRequest
+     *        Represents the request to update the user pool.
+     * @return A Java Future containing the result of the UpdateUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolResult> updateUserPoolAsync(UpdateUserPoolRequest updateUserPoolRequest);
+
+    /**
+     * <note>
+     * <p>
+     * This action might generate an SMS text message. Starting June 1, 2021, US telecom carriers require you to
+     * register an origination phone number before you can send SMS messages to US phone numbers. If you use SMS text
+     * messages in Amazon Cognito, you must register a phone number with <a
+     * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>. Amazon Cognito uses the registered
+     * number automatically. Otherwise, Amazon Cognito users who must receive SMS messages might not be able to sign up,
+     * activate their accounts, or sign in.
+     * </p>
+     * <p>
+     * If you have never used SMS text messages with Amazon Cognito or any other Amazon Web Service, Amazon Simple
+     * Notification Service might place your account in the SMS sandbox. In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox mode</a> </i>, you can send
+     * messages only to verified phone numbers. After you test your app while in the sandbox environment, you can move
+     * out of the sandbox and into production. For more information, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"> SMS message
+     * settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * </note>
+     * <p>
+     * Updates the specified user pool with the specified attributes. You can get a list of the current user pool
+     * settings using <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html"
+     * >DescribeUserPool</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important> <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolRequest
+     *        Represents the request to update the user pool.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateUserPool operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateUserPool
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPool" target="_top">AWS API
+     *      Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolResult> updateUserPoolAsync(UpdateUserPoolRequest updateUserPoolRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateUserPoolRequest, UpdateUserPoolResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the specified user pool app client with the specified attributes. You can get a list of the current user
+     * pool app client settings using <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPoolClient.html"
+     * >DescribeUserPoolClient</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important>
+     * <p>
+     * You can also use this operation to enable token revocation for user pool clients. For more information about
+     * revoking tokens, see <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolClientRequest
+     *        Represents the request to update the user pool client.
+     * @return A Java Future containing the result of the UpdateUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolClientResult> updateUserPoolClientAsync(UpdateUserPoolClientRequest updateUserPoolClientRequest);
+
+    /**
+     * <p>
+     * Updates the specified user pool app client with the specified attributes. You can get a list of the current user
+     * pool app client settings using <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPoolClient.html"
+     * >DescribeUserPoolClient</a>.
+     * </p>
+     * <important>
+     * <p>
+     * If you don't provide a value for an attribute, Amazon Cognito sets it to its default value.
+     * </p>
+     * </important>
+     * <p>
+     * You can also use this operation to enable token revocation for user pool clients. For more information about
+     * revoking tokens, see <a
+     * href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolClientRequest
+     *        Represents the request to update the user pool client.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateUserPoolClient operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateUserPoolClient
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClient"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolClientResult> updateUserPoolClientAsync(UpdateUserPoolClientRequest updateUserPoolClientRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateUserPoolClientRequest, UpdateUserPoolClientResult> asyncHandler);
+
+    /**
+     * <p>
+     * Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
+     * </p>
+     * <p>
+     * You can use this operation to provide the Amazon Resource Name (ARN) of a new certificate to Amazon Cognito. You
+     * can't use it to change the domain for a user pool.
+     * </p>
+     * <p>
+     * A custom domain is used to host the Amazon Cognito hosted UI, which provides sign-up and sign-in pages for your
+     * application. When you set up a custom domain, you provide a certificate that you manage with Certificate Manager
+     * (ACM). When necessary, you can use this operation to change the certificate that you applied to your custom
+     * domain.
+     * </p>
+     * <p>
+     * Usually, this is unnecessary following routine certificate renewal with ACM. When you renew your existing
+     * certificate in ACM, the ARN for your certificate remains the same, and your custom domain uses the new
+     * certificate automatically.
+     * </p>
+     * <p>
+     * However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To
+     * apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.
+     * </p>
+     * <p>
+     * When you add your new certificate in ACM, you must choose US East (N. Virginia) as the Amazon Web Services
+     * Region.
+     * </p>
+     * <p>
+     * After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your
+     * custom domain.
+     * </p>
+     * <p>
+     * For more information about adding a custom domain to your user pool, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html">Using
+     * Your Own Domain for the Hosted UI</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolDomainRequest
+     *        The UpdateUserPoolDomain request input.
+     * @return A Java Future containing the result of the UpdateUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.UpdateUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolDomainResult> updateUserPoolDomainAsync(UpdateUserPoolDomainRequest updateUserPoolDomainRequest);
+
+    /**
+     * <p>
+     * Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
+     * </p>
+     * <p>
+     * You can use this operation to provide the Amazon Resource Name (ARN) of a new certificate to Amazon Cognito. You
+     * can't use it to change the domain for a user pool.
+     * </p>
+     * <p>
+     * A custom domain is used to host the Amazon Cognito hosted UI, which provides sign-up and sign-in pages for your
+     * application. When you set up a custom domain, you provide a certificate that you manage with Certificate Manager
+     * (ACM). When necessary, you can use this operation to change the certificate that you applied to your custom
+     * domain.
+     * </p>
+     * <p>
+     * Usually, this is unnecessary following routine certificate renewal with ACM. When you renew your existing
+     * certificate in ACM, the ARN for your certificate remains the same, and your custom domain uses the new
+     * certificate automatically.
+     * </p>
+     * <p>
+     * However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To
+     * apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.
+     * </p>
+     * <p>
+     * When you add your new certificate in ACM, you must choose US East (N. Virginia) as the Amazon Web Services
+     * Region.
+     * </p>
+     * <p>
+     * After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your
+     * custom domain.
+     * </p>
+     * <p>
+     * For more information about adding a custom domain to your user pool, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html">Using
+     * Your Own Domain for the Hosted UI</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For
+     * this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding
+     * IAM permission in a policy.
+     * </p>
+     * <p class="title">
+     * <b>Learn more</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing Amazon Web Services
+     * API Requests</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the
+     * Amazon Cognito user pools API and user pool endpoints</a>
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param updateUserPoolDomainRequest
+     *        The UpdateUserPoolDomain request input.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the UpdateUserPoolDomain operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.UpdateUserPoolDomain
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolDomain"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<UpdateUserPoolDomainResult> updateUserPoolDomainAsync(UpdateUserPoolDomainRequest updateUserPoolDomainRequest,
+            com.amazonaws.handlers.AsyncHandler<UpdateUserPoolDomainRequest, UpdateUserPoolDomainResult> asyncHandler);
+
+    /**
+     * <p>
+     * Use this API to register a user's entered time-based one-time password (TOTP) code and mark the user's software
+     * token MFA status as "verified" if successful. The request takes an access token or a session string, but not
+     * both.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param verifySoftwareTokenRequest
+     * @return A Java Future containing the result of the VerifySoftwareToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.VerifySoftwareToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifySoftwareToken"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<VerifySoftwareTokenResult> verifySoftwareTokenAsync(VerifySoftwareTokenRequest verifySoftwareTokenRequest);
+
+    /**
+     * <p>
+     * Use this API to register a user's entered time-based one-time password (TOTP) code and mark the user's software
+     * token MFA status as "verified" if successful. The request takes an access token or a session string, but not
+     * both.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param verifySoftwareTokenRequest
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the VerifySoftwareToken operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.VerifySoftwareToken
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifySoftwareToken"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<VerifySoftwareTokenResult> verifySoftwareTokenAsync(VerifySoftwareTokenRequest verifySoftwareTokenRequest,
+            com.amazonaws.handlers.AsyncHandler<VerifySoftwareTokenRequest, VerifySoftwareTokenResult> asyncHandler);
+
+    /**
+     * <p>
+     * Verifies the specified user attributes in the user pool.
+     * </p>
+     * <p>
+     * If your user pool requires verification before Amazon Cognito updates the attribute value, VerifyUserAttribute
+     * updates the affected attribute to its pending value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html"
+     * > UserAttributeUpdateSettingsType</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param verifyUserAttributeRequest
+     *        Represents the request to verify user attributes.
+     * @return A Java Future containing the result of the VerifyUserAttribute operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsync.VerifyUserAttribute
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<VerifyUserAttributeResult> verifyUserAttributeAsync(VerifyUserAttributeRequest verifyUserAttributeRequest);
+
+    /**
+     * <p>
+     * Verifies the specified user attributes in the user pool.
+     * </p>
+     * <p>
+     * If your user pool requires verification before Amazon Cognito updates the attribute value, VerifyUserAttribute
+     * updates the affected attribute to its pending value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html"
+     * > UserAttributeUpdateSettingsType</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation.
+     * For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in
+     * policies. For more information about authorization models in Amazon Cognito, see <a
+     * href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using the Amazon
+     * Cognito native and OIDC APIs</a>.
+     * </p>
+     * </note>
+     * 
+     * @param verifyUserAttributeRequest
+     *        Represents the request to verify user attributes.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the request. Users can provide an
+     *        implementation of the callback methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the VerifyUserAttribute operation returned by the service.
+     * @sample AWSCognitoIdentityProviderAsyncHandler.VerifyUserAttribute
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute"
+     *      target="_top">AWS API Documentation</a>
+     */
+    java.util.concurrent.Future<VerifyUserAttributeResult> verifyUserAttributeAsync(VerifyUserAttributeRequest verifyUserAttributeRequest,
+            com.amazonaws.handlers.AsyncHandler<VerifyUserAttributeRequest, VerifyUserAttributeResult> asyncHandler);
+
+}

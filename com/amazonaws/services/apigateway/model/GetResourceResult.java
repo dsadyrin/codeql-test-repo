@@ -1,0 +1,366 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.apigateway.model;
+
+import java.io.Serializable;
+import javax.annotation.Generated;
+
+/**
+ * <p>
+ * Represents an API resource.
+ * </p>
+ */
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public class GetResourceResult extends com.amazonaws.AmazonWebServiceResult<com.amazonaws.ResponseMetadata> implements Serializable, Cloneable {
+
+    /**
+     * <p>
+     * The resource's identifier.
+     * </p>
+     */
+    private String id;
+    /**
+     * <p>
+     * The parent resource's identifier.
+     * </p>
+     */
+    private String parentId;
+    /**
+     * <p>
+     * The last path segment for this resource.
+     * </p>
+     */
+    private String pathPart;
+    /**
+     * <p>
+     * The full path for this resource.
+     * </p>
+     */
+    private String path;
+    /**
+     * <p>
+     * Gets an API resource's method of a given HTTP verb.
+     * </p>
+     */
+    private java.util.Map<String, Method> resourceMethods;
+
+    /**
+     * <p>
+     * The resource's identifier.
+     * </p>
+     * 
+     * @param id
+     *        The resource's identifier.
+     */
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * <p>
+     * The resource's identifier.
+     * </p>
+     * 
+     * @return The resource's identifier.
+     */
+
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * <p>
+     * The resource's identifier.
+     * </p>
+     * 
+     * @param id
+     *        The resource's identifier.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult withId(String id) {
+        setId(id);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The parent resource's identifier.
+     * </p>
+     * 
+     * @param parentId
+     *        The parent resource's identifier.
+     */
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    /**
+     * <p>
+     * The parent resource's identifier.
+     * </p>
+     * 
+     * @return The parent resource's identifier.
+     */
+
+    public String getParentId() {
+        return this.parentId;
+    }
+
+    /**
+     * <p>
+     * The parent resource's identifier.
+     * </p>
+     * 
+     * @param parentId
+     *        The parent resource's identifier.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult withParentId(String parentId) {
+        setParentId(parentId);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The last path segment for this resource.
+     * </p>
+     * 
+     * @param pathPart
+     *        The last path segment for this resource.
+     */
+
+    public void setPathPart(String pathPart) {
+        this.pathPart = pathPart;
+    }
+
+    /**
+     * <p>
+     * The last path segment for this resource.
+     * </p>
+     * 
+     * @return The last path segment for this resource.
+     */
+
+    public String getPathPart() {
+        return this.pathPart;
+    }
+
+    /**
+     * <p>
+     * The last path segment for this resource.
+     * </p>
+     * 
+     * @param pathPart
+     *        The last path segment for this resource.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult withPathPart(String pathPart) {
+        setPathPart(pathPart);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The full path for this resource.
+     * </p>
+     * 
+     * @param path
+     *        The full path for this resource.
+     */
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    /**
+     * <p>
+     * The full path for this resource.
+     * </p>
+     * 
+     * @return The full path for this resource.
+     */
+
+    public String getPath() {
+        return this.path;
+    }
+
+    /**
+     * <p>
+     * The full path for this resource.
+     * </p>
+     * 
+     * @param path
+     *        The full path for this resource.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult withPath(String path) {
+        setPath(path);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Gets an API resource's method of a given HTTP verb.
+     * </p>
+     * 
+     * @return Gets an API resource's method of a given HTTP verb.
+     */
+
+    public java.util.Map<String, Method> getResourceMethods() {
+        return resourceMethods;
+    }
+
+    /**
+     * <p>
+     * Gets an API resource's method of a given HTTP verb.
+     * </p>
+     * 
+     * @param resourceMethods
+     *        Gets an API resource's method of a given HTTP verb.
+     */
+
+    public void setResourceMethods(java.util.Map<String, Method> resourceMethods) {
+        this.resourceMethods = resourceMethods;
+    }
+
+    /**
+     * <p>
+     * Gets an API resource's method of a given HTTP verb.
+     * </p>
+     * 
+     * @param resourceMethods
+     *        Gets an API resource's method of a given HTTP verb.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult withResourceMethods(java.util.Map<String, Method> resourceMethods) {
+        setResourceMethods(resourceMethods);
+        return this;
+    }
+
+    /**
+     * Add a single ResourceMethods entry
+     *
+     * @see GetResourceResult#withResourceMethods
+     * @returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult addResourceMethodsEntry(String key, Method value) {
+        if (null == this.resourceMethods) {
+            this.resourceMethods = new java.util.HashMap<String, Method>();
+        }
+        if (this.resourceMethods.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.resourceMethods.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ResourceMethods.
+     *
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public GetResourceResult clearResourceMethodsEntries() {
+        this.resourceMethods = null;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object. This is useful for testing and debugging. Sensitive data will be
+     * redacted from this string using a placeholder value.
+     *
+     * @return A string representation of this object.
+     *
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getId() != null)
+            sb.append("Id: ").append(getId()).append(",");
+        if (getParentId() != null)
+            sb.append("ParentId: ").append(getParentId()).append(",");
+        if (getPathPart() != null)
+            sb.append("PathPart: ").append(getPathPart()).append(",");
+        if (getPath() != null)
+            sb.append("Path: ").append(getPath()).append(",");
+        if (getResourceMethods() != null)
+            sb.append("ResourceMethods: ").append(getResourceMethods());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetResourceResult == false)
+            return false;
+        GetResourceResult other = (GetResourceResult) obj;
+        if (other.getId() == null ^ this.getId() == null)
+            return false;
+        if (other.getId() != null && other.getId().equals(this.getId()) == false)
+            return false;
+        if (other.getParentId() == null ^ this.getParentId() == null)
+            return false;
+        if (other.getParentId() != null && other.getParentId().equals(this.getParentId()) == false)
+            return false;
+        if (other.getPathPart() == null ^ this.getPathPart() == null)
+            return false;
+        if (other.getPathPart() != null && other.getPathPart().equals(this.getPathPart()) == false)
+            return false;
+        if (other.getPath() == null ^ this.getPath() == null)
+            return false;
+        if (other.getPath() != null && other.getPath().equals(this.getPath()) == false)
+            return false;
+        if (other.getResourceMethods() == null ^ this.getResourceMethods() == null)
+            return false;
+        if (other.getResourceMethods() != null && other.getResourceMethods().equals(this.getResourceMethods()) == false)
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
+        hashCode = prime * hashCode + ((getParentId() == null) ? 0 : getParentId().hashCode());
+        hashCode = prime * hashCode + ((getPathPart() == null) ? 0 : getPathPart().hashCode());
+        hashCode = prime * hashCode + ((getPath() == null) ? 0 : getPath().hashCode());
+        hashCode = prime * hashCode + ((getResourceMethods() == null) ? 0 : getResourceMethods().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public GetResourceResult clone() {
+        try {
+            return (GetResourceResult) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+        }
+    }
+
+}
