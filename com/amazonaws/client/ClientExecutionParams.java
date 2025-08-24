@@ -55,6 +55,7 @@ public class ClientExecutionParams<Input, Output> {
 
     public ClientExecutionParams<Input, Output> withInput(Input input) {
         this.input = input;
+        System.out.println(this.input);
         return this;
     }
 
@@ -84,6 +85,7 @@ public class ClientExecutionParams<Input, Output> {
 
     public ClientExecutionParams<Input, Output> withRequestConfig(RequestConfig requestConfig) {
         this.requestConfig = requestConfig;
+	System.out.println("hello");
         return this;
     }
 }
