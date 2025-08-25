@@ -1,0 +1,890 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.guardduty.model;
+
+import java.io.Serializable;
+import javax.annotation.Generated;
+import com.amazonaws.protocol.StructuredPojo;
+import com.amazonaws.protocol.ProtocolMarshaller;
+
+/**
+ * <p>
+ * Contains additional information about the generated finding.
+ * </p>
+ * 
+ * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/Service" target="_top">AWS API
+ *      Documentation</a>
+ */
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public class Service implements Serializable, Cloneable, StructuredPojo {
+
+    /**
+     * <p>
+     * Information about the activity that is described in a finding.
+     * </p>
+     */
+    private Action action;
+    /**
+     * <p>
+     * An evidence object associated with the service.
+     * </p>
+     */
+    private Evidence evidence;
+    /**
+     * <p>
+     * Indicates whether this finding is archived.
+     * </p>
+     */
+    private Boolean archived;
+    /**
+     * <p>
+     * The total count of the occurrences of this finding type.
+     * </p>
+     */
+    private Integer count;
+    /**
+     * <p>
+     * The detector ID for the GuardDuty service.
+     * </p>
+     */
+    private String detectorId;
+    /**
+     * <p>
+     * The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     */
+    private String eventFirstSeen;
+    /**
+     * <p>
+     * The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     */
+    private String eventLastSeen;
+    /**
+     * <p>
+     * The resource role information for this finding.
+     * </p>
+     */
+    private String resourceRole;
+    /**
+     * <p>
+     * The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     * </p>
+     */
+    private String serviceName;
+    /**
+     * <p>
+     * Feedback that was submitted about the finding.
+     * </p>
+     */
+    private String userFeedback;
+    /**
+     * <p>
+     * Contains additional information about the generated finding.
+     * </p>
+     */
+    private ServiceAdditionalInfo additionalInfo;
+    /**
+     * <p>
+     * The name of the feature that generated a finding.
+     * </p>
+     */
+    private String featureName;
+    /**
+     * <p>
+     * Returns details from the malware scan that created a finding.
+     * </p>
+     */
+    private EbsVolumeScanDetails ebsVolumeScanDetails;
+    /**
+     * <p>
+     * Information about the process and any required context values for a specific finding
+     * </p>
+     */
+    private RuntimeDetails runtimeDetails;
+    /**
+     * <p>
+     * Contains information about the detected unusual behavior.
+     * </p>
+     */
+    private Detection detection;
+
+    /**
+     * <p>
+     * Information about the activity that is described in a finding.
+     * </p>
+     * 
+     * @param action
+     *        Information about the activity that is described in a finding.
+     */
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    /**
+     * <p>
+     * Information about the activity that is described in a finding.
+     * </p>
+     * 
+     * @return Information about the activity that is described in a finding.
+     */
+
+    public Action getAction() {
+        return this.action;
+    }
+
+    /**
+     * <p>
+     * Information about the activity that is described in a finding.
+     * </p>
+     * 
+     * @param action
+     *        Information about the activity that is described in a finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withAction(Action action) {
+        setAction(action);
+        return this;
+    }
+
+    /**
+     * <p>
+     * An evidence object associated with the service.
+     * </p>
+     * 
+     * @param evidence
+     *        An evidence object associated with the service.
+     */
+
+    public void setEvidence(Evidence evidence) {
+        this.evidence = evidence;
+    }
+
+    /**
+     * <p>
+     * An evidence object associated with the service.
+     * </p>
+     * 
+     * @return An evidence object associated with the service.
+     */
+
+    public Evidence getEvidence() {
+        return this.evidence;
+    }
+
+    /**
+     * <p>
+     * An evidence object associated with the service.
+     * </p>
+     * 
+     * @param evidence
+     *        An evidence object associated with the service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withEvidence(Evidence evidence) {
+        setEvidence(evidence);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether this finding is archived.
+     * </p>
+     * 
+     * @param archived
+     *        Indicates whether this finding is archived.
+     */
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
+    }
+
+    /**
+     * <p>
+     * Indicates whether this finding is archived.
+     * </p>
+     * 
+     * @return Indicates whether this finding is archived.
+     */
+
+    public Boolean getArchived() {
+        return this.archived;
+    }
+
+    /**
+     * <p>
+     * Indicates whether this finding is archived.
+     * </p>
+     * 
+     * @param archived
+     *        Indicates whether this finding is archived.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withArchived(Boolean archived) {
+        setArchived(archived);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether this finding is archived.
+     * </p>
+     * 
+     * @return Indicates whether this finding is archived.
+     */
+
+    public Boolean isArchived() {
+        return this.archived;
+    }
+
+    /**
+     * <p>
+     * The total count of the occurrences of this finding type.
+     * </p>
+     * 
+     * @param count
+     *        The total count of the occurrences of this finding type.
+     */
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    /**
+     * <p>
+     * The total count of the occurrences of this finding type.
+     * </p>
+     * 
+     * @return The total count of the occurrences of this finding type.
+     */
+
+    public Integer getCount() {
+        return this.count;
+    }
+
+    /**
+     * <p>
+     * The total count of the occurrences of this finding type.
+     * </p>
+     * 
+     * @param count
+     *        The total count of the occurrences of this finding type.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withCount(Integer count) {
+        setCount(count);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The detector ID for the GuardDuty service.
+     * </p>
+     * 
+     * @param detectorId
+     *        The detector ID for the GuardDuty service.
+     */
+
+    public void setDetectorId(String detectorId) {
+        this.detectorId = detectorId;
+    }
+
+    /**
+     * <p>
+     * The detector ID for the GuardDuty service.
+     * </p>
+     * 
+     * @return The detector ID for the GuardDuty service.
+     */
+
+    public String getDetectorId() {
+        return this.detectorId;
+    }
+
+    /**
+     * <p>
+     * The detector ID for the GuardDuty service.
+     * </p>
+     * 
+     * @param detectorId
+     *        The detector ID for the GuardDuty service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withDetectorId(String detectorId) {
+        setDetectorId(detectorId);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @param eventFirstSeen
+     *        The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     */
+
+    public void setEventFirstSeen(String eventFirstSeen) {
+        this.eventFirstSeen = eventFirstSeen;
+    }
+
+    /**
+     * <p>
+     * The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @return The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     */
+
+    public String getEventFirstSeen() {
+        return this.eventFirstSeen;
+    }
+
+    /**
+     * <p>
+     * The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @param eventFirstSeen
+     *        The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withEventFirstSeen(String eventFirstSeen) {
+        setEventFirstSeen(eventFirstSeen);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @param eventLastSeen
+     *        The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     */
+
+    public void setEventLastSeen(String eventLastSeen) {
+        this.eventLastSeen = eventLastSeen;
+    }
+
+    /**
+     * <p>
+     * The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @return The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     */
+
+    public String getEventLastSeen() {
+        return this.eventLastSeen;
+    }
+
+    /**
+     * <p>
+     * The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * </p>
+     * 
+     * @param eventLastSeen
+     *        The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withEventLastSeen(String eventLastSeen) {
+        setEventLastSeen(eventLastSeen);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The resource role information for this finding.
+     * </p>
+     * 
+     * @param resourceRole
+     *        The resource role information for this finding.
+     */
+
+    public void setResourceRole(String resourceRole) {
+        this.resourceRole = resourceRole;
+    }
+
+    /**
+     * <p>
+     * The resource role information for this finding.
+     * </p>
+     * 
+     * @return The resource role information for this finding.
+     */
+
+    public String getResourceRole() {
+        return this.resourceRole;
+    }
+
+    /**
+     * <p>
+     * The resource role information for this finding.
+     * </p>
+     * 
+     * @param resourceRole
+     *        The resource role information for this finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withResourceRole(String resourceRole) {
+        setResourceRole(resourceRole);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     * </p>
+     * 
+     * @param serviceName
+     *        The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     */
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    /**
+     * <p>
+     * The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     * </p>
+     * 
+     * @return The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     */
+
+    public String getServiceName() {
+        return this.serviceName;
+    }
+
+    /**
+     * <p>
+     * The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     * </p>
+     * 
+     * @param serviceName
+     *        The name of the Amazon Web Services service (GuardDuty) that generated a finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withServiceName(String serviceName) {
+        setServiceName(serviceName);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Feedback that was submitted about the finding.
+     * </p>
+     * 
+     * @param userFeedback
+     *        Feedback that was submitted about the finding.
+     */
+
+    public void setUserFeedback(String userFeedback) {
+        this.userFeedback = userFeedback;
+    }
+
+    /**
+     * <p>
+     * Feedback that was submitted about the finding.
+     * </p>
+     * 
+     * @return Feedback that was submitted about the finding.
+     */
+
+    public String getUserFeedback() {
+        return this.userFeedback;
+    }
+
+    /**
+     * <p>
+     * Feedback that was submitted about the finding.
+     * </p>
+     * 
+     * @param userFeedback
+     *        Feedback that was submitted about the finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withUserFeedback(String userFeedback) {
+        setUserFeedback(userFeedback);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains additional information about the generated finding.
+     * </p>
+     * 
+     * @param additionalInfo
+     *        Contains additional information about the generated finding.
+     */
+
+    public void setAdditionalInfo(ServiceAdditionalInfo additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    /**
+     * <p>
+     * Contains additional information about the generated finding.
+     * </p>
+     * 
+     * @return Contains additional information about the generated finding.
+     */
+
+    public ServiceAdditionalInfo getAdditionalInfo() {
+        return this.additionalInfo;
+    }
+
+    /**
+     * <p>
+     * Contains additional information about the generated finding.
+     * </p>
+     * 
+     * @param additionalInfo
+     *        Contains additional information about the generated finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withAdditionalInfo(ServiceAdditionalInfo additionalInfo) {
+        setAdditionalInfo(additionalInfo);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the feature that generated a finding.
+     * </p>
+     * 
+     * @param featureName
+     *        The name of the feature that generated a finding.
+     */
+
+    public void setFeatureName(String featureName) {
+        this.featureName = featureName;
+    }
+
+    /**
+     * <p>
+     * The name of the feature that generated a finding.
+     * </p>
+     * 
+     * @return The name of the feature that generated a finding.
+     */
+
+    public String getFeatureName() {
+        return this.featureName;
+    }
+
+    /**
+     * <p>
+     * The name of the feature that generated a finding.
+     * </p>
+     * 
+     * @param featureName
+     *        The name of the feature that generated a finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withFeatureName(String featureName) {
+        setFeatureName(featureName);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Returns details from the malware scan that created a finding.
+     * </p>
+     * 
+     * @param ebsVolumeScanDetails
+     *        Returns details from the malware scan that created a finding.
+     */
+
+    public void setEbsVolumeScanDetails(EbsVolumeScanDetails ebsVolumeScanDetails) {
+        this.ebsVolumeScanDetails = ebsVolumeScanDetails;
+    }
+
+    /**
+     * <p>
+     * Returns details from the malware scan that created a finding.
+     * </p>
+     * 
+     * @return Returns details from the malware scan that created a finding.
+     */
+
+    public EbsVolumeScanDetails getEbsVolumeScanDetails() {
+        return this.ebsVolumeScanDetails;
+    }
+
+    /**
+     * <p>
+     * Returns details from the malware scan that created a finding.
+     * </p>
+     * 
+     * @param ebsVolumeScanDetails
+     *        Returns details from the malware scan that created a finding.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withEbsVolumeScanDetails(EbsVolumeScanDetails ebsVolumeScanDetails) {
+        setEbsVolumeScanDetails(ebsVolumeScanDetails);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the process and any required context values for a specific finding
+     * </p>
+     * 
+     * @param runtimeDetails
+     *        Information about the process and any required context values for a specific finding
+     */
+
+    public void setRuntimeDetails(RuntimeDetails runtimeDetails) {
+        this.runtimeDetails = runtimeDetails;
+    }
+
+    /**
+     * <p>
+     * Information about the process and any required context values for a specific finding
+     * </p>
+     * 
+     * @return Information about the process and any required context values for a specific finding
+     */
+
+    public RuntimeDetails getRuntimeDetails() {
+        return this.runtimeDetails;
+    }
+
+    /**
+     * <p>
+     * Information about the process and any required context values for a specific finding
+     * </p>
+     * 
+     * @param runtimeDetails
+     *        Information about the process and any required context values for a specific finding
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withRuntimeDetails(RuntimeDetails runtimeDetails) {
+        setRuntimeDetails(runtimeDetails);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains information about the detected unusual behavior.
+     * </p>
+     * 
+     * @param detection
+     *        Contains information about the detected unusual behavior.
+     */
+
+    public void setDetection(Detection detection) {
+        this.detection = detection;
+    }
+
+    /**
+     * <p>
+     * Contains information about the detected unusual behavior.
+     * </p>
+     * 
+     * @return Contains information about the detected unusual behavior.
+     */
+
+    public Detection getDetection() {
+        return this.detection;
+    }
+
+    /**
+     * <p>
+     * Contains information about the detected unusual behavior.
+     * </p>
+     * 
+     * @param detection
+     *        Contains information about the detected unusual behavior.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public Service withDetection(Detection detection) {
+        setDetection(detection);
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object. This is useful for testing and debugging. Sensitive data will be
+     * redacted from this string using a placeholder value.
+     *
+     * @return A string representation of this object.
+     *
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getAction() != null)
+            sb.append("Action: ").append(getAction()).append(",");
+        if (getEvidence() != null)
+            sb.append("Evidence: ").append(getEvidence()).append(",");
+        if (getArchived() != null)
+            sb.append("Archived: ").append(getArchived()).append(",");
+        if (getCount() != null)
+            sb.append("Count: ").append(getCount()).append(",");
+        if (getDetectorId() != null)
+            sb.append("DetectorId: ").append(getDetectorId()).append(",");
+        if (getEventFirstSeen() != null)
+            sb.append("EventFirstSeen: ").append(getEventFirstSeen()).append(",");
+        if (getEventLastSeen() != null)
+            sb.append("EventLastSeen: ").append(getEventLastSeen()).append(",");
+        if (getResourceRole() != null)
+            sb.append("ResourceRole: ").append(getResourceRole()).append(",");
+        if (getServiceName() != null)
+            sb.append("ServiceName: ").append(getServiceName()).append(",");
+        if (getUserFeedback() != null)
+            sb.append("UserFeedback: ").append(getUserFeedback()).append(",");
+        if (getAdditionalInfo() != null)
+            sb.append("AdditionalInfo: ").append(getAdditionalInfo()).append(",");
+        if (getFeatureName() != null)
+            sb.append("FeatureName: ").append(getFeatureName()).append(",");
+        if (getEbsVolumeScanDetails() != null)
+            sb.append("EbsVolumeScanDetails: ").append(getEbsVolumeScanDetails()).append(",");
+        if (getRuntimeDetails() != null)
+            sb.append("RuntimeDetails: ").append(getRuntimeDetails()).append(",");
+        if (getDetection() != null)
+            sb.append("Detection: ").append(getDetection());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof Service == false)
+            return false;
+        Service other = (Service) obj;
+        if (other.getAction() == null ^ this.getAction() == null)
+            return false;
+        if (other.getAction() != null && other.getAction().equals(this.getAction()) == false)
+            return false;
+        if (other.getEvidence() == null ^ this.getEvidence() == null)
+            return false;
+        if (other.getEvidence() != null && other.getEvidence().equals(this.getEvidence()) == false)
+            return false;
+        if (other.getArchived() == null ^ this.getArchived() == null)
+            return false;
+        if (other.getArchived() != null && other.getArchived().equals(this.getArchived()) == false)
+            return false;
+        if (other.getCount() == null ^ this.getCount() == null)
+            return false;
+        if (other.getCount() != null && other.getCount().equals(this.getCount()) == false)
+            return false;
+        if (other.getDetectorId() == null ^ this.getDetectorId() == null)
+            return false;
+        if (other.getDetectorId() != null && other.getDetectorId().equals(this.getDetectorId()) == false)
+            return false;
+        if (other.getEventFirstSeen() == null ^ this.getEventFirstSeen() == null)
+            return false;
+        if (other.getEventFirstSeen() != null && other.getEventFirstSeen().equals(this.getEventFirstSeen()) == false)
+            return false;
+        if (other.getEventLastSeen() == null ^ this.getEventLastSeen() == null)
+            return false;
+        if (other.getEventLastSeen() != null && other.getEventLastSeen().equals(this.getEventLastSeen()) == false)
+            return false;
+        if (other.getResourceRole() == null ^ this.getResourceRole() == null)
+            return false;
+        if (other.getResourceRole() != null && other.getResourceRole().equals(this.getResourceRole()) == false)
+            return false;
+        if (other.getServiceName() == null ^ this.getServiceName() == null)
+            return false;
+        if (other.getServiceName() != null && other.getServiceName().equals(this.getServiceName()) == false)
+            return false;
+        if (other.getUserFeedback() == null ^ this.getUserFeedback() == null)
+            return false;
+        if (other.getUserFeedback() != null && other.getUserFeedback().equals(this.getUserFeedback()) == false)
+            return false;
+        if (other.getAdditionalInfo() == null ^ this.getAdditionalInfo() == null)
+            return false;
+        if (other.getAdditionalInfo() != null && other.getAdditionalInfo().equals(this.getAdditionalInfo()) == false)
+            return false;
+        if (other.getFeatureName() == null ^ this.getFeatureName() == null)
+            return false;
+        if (other.getFeatureName() != null && other.getFeatureName().equals(this.getFeatureName()) == false)
+            return false;
+        if (other.getEbsVolumeScanDetails() == null ^ this.getEbsVolumeScanDetails() == null)
+            return false;
+        if (other.getEbsVolumeScanDetails() != null && other.getEbsVolumeScanDetails().equals(this.getEbsVolumeScanDetails()) == false)
+            return false;
+        if (other.getRuntimeDetails() == null ^ this.getRuntimeDetails() == null)
+            return false;
+        if (other.getRuntimeDetails() != null && other.getRuntimeDetails().equals(this.getRuntimeDetails()) == false)
+            return false;
+        if (other.getDetection() == null ^ this.getDetection() == null)
+            return false;
+        if (other.getDetection() != null && other.getDetection().equals(this.getDetection()) == false)
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getAction() == null) ? 0 : getAction().hashCode());
+        hashCode = prime * hashCode + ((getEvidence() == null) ? 0 : getEvidence().hashCode());
+        hashCode = prime * hashCode + ((getArchived() == null) ? 0 : getArchived().hashCode());
+        hashCode = prime * hashCode + ((getCount() == null) ? 0 : getCount().hashCode());
+        hashCode = prime * hashCode + ((getDetectorId() == null) ? 0 : getDetectorId().hashCode());
+        hashCode = prime * hashCode + ((getEventFirstSeen() == null) ? 0 : getEventFirstSeen().hashCode());
+        hashCode = prime * hashCode + ((getEventLastSeen() == null) ? 0 : getEventLastSeen().hashCode());
+        hashCode = prime * hashCode + ((getResourceRole() == null) ? 0 : getResourceRole().hashCode());
+        hashCode = prime * hashCode + ((getServiceName() == null) ? 0 : getServiceName().hashCode());
+        hashCode = prime * hashCode + ((getUserFeedback() == null) ? 0 : getUserFeedback().hashCode());
+        hashCode = prime * hashCode + ((getAdditionalInfo() == null) ? 0 : getAdditionalInfo().hashCode());
+        hashCode = prime * hashCode + ((getFeatureName() == null) ? 0 : getFeatureName().hashCode());
+        hashCode = prime * hashCode + ((getEbsVolumeScanDetails() == null) ? 0 : getEbsVolumeScanDetails().hashCode());
+        hashCode = prime * hashCode + ((getRuntimeDetails() == null) ? 0 : getRuntimeDetails().hashCode());
+        hashCode = prime * hashCode + ((getDetection() == null) ? 0 : getDetection().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public Service clone() {
+        try {
+            return (Service) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+        }
+    }
+
+    @com.amazonaws.annotation.SdkInternalApi
+    @Override
+    public void marshall(ProtocolMarshaller protocolMarshaller) {
+        com.amazonaws.services.guardduty.model.transform.ServiceMarshaller.getInstance().marshall(this, protocolMarshaller);
+    }
+}

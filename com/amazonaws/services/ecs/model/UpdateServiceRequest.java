@@ -1,0 +1,2390 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.ecs.model;
+
+import java.io.Serializable;
+import javax.annotation.Generated;
+
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * 
+ * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateService" target="_top">AWS API
+ *      Documentation</a>
+ */
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public class UpdateServiceRequest extends com.amazonaws.AmazonWebServiceRequest implements Serializable, Cloneable {
+
+    /**
+     * <p>
+     * The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not specify
+     * a cluster, the default cluster is assumed.
+     * </p>
+     */
+    private String cluster;
+    /**
+     * <p>
+     * The name of the service to update.
+     * </p>
+     */
+    private String service;
+    /**
+     * <p>
+     * The number of instantiations of the task to place and keep running in your service.
+     * </p>
+     */
+    private Integer desiredCount;
+    /**
+     * <p>
+     * The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     * definition to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code>
+     * revision is used. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task
+     * with the new version of the task definition and then stops an old task after the new version is running.
+     * </p>
+     */
+    private String taskDefinition;
+    /**
+     * <p>
+     * The capacity provider strategy to update the service to use.
+     * </p>
+     * <p>
+     * if the service uses the default capacity provider strategy for the cluster, the service can be updated to use one
+     * or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using
+     * a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to
+     * use the cluster's default capacity provider strategy.
+     * </p>
+     * <p>
+     * A capacity provider strategy consists of one or more capacity providers along with the <code>base</code> and
+     * <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be used in a
+     * capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider
+     * with a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can be used.
+     * </p>
+     * <p>
+     * If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created.
+     * New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     * </p>
+     * <p>
+     * To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity
+     * providers. The Fargate capacity providers are available to all accounts and only need to be associated with a
+     * cluster to be used.
+     * </p>
+     * <p>
+     * The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity providers
+     * for a cluster after the cluster is created.
+     * </p>
+     * <p/>
+     */
+    private com.amazonaws.internal.SdkInternalList<CapacityProviderStrategyItem> capacityProviderStrategy;
+    /**
+     * <p>
+     * Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping
+     * and starting tasks.
+     * </p>
+     */
+    private DeploymentConfiguration deploymentConfiguration;
+    /**
+     * <p>
+     * An object representing the network configuration for the service.
+     * </p>
+     */
+    private NetworkConfiguration networkConfiguration;
+    /**
+     * <p>
+     * An array of task placement constraint objects to update the service to use. If no value is specified, the
+     * existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     * override any existing placement constraints defined for the service. To remove all existing placement
+     * constraints, specify an empty array.
+     * </p>
+     * <p>
+     * You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition
+     * and those specified at runtime.
+     * </p>
+     */
+    private com.amazonaws.internal.SdkInternalList<PlacementConstraint> placementConstraints;
+    /**
+     * <p>
+     * The task placement strategy objects to update the service to use. If no value is specified, the existing
+     * placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     * existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty
+     * object.
+     * </p>
+     * <p>
+     * You can specify a maximum of five strategy rules for each service.
+     * </p>
+     */
+    private com.amazonaws.internal.SdkInternalList<PlacementStrategy> placementStrategy;
+    /**
+     * <p>
+     * The platform version that your tasks in the service run on. A platform version is only specified for tasks using
+     * the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform version is
+     * used. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     * Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     */
+    private String platformVersion;
+    /**
+     * <p>
+     * Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use
+     * this option to start a new deployment with no service definition changes. For example, you can update a service's
+     * tasks to use a newer Docker image with the same image/tag combination (<code>my_image:latest</code>) or to roll
+     * Fargate tasks onto a newer platform version.
+     * </p>
+     */
+    private Boolean forceNewDeployment;
+    /**
+     * <p>
+     * The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing
+     * target health checks after a task has first started. This is only valid if your service is configured to use a
+     * load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
+     * you can specify a health check grace period of up to 2,147,483,647 seconds. During that time, the Amazon ECS
+     * service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS
+     * service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.
+     * </p>
+     */
+    private Integer healthCheckGracePeriodSeconds;
+    /**
+     * <p>
+     * If <code>true</code>, this enables execute command functionality on all task containers.
+     * </p>
+     * <p>
+     * If you do not want to override the value that was set when the service was created, you can set this to
+     * <code>null</code> when performing this action.
+     * </p>
+     */
+    private Boolean enableExecuteCommand;
+    /**
+     * <p>
+     * Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your Amazon ECS
+     * Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     */
+    private Boolean enableECSManagedTags;
+    /**
+     * <p>
+     * A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name,
+     * and the container port to access from the load balancer. The container name is as it appears in a container
+     * definition.
+     * </p>
+     * <p>
+     * When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated
+     * Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You
+     * can update from a single target group to multiple target groups and from multiple target groups to a single
+     * target group.
+     * </p>
+     * <p>
+     * For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     * <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     * through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more
+     * information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * For services that use the external deployment controller, you can add, update, or remove load balancers by using
+     * <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     * Note that multiple target groups are not supported for external deployments. For more information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * </p>
+     */
+    private com.amazonaws.internal.SdkInternalList<LoadBalancer> loadBalancers;
+    /**
+     * <p>
+     * Determines whether to propagate the tags from the task definition or the service to the task. If no value is
+     * specified, the tags aren't propagated.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     */
+    private String propagateTags;
+    /**
+     * <p>
+     * The details for the service discovery registries to assign to this service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service Discovery</a>.
+     * </p>
+     * <p>
+     * When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     * updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * </p>
+     */
+    private com.amazonaws.internal.SdkInternalList<ServiceRegistry> serviceRegistries;
+    /**
+     * <p>
+     * The configuration for this service to discover and connect to services, and be discovered by, and connected from,
+     * other services within a namespace.
+     * </p>
+     * <p>
+     * Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can connect to
+     * services across all of the clusters in the namespace. Tasks connect through a managed proxy container that
+     * collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services create are supported
+     * with Service Connect. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service Connect</a> in
+     * the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     */
+    private ServiceConnectConfiguration serviceConnectConfiguration;
+    /**
+     * <p>
+     * The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size, volumeType, IOPS,
+     * throughput, snapshot and encryption in <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     * >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the <code>name</code>
+     * from the task definition. If set to null, no new deployment is triggered. Otherwise, if this configuration
+     * differs from the existing one, it triggers a new deployment.
+     * </p>
+     */
+    private com.amazonaws.internal.SdkInternalList<ServiceVolumeConfiguration> volumeConfigurations;
+
+    /**
+     * <p>
+     * The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not specify
+     * a cluster, the default cluster is assumed.
+     * </p>
+     * 
+     * @param cluster
+     *        The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not
+     *        specify a cluster, the default cluster is assumed.
+     */
+
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
+
+    /**
+     * <p>
+     * The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not specify
+     * a cluster, the default cluster is assumed.
+     * </p>
+     * 
+     * @return The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not
+     *         specify a cluster, the default cluster is assumed.
+     */
+
+    public String getCluster() {
+        return this.cluster;
+    }
+
+    /**
+     * <p>
+     * The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not specify
+     * a cluster, the default cluster is assumed.
+     * </p>
+     * 
+     * @param cluster
+     *        The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not
+     *        specify a cluster, the default cluster is assumed.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withCluster(String cluster) {
+        setCluster(cluster);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the service to update.
+     * </p>
+     * 
+     * @param service
+     *        The name of the service to update.
+     */
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    /**
+     * <p>
+     * The name of the service to update.
+     * </p>
+     * 
+     * @return The name of the service to update.
+     */
+
+    public String getService() {
+        return this.service;
+    }
+
+    /**
+     * <p>
+     * The name of the service to update.
+     * </p>
+     * 
+     * @param service
+     *        The name of the service to update.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withService(String service) {
+        setService(service);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The number of instantiations of the task to place and keep running in your service.
+     * </p>
+     * 
+     * @param desiredCount
+     *        The number of instantiations of the task to place and keep running in your service.
+     */
+
+    public void setDesiredCount(Integer desiredCount) {
+        this.desiredCount = desiredCount;
+    }
+
+    /**
+     * <p>
+     * The number of instantiations of the task to place and keep running in your service.
+     * </p>
+     * 
+     * @return The number of instantiations of the task to place and keep running in your service.
+     */
+
+    public Integer getDesiredCount() {
+        return this.desiredCount;
+    }
+
+    /**
+     * <p>
+     * The number of instantiations of the task to place and keep running in your service.
+     * </p>
+     * 
+     * @param desiredCount
+     *        The number of instantiations of the task to place and keep running in your service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withDesiredCount(Integer desiredCount) {
+        setDesiredCount(desiredCount);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     * definition to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code>
+     * revision is used. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task
+     * with the new version of the task definition and then stops an old task after the new version is running.
+     * </p>
+     * 
+     * @param taskDefinition
+     *        The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     *        definition to run in your service. If a <code>revision</code> is not specified, the latest
+     *        <code>ACTIVE</code> revision is used. If you modify the task definition with <code>UpdateService</code>,
+     *        Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the
+     *        new version is running.
+     */
+
+    public void setTaskDefinition(String taskDefinition) {
+        this.taskDefinition = taskDefinition;
+    }
+
+    /**
+     * <p>
+     * The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     * definition to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code>
+     * revision is used. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task
+     * with the new version of the task definition and then stops an old task after the new version is running.
+     * </p>
+     * 
+     * @return The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     *         definition to run in your service. If a <code>revision</code> is not specified, the latest
+     *         <code>ACTIVE</code> revision is used. If you modify the task definition with <code>UpdateService</code>,
+     *         Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the
+     *         new version is running.
+     */
+
+    public String getTaskDefinition() {
+        return this.taskDefinition;
+    }
+
+    /**
+     * <p>
+     * The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     * definition to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code>
+     * revision is used. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task
+     * with the new version of the task definition and then stops an old task after the new version is running.
+     * </p>
+     * 
+     * @param taskDefinition
+     *        The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task
+     *        definition to run in your service. If a <code>revision</code> is not specified, the latest
+     *        <code>ACTIVE</code> revision is used. If you modify the task definition with <code>UpdateService</code>,
+     *        Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the
+     *        new version is running.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withTaskDefinition(String taskDefinition) {
+        setTaskDefinition(taskDefinition);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The capacity provider strategy to update the service to use.
+     * </p>
+     * <p>
+     * if the service uses the default capacity provider strategy for the cluster, the service can be updated to use one
+     * or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using
+     * a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to
+     * use the cluster's default capacity provider strategy.
+     * </p>
+     * <p>
+     * A capacity provider strategy consists of one or more capacity providers along with the <code>base</code> and
+     * <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be used in a
+     * capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider
+     * with a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can be used.
+     * </p>
+     * <p>
+     * If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created.
+     * New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     * </p>
+     * <p>
+     * To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity
+     * providers. The Fargate capacity providers are available to all accounts and only need to be associated with a
+     * cluster to be used.
+     * </p>
+     * <p>
+     * The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity providers
+     * for a cluster after the cluster is created.
+     * </p>
+     * <p/>
+     * 
+     * @return The capacity provider strategy to update the service to use.
+     *         </p>
+     *         <p>
+     *         if the service uses the default capacity provider strategy for the cluster, the service can be updated to
+     *         use one or more capacity providers as opposed to the default capacity provider strategy. However, when a
+     *         service is using a capacity provider strategy that's not the default capacity provider strategy, the
+     *         service can't be updated to use the cluster's default capacity provider strategy.
+     *         </p>
+     *         <p>
+     *         A capacity provider strategy consists of one or more capacity providers along with the <code>base</code>
+     *         and <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be
+     *         used in a capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a
+     *         capacity provider with a cluster. Only capacity providers with an <code>ACTIVE</code> or
+     *         <code>UPDATING</code> status can be used.
+     *         </p>
+     *         <p>
+     *         If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be
+     *         created. New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     *         </p>
+     *         <p>
+     *         To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+     *         capacity providers. The Fargate capacity providers are available to all accounts and only need to be
+     *         associated with a cluster to be used.
+     *         </p>
+     *         <p>
+     *         The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity
+     *         providers for a cluster after the cluster is created.
+     *         </p>
+     */
+
+    public java.util.List<CapacityProviderStrategyItem> getCapacityProviderStrategy() {
+        if (capacityProviderStrategy == null) {
+            capacityProviderStrategy = new com.amazonaws.internal.SdkInternalList<CapacityProviderStrategyItem>();
+        }
+        return capacityProviderStrategy;
+    }
+
+    /**
+     * <p>
+     * The capacity provider strategy to update the service to use.
+     * </p>
+     * <p>
+     * if the service uses the default capacity provider strategy for the cluster, the service can be updated to use one
+     * or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using
+     * a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to
+     * use the cluster's default capacity provider strategy.
+     * </p>
+     * <p>
+     * A capacity provider strategy consists of one or more capacity providers along with the <code>base</code> and
+     * <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be used in a
+     * capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider
+     * with a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can be used.
+     * </p>
+     * <p>
+     * If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created.
+     * New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     * </p>
+     * <p>
+     * To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity
+     * providers. The Fargate capacity providers are available to all accounts and only need to be associated with a
+     * cluster to be used.
+     * </p>
+     * <p>
+     * The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity providers
+     * for a cluster after the cluster is created.
+     * </p>
+     * <p/>
+     * 
+     * @param capacityProviderStrategy
+     *        The capacity provider strategy to update the service to use.
+     *        </p>
+     *        <p>
+     *        if the service uses the default capacity provider strategy for the cluster, the service can be updated to
+     *        use one or more capacity providers as opposed to the default capacity provider strategy. However, when a
+     *        service is using a capacity provider strategy that's not the default capacity provider strategy, the
+     *        service can't be updated to use the cluster's default capacity provider strategy.
+     *        </p>
+     *        <p>
+     *        A capacity provider strategy consists of one or more capacity providers along with the <code>base</code>
+     *        and <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be
+     *        used in a capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a
+     *        capacity provider with a cluster. Only capacity providers with an <code>ACTIVE</code> or
+     *        <code>UPDATING</code> status can be used.
+     *        </p>
+     *        <p>
+     *        If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be
+     *        created. New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     *        </p>
+     *        <p>
+     *        To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+     *        capacity providers. The Fargate capacity providers are available to all accounts and only need to be
+     *        associated with a cluster to be used.
+     *        </p>
+     *        <p>
+     *        The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity
+     *        providers for a cluster after the cluster is created.
+     *        </p>
+     */
+
+    public void setCapacityProviderStrategy(java.util.Collection<CapacityProviderStrategyItem> capacityProviderStrategy) {
+        if (capacityProviderStrategy == null) {
+            this.capacityProviderStrategy = null;
+            return;
+        }
+
+        this.capacityProviderStrategy = new com.amazonaws.internal.SdkInternalList<CapacityProviderStrategyItem>(capacityProviderStrategy);
+    }
+
+    /**
+     * <p>
+     * The capacity provider strategy to update the service to use.
+     * </p>
+     * <p>
+     * if the service uses the default capacity provider strategy for the cluster, the service can be updated to use one
+     * or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using
+     * a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to
+     * use the cluster's default capacity provider strategy.
+     * </p>
+     * <p>
+     * A capacity provider strategy consists of one or more capacity providers along with the <code>base</code> and
+     * <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be used in a
+     * capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider
+     * with a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can be used.
+     * </p>
+     * <p>
+     * If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created.
+     * New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     * </p>
+     * <p>
+     * To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity
+     * providers. The Fargate capacity providers are available to all accounts and only need to be associated with a
+     * cluster to be used.
+     * </p>
+     * <p>
+     * The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity providers
+     * for a cluster after the cluster is created.
+     * </p>
+     * <p/>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setCapacityProviderStrategy(java.util.Collection)} or
+     * {@link #withCapacityProviderStrategy(java.util.Collection)} if you want to override the existing values.
+     * </p>
+     * 
+     * @param capacityProviderStrategy
+     *        The capacity provider strategy to update the service to use.</p>
+     *        <p>
+     *        if the service uses the default capacity provider strategy for the cluster, the service can be updated to
+     *        use one or more capacity providers as opposed to the default capacity provider strategy. However, when a
+     *        service is using a capacity provider strategy that's not the default capacity provider strategy, the
+     *        service can't be updated to use the cluster's default capacity provider strategy.
+     *        </p>
+     *        <p>
+     *        A capacity provider strategy consists of one or more capacity providers along with the <code>base</code>
+     *        and <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be
+     *        used in a capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a
+     *        capacity provider with a cluster. Only capacity providers with an <code>ACTIVE</code> or
+     *        <code>UPDATING</code> status can be used.
+     *        </p>
+     *        <p>
+     *        If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be
+     *        created. New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     *        </p>
+     *        <p>
+     *        To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+     *        capacity providers. The Fargate capacity providers are available to all accounts and only need to be
+     *        associated with a cluster to be used.
+     *        </p>
+     *        <p>
+     *        The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity
+     *        providers for a cluster after the cluster is created.
+     *        </p>
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withCapacityProviderStrategy(CapacityProviderStrategyItem... capacityProviderStrategy) {
+        if (this.capacityProviderStrategy == null) {
+            setCapacityProviderStrategy(new com.amazonaws.internal.SdkInternalList<CapacityProviderStrategyItem>(capacityProviderStrategy.length));
+        }
+        for (CapacityProviderStrategyItem ele : capacityProviderStrategy) {
+            this.capacityProviderStrategy.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The capacity provider strategy to update the service to use.
+     * </p>
+     * <p>
+     * if the service uses the default capacity provider strategy for the cluster, the service can be updated to use one
+     * or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using
+     * a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to
+     * use the cluster's default capacity provider strategy.
+     * </p>
+     * <p>
+     * A capacity provider strategy consists of one or more capacity providers along with the <code>base</code> and
+     * <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be used in a
+     * capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider
+     * with a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can be used.
+     * </p>
+     * <p>
+     * If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created.
+     * New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     * </p>
+     * <p>
+     * To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity
+     * providers. The Fargate capacity providers are available to all accounts and only need to be associated with a
+     * cluster to be used.
+     * </p>
+     * <p>
+     * The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity providers
+     * for a cluster after the cluster is created.
+     * </p>
+     * <p/>
+     * 
+     * @param capacityProviderStrategy
+     *        The capacity provider strategy to update the service to use.
+     *        </p>
+     *        <p>
+     *        if the service uses the default capacity provider strategy for the cluster, the service can be updated to
+     *        use one or more capacity providers as opposed to the default capacity provider strategy. However, when a
+     *        service is using a capacity provider strategy that's not the default capacity provider strategy, the
+     *        service can't be updated to use the cluster's default capacity provider strategy.
+     *        </p>
+     *        <p>
+     *        A capacity provider strategy consists of one or more capacity providers along with the <code>base</code>
+     *        and <code>weight</code> to assign to them. A capacity provider must be associated with the cluster to be
+     *        used in a capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is used to associate a
+     *        capacity provider with a cluster. Only capacity providers with an <code>ACTIVE</code> or
+     *        <code>UPDATING</code> status can be used.
+     *        </p>
+     *        <p>
+     *        If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be
+     *        created. New capacity providers can be created with the <a>CreateCapacityProvider</a> API operation.
+     *        </p>
+     *        <p>
+     *        To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+     *        capacity providers. The Fargate capacity providers are available to all accounts and only need to be
+     *        associated with a cluster to be used.
+     *        </p>
+     *        <p>
+     *        The <a>PutClusterCapacityProviders</a> API operation is used to update the list of available capacity
+     *        providers for a cluster after the cluster is created.
+     *        </p>
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withCapacityProviderStrategy(java.util.Collection<CapacityProviderStrategyItem> capacityProviderStrategy) {
+        setCapacityProviderStrategy(capacityProviderStrategy);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping
+     * and starting tasks.
+     * </p>
+     * 
+     * @param deploymentConfiguration
+     *        Optional deployment parameters that control how many tasks run during the deployment and the ordering of
+     *        stopping and starting tasks.
+     */
+
+    public void setDeploymentConfiguration(DeploymentConfiguration deploymentConfiguration) {
+        this.deploymentConfiguration = deploymentConfiguration;
+    }
+
+    /**
+     * <p>
+     * Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping
+     * and starting tasks.
+     * </p>
+     * 
+     * @return Optional deployment parameters that control how many tasks run during the deployment and the ordering of
+     *         stopping and starting tasks.
+     */
+
+    public DeploymentConfiguration getDeploymentConfiguration() {
+        return this.deploymentConfiguration;
+    }
+
+    /**
+     * <p>
+     * Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping
+     * and starting tasks.
+     * </p>
+     * 
+     * @param deploymentConfiguration
+     *        Optional deployment parameters that control how many tasks run during the deployment and the ordering of
+     *        stopping and starting tasks.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withDeploymentConfiguration(DeploymentConfiguration deploymentConfiguration) {
+        setDeploymentConfiguration(deploymentConfiguration);
+        return this;
+    }
+
+    /**
+     * <p>
+     * An object representing the network configuration for the service.
+     * </p>
+     * 
+     * @param networkConfiguration
+     *        An object representing the network configuration for the service.
+     */
+
+    public void setNetworkConfiguration(NetworkConfiguration networkConfiguration) {
+        this.networkConfiguration = networkConfiguration;
+    }
+
+    /**
+     * <p>
+     * An object representing the network configuration for the service.
+     * </p>
+     * 
+     * @return An object representing the network configuration for the service.
+     */
+
+    public NetworkConfiguration getNetworkConfiguration() {
+        return this.networkConfiguration;
+    }
+
+    /**
+     * <p>
+     * An object representing the network configuration for the service.
+     * </p>
+     * 
+     * @param networkConfiguration
+     *        An object representing the network configuration for the service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withNetworkConfiguration(NetworkConfiguration networkConfiguration) {
+        setNetworkConfiguration(networkConfiguration);
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of task placement constraint objects to update the service to use. If no value is specified, the
+     * existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     * override any existing placement constraints defined for the service. To remove all existing placement
+     * constraints, specify an empty array.
+     * </p>
+     * <p>
+     * You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition
+     * and those specified at runtime.
+     * </p>
+     * 
+     * @return An array of task placement constraint objects to update the service to use. If no value is specified, the
+     *         existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     *         override any existing placement constraints defined for the service. To remove all existing placement
+     *         constraints, specify an empty array.</p>
+     *         <p>
+     *         You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task
+     *         definition and those specified at runtime.
+     */
+
+    public java.util.List<PlacementConstraint> getPlacementConstraints() {
+        if (placementConstraints == null) {
+            placementConstraints = new com.amazonaws.internal.SdkInternalList<PlacementConstraint>();
+        }
+        return placementConstraints;
+    }
+
+    /**
+     * <p>
+     * An array of task placement constraint objects to update the service to use. If no value is specified, the
+     * existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     * override any existing placement constraints defined for the service. To remove all existing placement
+     * constraints, specify an empty array.
+     * </p>
+     * <p>
+     * You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition
+     * and those specified at runtime.
+     * </p>
+     * 
+     * @param placementConstraints
+     *        An array of task placement constraint objects to update the service to use. If no value is specified, the
+     *        existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     *        override any existing placement constraints defined for the service. To remove all existing placement
+     *        constraints, specify an empty array.</p>
+     *        <p>
+     *        You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task
+     *        definition and those specified at runtime.
+     */
+
+    public void setPlacementConstraints(java.util.Collection<PlacementConstraint> placementConstraints) {
+        if (placementConstraints == null) {
+            this.placementConstraints = null;
+            return;
+        }
+
+        this.placementConstraints = new com.amazonaws.internal.SdkInternalList<PlacementConstraint>(placementConstraints);
+    }
+
+    /**
+     * <p>
+     * An array of task placement constraint objects to update the service to use. If no value is specified, the
+     * existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     * override any existing placement constraints defined for the service. To remove all existing placement
+     * constraints, specify an empty array.
+     * </p>
+     * <p>
+     * You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition
+     * and those specified at runtime.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setPlacementConstraints(java.util.Collection)} or {@link #withPlacementConstraints(java.util.Collection)}
+     * if you want to override the existing values.
+     * </p>
+     * 
+     * @param placementConstraints
+     *        An array of task placement constraint objects to update the service to use. If no value is specified, the
+     *        existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     *        override any existing placement constraints defined for the service. To remove all existing placement
+     *        constraints, specify an empty array.</p>
+     *        <p>
+     *        You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task
+     *        definition and those specified at runtime.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withPlacementConstraints(PlacementConstraint... placementConstraints) {
+        if (this.placementConstraints == null) {
+            setPlacementConstraints(new com.amazonaws.internal.SdkInternalList<PlacementConstraint>(placementConstraints.length));
+        }
+        for (PlacementConstraint ele : placementConstraints) {
+            this.placementConstraints.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of task placement constraint objects to update the service to use. If no value is specified, the
+     * existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     * override any existing placement constraints defined for the service. To remove all existing placement
+     * constraints, specify an empty array.
+     * </p>
+     * <p>
+     * You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition
+     * and those specified at runtime.
+     * </p>
+     * 
+     * @param placementConstraints
+     *        An array of task placement constraint objects to update the service to use. If no value is specified, the
+     *        existing placement constraints for the service will remain unchanged. If this value is specified, it will
+     *        override any existing placement constraints defined for the service. To remove all existing placement
+     *        constraints, specify an empty array.</p>
+     *        <p>
+     *        You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task
+     *        definition and those specified at runtime.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withPlacementConstraints(java.util.Collection<PlacementConstraint> placementConstraints) {
+        setPlacementConstraints(placementConstraints);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The task placement strategy objects to update the service to use. If no value is specified, the existing
+     * placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     * existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty
+     * object.
+     * </p>
+     * <p>
+     * You can specify a maximum of five strategy rules for each service.
+     * </p>
+     * 
+     * @return The task placement strategy objects to update the service to use. If no value is specified, the existing
+     *         placement strategy for the service will remain unchanged. If this value is specified, it will override
+     *         the existing placement strategy defined for the service. To remove an existing placement strategy,
+     *         specify an empty object.</p>
+     *         <p>
+     *         You can specify a maximum of five strategy rules for each service.
+     */
+
+    public java.util.List<PlacementStrategy> getPlacementStrategy() {
+        if (placementStrategy == null) {
+            placementStrategy = new com.amazonaws.internal.SdkInternalList<PlacementStrategy>();
+        }
+        return placementStrategy;
+    }
+
+    /**
+     * <p>
+     * The task placement strategy objects to update the service to use. If no value is specified, the existing
+     * placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     * existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty
+     * object.
+     * </p>
+     * <p>
+     * You can specify a maximum of five strategy rules for each service.
+     * </p>
+     * 
+     * @param placementStrategy
+     *        The task placement strategy objects to update the service to use. If no value is specified, the existing
+     *        placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     *        existing placement strategy defined for the service. To remove an existing placement strategy, specify an
+     *        empty object.</p>
+     *        <p>
+     *        You can specify a maximum of five strategy rules for each service.
+     */
+
+    public void setPlacementStrategy(java.util.Collection<PlacementStrategy> placementStrategy) {
+        if (placementStrategy == null) {
+            this.placementStrategy = null;
+            return;
+        }
+
+        this.placementStrategy = new com.amazonaws.internal.SdkInternalList<PlacementStrategy>(placementStrategy);
+    }
+
+    /**
+     * <p>
+     * The task placement strategy objects to update the service to use. If no value is specified, the existing
+     * placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     * existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty
+     * object.
+     * </p>
+     * <p>
+     * You can specify a maximum of five strategy rules for each service.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setPlacementStrategy(java.util.Collection)} or {@link #withPlacementStrategy(java.util.Collection)} if
+     * you want to override the existing values.
+     * </p>
+     * 
+     * @param placementStrategy
+     *        The task placement strategy objects to update the service to use. If no value is specified, the existing
+     *        placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     *        existing placement strategy defined for the service. To remove an existing placement strategy, specify an
+     *        empty object.</p>
+     *        <p>
+     *        You can specify a maximum of five strategy rules for each service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withPlacementStrategy(PlacementStrategy... placementStrategy) {
+        if (this.placementStrategy == null) {
+            setPlacementStrategy(new com.amazonaws.internal.SdkInternalList<PlacementStrategy>(placementStrategy.length));
+        }
+        for (PlacementStrategy ele : placementStrategy) {
+            this.placementStrategy.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The task placement strategy objects to update the service to use. If no value is specified, the existing
+     * placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     * existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty
+     * object.
+     * </p>
+     * <p>
+     * You can specify a maximum of five strategy rules for each service.
+     * </p>
+     * 
+     * @param placementStrategy
+     *        The task placement strategy objects to update the service to use. If no value is specified, the existing
+     *        placement strategy for the service will remain unchanged. If this value is specified, it will override the
+     *        existing placement strategy defined for the service. To remove an existing placement strategy, specify an
+     *        empty object.</p>
+     *        <p>
+     *        You can specify a maximum of five strategy rules for each service.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withPlacementStrategy(java.util.Collection<PlacementStrategy> placementStrategy) {
+        setPlacementStrategy(placementStrategy);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The platform version that your tasks in the service run on. A platform version is only specified for tasks using
+     * the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform version is
+     * used. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     * Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param platformVersion
+     *        The platform version that your tasks in the service run on. A platform version is only specified for tasks
+     *        using the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform
+     *        version is used. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     *        Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     */
+
+    public void setPlatformVersion(String platformVersion) {
+        this.platformVersion = platformVersion;
+    }
+
+    /**
+     * <p>
+     * The platform version that your tasks in the service run on. A platform version is only specified for tasks using
+     * the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform version is
+     * used. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     * Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @return The platform version that your tasks in the service run on. A platform version is only specified for
+     *         tasks using the Fargate launch type. If a platform version is not specified, the <code>LATEST</code>
+     *         platform version is used. For more information, see <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
+     *         Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     */
+
+    public String getPlatformVersion() {
+        return this.platformVersion;
+    }
+
+    /**
+     * <p>
+     * The platform version that your tasks in the service run on. A platform version is only specified for tasks using
+     * the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform version is
+     * used. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     * Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param platformVersion
+     *        The platform version that your tasks in the service run on. A platform version is only specified for tasks
+     *        using the Fargate launch type. If a platform version is not specified, the <code>LATEST</code> platform
+     *        version is used. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate Platform
+     *        Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withPlatformVersion(String platformVersion) {
+        setPlatformVersion(platformVersion);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use
+     * this option to start a new deployment with no service definition changes. For example, you can update a service's
+     * tasks to use a newer Docker image with the same image/tag combination (<code>my_image:latest</code>) or to roll
+     * Fargate tasks onto a newer platform version.
+     * </p>
+     * 
+     * @param forceNewDeployment
+     *        Determines whether to force a new deployment of the service. By default, deployments aren't forced. You
+     *        can use this option to start a new deployment with no service definition changes. For example, you can
+     *        update a service's tasks to use a newer Docker image with the same image/tag combination (
+     *        <code>my_image:latest</code>) or to roll Fargate tasks onto a newer platform version.
+     */
+
+    public void setForceNewDeployment(Boolean forceNewDeployment) {
+        this.forceNewDeployment = forceNewDeployment;
+    }
+
+    /**
+     * <p>
+     * Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use
+     * this option to start a new deployment with no service definition changes. For example, you can update a service's
+     * tasks to use a newer Docker image with the same image/tag combination (<code>my_image:latest</code>) or to roll
+     * Fargate tasks onto a newer platform version.
+     * </p>
+     * 
+     * @return Determines whether to force a new deployment of the service. By default, deployments aren't forced. You
+     *         can use this option to start a new deployment with no service definition changes. For example, you can
+     *         update a service's tasks to use a newer Docker image with the same image/tag combination (
+     *         <code>my_image:latest</code>) or to roll Fargate tasks onto a newer platform version.
+     */
+
+    public Boolean getForceNewDeployment() {
+        return this.forceNewDeployment;
+    }
+
+    /**
+     * <p>
+     * Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use
+     * this option to start a new deployment with no service definition changes. For example, you can update a service's
+     * tasks to use a newer Docker image with the same image/tag combination (<code>my_image:latest</code>) or to roll
+     * Fargate tasks onto a newer platform version.
+     * </p>
+     * 
+     * @param forceNewDeployment
+     *        Determines whether to force a new deployment of the service. By default, deployments aren't forced. You
+     *        can use this option to start a new deployment with no service definition changes. For example, you can
+     *        update a service's tasks to use a newer Docker image with the same image/tag combination (
+     *        <code>my_image:latest</code>) or to roll Fargate tasks onto a newer platform version.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withForceNewDeployment(Boolean forceNewDeployment) {
+        setForceNewDeployment(forceNewDeployment);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use
+     * this option to start a new deployment with no service definition changes. For example, you can update a service's
+     * tasks to use a newer Docker image with the same image/tag combination (<code>my_image:latest</code>) or to roll
+     * Fargate tasks onto a newer platform version.
+     * </p>
+     * 
+     * @return Determines whether to force a new deployment of the service. By default, deployments aren't forced. You
+     *         can use this option to start a new deployment with no service definition changes. For example, you can
+     *         update a service's tasks to use a newer Docker image with the same image/tag combination (
+     *         <code>my_image:latest</code>) or to roll Fargate tasks onto a newer platform version.
+     */
+
+    public Boolean isForceNewDeployment() {
+        return this.forceNewDeployment;
+    }
+
+    /**
+     * <p>
+     * The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing
+     * target health checks after a task has first started. This is only valid if your service is configured to use a
+     * load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
+     * you can specify a health check grace period of up to 2,147,483,647 seconds. During that time, the Amazon ECS
+     * service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS
+     * service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.
+     * </p>
+     * 
+     * @param healthCheckGracePeriodSeconds
+     *        The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load
+     *        Balancing target health checks after a task has first started. This is only valid if your service is
+     *        configured to use a load balancer. If your service's tasks take a while to start and respond to Elastic
+     *        Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds.
+     *        During that time, the Amazon ECS service scheduler ignores the Elastic Load Balancing health check status.
+     *        This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them
+     *        before they have time to come up.
+     */
+
+    public void setHealthCheckGracePeriodSeconds(Integer healthCheckGracePeriodSeconds) {
+        this.healthCheckGracePeriodSeconds = healthCheckGracePeriodSeconds;
+    }
+
+    /**
+     * <p>
+     * The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing
+     * target health checks after a task has first started. This is only valid if your service is configured to use a
+     * load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
+     * you can specify a health check grace period of up to 2,147,483,647 seconds. During that time, the Amazon ECS
+     * service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS
+     * service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.
+     * </p>
+     * 
+     * @return The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load
+     *         Balancing target health checks after a task has first started. This is only valid if your service is
+     *         configured to use a load balancer. If your service's tasks take a while to start and respond to Elastic
+     *         Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds.
+     *         During that time, the Amazon ECS service scheduler ignores the Elastic Load Balancing health check
+     *         status. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and
+     *         stopping them before they have time to come up.
+     */
+
+    public Integer getHealthCheckGracePeriodSeconds() {
+        return this.healthCheckGracePeriodSeconds;
+    }
+
+    /**
+     * <p>
+     * The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing
+     * target health checks after a task has first started. This is only valid if your service is configured to use a
+     * load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
+     * you can specify a health check grace period of up to 2,147,483,647 seconds. During that time, the Amazon ECS
+     * service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS
+     * service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.
+     * </p>
+     * 
+     * @param healthCheckGracePeriodSeconds
+     *        The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load
+     *        Balancing target health checks after a task has first started. This is only valid if your service is
+     *        configured to use a load balancer. If your service's tasks take a while to start and respond to Elastic
+     *        Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds.
+     *        During that time, the Amazon ECS service scheduler ignores the Elastic Load Balancing health check status.
+     *        This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them
+     *        before they have time to come up.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withHealthCheckGracePeriodSeconds(Integer healthCheckGracePeriodSeconds) {
+        setHealthCheckGracePeriodSeconds(healthCheckGracePeriodSeconds);
+        return this;
+    }
+
+    /**
+     * <p>
+     * If <code>true</code>, this enables execute command functionality on all task containers.
+     * </p>
+     * <p>
+     * If you do not want to override the value that was set when the service was created, you can set this to
+     * <code>null</code> when performing this action.
+     * </p>
+     * 
+     * @param enableExecuteCommand
+     *        If <code>true</code>, this enables execute command functionality on all task containers.</p>
+     *        <p>
+     *        If you do not want to override the value that was set when the service was created, you can set this to
+     *        <code>null</code> when performing this action.
+     */
+
+    public void setEnableExecuteCommand(Boolean enableExecuteCommand) {
+        this.enableExecuteCommand = enableExecuteCommand;
+    }
+
+    /**
+     * <p>
+     * If <code>true</code>, this enables execute command functionality on all task containers.
+     * </p>
+     * <p>
+     * If you do not want to override the value that was set when the service was created, you can set this to
+     * <code>null</code> when performing this action.
+     * </p>
+     * 
+     * @return If <code>true</code>, this enables execute command functionality on all task containers.</p>
+     *         <p>
+     *         If you do not want to override the value that was set when the service was created, you can set this to
+     *         <code>null</code> when performing this action.
+     */
+
+    public Boolean getEnableExecuteCommand() {
+        return this.enableExecuteCommand;
+    }
+
+    /**
+     * <p>
+     * If <code>true</code>, this enables execute command functionality on all task containers.
+     * </p>
+     * <p>
+     * If you do not want to override the value that was set when the service was created, you can set this to
+     * <code>null</code> when performing this action.
+     * </p>
+     * 
+     * @param enableExecuteCommand
+     *        If <code>true</code>, this enables execute command functionality on all task containers.</p>
+     *        <p>
+     *        If you do not want to override the value that was set when the service was created, you can set this to
+     *        <code>null</code> when performing this action.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withEnableExecuteCommand(Boolean enableExecuteCommand) {
+        setEnableExecuteCommand(enableExecuteCommand);
+        return this;
+    }
+
+    /**
+     * <p>
+     * If <code>true</code>, this enables execute command functionality on all task containers.
+     * </p>
+     * <p>
+     * If you do not want to override the value that was set when the service was created, you can set this to
+     * <code>null</code> when performing this action.
+     * </p>
+     * 
+     * @return If <code>true</code>, this enables execute command functionality on all task containers.</p>
+     *         <p>
+     *         If you do not want to override the value that was set when the service was created, you can set this to
+     *         <code>null</code> when performing this action.
+     */
+
+    public Boolean isEnableExecuteCommand() {
+        return this.enableExecuteCommand;
+    }
+
+    /**
+     * <p>
+     * Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your Amazon ECS
+     * Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @param enableECSManagedTags
+     *        Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information,
+     *        see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your
+     *        Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
+     *        <p>
+     *        Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *        <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated
+     *        tags.
+     */
+
+    public void setEnableECSManagedTags(Boolean enableECSManagedTags) {
+        this.enableECSManagedTags = enableECSManagedTags;
+    }
+
+    /**
+     * <p>
+     * Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your Amazon ECS
+     * Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @return Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information,
+     *         see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging
+     *         Your Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
+     *         <p>
+     *         Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *         <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the
+     *         updated tags.
+     */
+
+    public Boolean getEnableECSManagedTags() {
+        return this.enableECSManagedTags;
+    }
+
+    /**
+     * <p>
+     * Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your Amazon ECS
+     * Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @param enableECSManagedTags
+     *        Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information,
+     *        see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your
+     *        Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
+     *        <p>
+     *        Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *        <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated
+     *        tags.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withEnableECSManagedTags(Boolean enableECSManagedTags) {
+        setEnableECSManagedTags(enableECSManagedTags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging Your Amazon ECS
+     * Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @return Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information,
+     *         see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging
+     *         Your Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
+     *         <p>
+     *         Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *         <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the
+     *         updated tags.
+     */
+
+    public Boolean isEnableECSManagedTags() {
+        return this.enableECSManagedTags;
+    }
+
+    /**
+     * <p>
+     * A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name,
+     * and the container port to access from the load balancer. The container name is as it appears in a container
+     * definition.
+     * </p>
+     * <p>
+     * When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated
+     * Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You
+     * can update from a single target group to multiple target groups and from multiple target groups to a single
+     * target group.
+     * </p>
+     * <p>
+     * For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     * <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     * through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more
+     * information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * For services that use the external deployment controller, you can add, update, or remove load balancers by using
+     * <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     * Note that multiple target groups are not supported for external deployments. For more information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * </p>
+     * 
+     * @return A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container
+     *         name, and the container port to access from the load balancer. The container name is as it appears in a
+     *         container definition.</p>
+     *         <p>
+     *         When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the
+     *         updated Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are
+     *         running.
+     *         </p>
+     *         <p>
+     *         For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target
+     *         groups. You can update from a single target group to multiple target groups and from multiple target
+     *         groups to a single target group.
+     *         </p>
+     *         <p>
+     *         For services that use blue/green deployments, you can update Elastic Load Balancing target groups by
+     *         using
+     *         <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     *         through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For
+     *         more information see <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html"
+     *         >Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *         Guide</i>.
+     *         </p>
+     *         <p>
+     *         For services that use the external deployment controller, you can add, update, or remove load balancers
+     *         by using <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet
+     *         </a>. Note that multiple target groups are not supported for external deployments. For more information
+     *         see <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html"
+     *         >Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *         Guide</i>.
+     *         </p>
+     *         <p>
+     *         You can remove existing <code>loadBalancers</code> by passing an empty list.
+     */
+
+    public java.util.List<LoadBalancer> getLoadBalancers() {
+        if (loadBalancers == null) {
+            loadBalancers = new com.amazonaws.internal.SdkInternalList<LoadBalancer>();
+        }
+        return loadBalancers;
+    }
+
+    /**
+     * <p>
+     * A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name,
+     * and the container port to access from the load balancer. The container name is as it appears in a container
+     * definition.
+     * </p>
+     * <p>
+     * When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated
+     * Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You
+     * can update from a single target group to multiple target groups and from multiple target groups to a single
+     * target group.
+     * </p>
+     * <p>
+     * For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     * <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     * through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more
+     * information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * For services that use the external deployment controller, you can add, update, or remove load balancers by using
+     * <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     * Note that multiple target groups are not supported for external deployments. For more information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * </p>
+     * 
+     * @param loadBalancers
+     *        A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container
+     *        name, and the container port to access from the load balancer. The container name is as it appears in a
+     *        container definition.</p>
+     *        <p>
+     *        When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the
+     *        updated Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target
+     *        groups. You can update from a single target group to multiple target groups and from multiple target
+     *        groups to a single target group.
+     *        </p>
+     *        <p>
+     *        For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     *        <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     *        through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For
+     *        more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html"
+     *        >Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        For services that use the external deployment controller, you can add, update, or remove load balancers by
+     *        using <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     *        Note that multiple target groups are not supported for external deployments. For more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">
+     *        Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>loadBalancers</code> by passing an empty list.
+     */
+
+    public void setLoadBalancers(java.util.Collection<LoadBalancer> loadBalancers) {
+        if (loadBalancers == null) {
+            this.loadBalancers = null;
+            return;
+        }
+
+        this.loadBalancers = new com.amazonaws.internal.SdkInternalList<LoadBalancer>(loadBalancers);
+    }
+
+    /**
+     * <p>
+     * A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name,
+     * and the container port to access from the load balancer. The container name is as it appears in a container
+     * definition.
+     * </p>
+     * <p>
+     * When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated
+     * Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You
+     * can update from a single target group to multiple target groups and from multiple target groups to a single
+     * target group.
+     * </p>
+     * <p>
+     * For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     * <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     * through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more
+     * information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * For services that use the external deployment controller, you can add, update, or remove load balancers by using
+     * <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     * Note that multiple target groups are not supported for external deployments. For more information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setLoadBalancers(java.util.Collection)} or {@link #withLoadBalancers(java.util.Collection)} if you want
+     * to override the existing values.
+     * </p>
+     * 
+     * @param loadBalancers
+     *        A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container
+     *        name, and the container port to access from the load balancer. The container name is as it appears in a
+     *        container definition.</p>
+     *        <p>
+     *        When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the
+     *        updated Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target
+     *        groups. You can update from a single target group to multiple target groups and from multiple target
+     *        groups to a single target group.
+     *        </p>
+     *        <p>
+     *        For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     *        <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     *        through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For
+     *        more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html"
+     *        >Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        For services that use the external deployment controller, you can add, update, or remove load balancers by
+     *        using <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     *        Note that multiple target groups are not supported for external deployments. For more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">
+     *        Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withLoadBalancers(LoadBalancer... loadBalancers) {
+        if (this.loadBalancers == null) {
+            setLoadBalancers(new com.amazonaws.internal.SdkInternalList<LoadBalancer>(loadBalancers.length));
+        }
+        for (LoadBalancer ele : loadBalancers) {
+            this.loadBalancers.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name,
+     * and the container port to access from the load balancer. The container name is as it appears in a container
+     * definition.
+     * </p>
+     * <p>
+     * When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated
+     * Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You
+     * can update from a single target group to multiple target groups and from multiple target groups to a single
+     * target group.
+     * </p>
+     * <p>
+     * For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     * <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     * through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more
+     * information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * For services that use the external deployment controller, you can add, update, or remove load balancers by using
+     * <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     * Note that multiple target groups are not supported for external deployments. For more information see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">Register
+     * multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * </p>
+     * 
+     * @param loadBalancers
+     *        A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container
+     *        name, and the container port to access from the load balancer. The container name is as it appears in a
+     *        container definition.</p>
+     *        <p>
+     *        When you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the
+     *        updated Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        For services that use rolling updates, you can add, update, or remove Elastic Load Balancing target
+     *        groups. You can update from a single target group to multiple target groups and from multiple target
+     *        groups to a single target group.
+     *        </p>
+     *        <p>
+     *        For services that use blue/green deployments, you can update Elastic Load Balancing target groups by using
+     *        <code> <a href="https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html">CreateDeployment</a> </code>
+     *        through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For
+     *        more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html"
+     *        >Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        For services that use the external deployment controller, you can add, update, or remove load balancers by
+     *        using <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html">CreateTaskSet</a>.
+     *        Note that multiple target groups are not supported for external deployments. For more information see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html">
+     *        Register multiple target groups with a service</a> in the <i>Amazon Elastic Container Service Developer
+     *        Guide</i>.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>loadBalancers</code> by passing an empty list.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withLoadBalancers(java.util.Collection<LoadBalancer> loadBalancers) {
+        setLoadBalancers(loadBalancers);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Determines whether to propagate the tags from the task definition or the service to the task. If no value is
+     * specified, the tags aren't propagated.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @param propagateTags
+     *        Determines whether to propagate the tags from the task definition or the service to the task. If no value
+     *        is specified, the tags aren't propagated.</p>
+     *        <p>
+     *        Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *        <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated
+     *        tags.
+     * @see PropagateTags
+     */
+
+    public void setPropagateTags(String propagateTags) {
+        this.propagateTags = propagateTags;
+    }
+
+    /**
+     * <p>
+     * Determines whether to propagate the tags from the task definition or the service to the task. If no value is
+     * specified, the tags aren't propagated.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @return Determines whether to propagate the tags from the task definition or the service to the task. If no value
+     *         is specified, the tags aren't propagated.</p>
+     *         <p>
+     *         Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *         <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the
+     *         updated tags.
+     * @see PropagateTags
+     */
+
+    public String getPropagateTags() {
+        return this.propagateTags;
+    }
+
+    /**
+     * <p>
+     * Determines whether to propagate the tags from the task definition or the service to the task. If no value is
+     * specified, the tags aren't propagated.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @param propagateTags
+     *        Determines whether to propagate the tags from the task definition or the service to the task. If no value
+     *        is specified, the tags aren't propagated.</p>
+     *        <p>
+     *        Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *        <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated
+     *        tags.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     * @see PropagateTags
+     */
+
+    public UpdateServiceRequest withPropagateTags(String propagateTags) {
+        setPropagateTags(propagateTags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Determines whether to propagate the tags from the task definition or the service to the task. If no value is
+     * specified, the tags aren't propagated.
+     * </p>
+     * <p>
+     * Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     * <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated tags.
+     * </p>
+     * 
+     * @param propagateTags
+     *        Determines whether to propagate the tags from the task definition or the service to the task. If no value
+     *        is specified, the tags aren't propagated.</p>
+     *        <p>
+     *        Only tasks launched after the update will reflect the update. To update the tags on all tasks, set
+     *        <code>forceNewDeployment</code> to <code>true</code>, so that Amazon ECS starts new tasks with the updated
+     *        tags.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     * @see PropagateTags
+     */
+
+    public UpdateServiceRequest withPropagateTags(PropagateTags propagateTags) {
+        this.propagateTags = propagateTags.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details for the service discovery registries to assign to this service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service Discovery</a>.
+     * </p>
+     * <p>
+     * When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     * updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * </p>
+     * 
+     * @return The details for the service discovery registries to assign to this service. For more information, see <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
+     *         Discovery</a>.</p>
+     *         <p>
+     *         When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with
+     *         the updated service registries configuration, and then stops the old tasks when the new tasks are
+     *         running.
+     *         </p>
+     *         <p>
+     *         You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     */
+
+    public java.util.List<ServiceRegistry> getServiceRegistries() {
+        if (serviceRegistries == null) {
+            serviceRegistries = new com.amazonaws.internal.SdkInternalList<ServiceRegistry>();
+        }
+        return serviceRegistries;
+    }
+
+    /**
+     * <p>
+     * The details for the service discovery registries to assign to this service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service Discovery</a>.
+     * </p>
+     * <p>
+     * When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     * updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * </p>
+     * 
+     * @param serviceRegistries
+     *        The details for the service discovery registries to assign to this service. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
+     *        Discovery</a>.</p>
+     *        <p>
+     *        When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     *        updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     */
+
+    public void setServiceRegistries(java.util.Collection<ServiceRegistry> serviceRegistries) {
+        if (serviceRegistries == null) {
+            this.serviceRegistries = null;
+            return;
+        }
+
+        this.serviceRegistries = new com.amazonaws.internal.SdkInternalList<ServiceRegistry>(serviceRegistries);
+    }
+
+    /**
+     * <p>
+     * The details for the service discovery registries to assign to this service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service Discovery</a>.
+     * </p>
+     * <p>
+     * When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     * updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setServiceRegistries(java.util.Collection)} or {@link #withServiceRegistries(java.util.Collection)} if
+     * you want to override the existing values.
+     * </p>
+     * 
+     * @param serviceRegistries
+     *        The details for the service discovery registries to assign to this service. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
+     *        Discovery</a>.</p>
+     *        <p>
+     *        When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     *        updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withServiceRegistries(ServiceRegistry... serviceRegistries) {
+        if (this.serviceRegistries == null) {
+            setServiceRegistries(new com.amazonaws.internal.SdkInternalList<ServiceRegistry>(serviceRegistries.length));
+        }
+        for (ServiceRegistry ele : serviceRegistries) {
+            this.serviceRegistries.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details for the service discovery registries to assign to this service. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service Discovery</a>.
+     * </p>
+     * <p>
+     * When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     * updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     * </p>
+     * <p>
+     * You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * </p>
+     * 
+     * @param serviceRegistries
+     *        The details for the service discovery registries to assign to this service. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
+     *        Discovery</a>.</p>
+     *        <p>
+     *        When you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the
+     *        updated service registries configuration, and then stops the old tasks when the new tasks are running.
+     *        </p>
+     *        <p>
+     *        You can remove existing <code>serviceRegistries</code> by passing an empty list.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withServiceRegistries(java.util.Collection<ServiceRegistry> serviceRegistries) {
+        setServiceRegistries(serviceRegistries);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The configuration for this service to discover and connect to services, and be discovered by, and connected from,
+     * other services within a namespace.
+     * </p>
+     * <p>
+     * Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can connect to
+     * services across all of the clusters in the namespace. Tasks connect through a managed proxy container that
+     * collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services create are supported
+     * with Service Connect. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service Connect</a> in
+     * the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param serviceConnectConfiguration
+     *        The configuration for this service to discover and connect to services, and be discovered by, and
+     *        connected from, other services within a namespace.</p>
+     *        <p>
+     *        Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can
+     *        connect to services across all of the clusters in the namespace. Tasks connect through a managed proxy
+     *        container that collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services
+     *        create are supported with Service Connect. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service
+     *        Connect</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     */
+
+    public void setServiceConnectConfiguration(ServiceConnectConfiguration serviceConnectConfiguration) {
+        this.serviceConnectConfiguration = serviceConnectConfiguration;
+    }
+
+    /**
+     * <p>
+     * The configuration for this service to discover and connect to services, and be discovered by, and connected from,
+     * other services within a namespace.
+     * </p>
+     * <p>
+     * Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can connect to
+     * services across all of the clusters in the namespace. Tasks connect through a managed proxy container that
+     * collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services create are supported
+     * with Service Connect. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service Connect</a> in
+     * the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @return The configuration for this service to discover and connect to services, and be discovered by, and
+     *         connected from, other services within a namespace.</p>
+     *         <p>
+     *         Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can
+     *         connect to services across all of the clusters in the namespace. Tasks connect through a managed proxy
+     *         container that collects logs and metrics for increased visibility. Only the tasks that Amazon ECS
+     *         services create are supported with Service Connect. For more information, see <a
+     *         href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service
+     *         Connect</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     */
+
+    public ServiceConnectConfiguration getServiceConnectConfiguration() {
+        return this.serviceConnectConfiguration;
+    }
+
+    /**
+     * <p>
+     * The configuration for this service to discover and connect to services, and be discovered by, and connected from,
+     * other services within a namespace.
+     * </p>
+     * <p>
+     * Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can connect to
+     * services across all of the clusters in the namespace. Tasks connect through a managed proxy container that
+     * collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services create are supported
+     * with Service Connect. For more information, see <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service Connect</a> in
+     * the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param serviceConnectConfiguration
+     *        The configuration for this service to discover and connect to services, and be discovered by, and
+     *        connected from, other services within a namespace.</p>
+     *        <p>
+     *        Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can
+     *        connect to services across all of the clusters in the namespace. Tasks connect through a managed proxy
+     *        container that collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services
+     *        create are supported with Service Connect. For more information, see <a
+     *        href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html">Service
+     *        Connect</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withServiceConnectConfiguration(ServiceConnectConfiguration serviceConnectConfiguration) {
+        setServiceConnectConfiguration(serviceConnectConfiguration);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size, volumeType, IOPS,
+     * throughput, snapshot and encryption in <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     * >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the <code>name</code>
+     * from the task definition. If set to null, no new deployment is triggered. Otherwise, if this configuration
+     * differs from the existing one, it triggers a new deployment.
+     * </p>
+     * 
+     * @return The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size,
+     *         volumeType, IOPS, throughput, snapshot and encryption in <a href=
+     *         "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     *         >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the
+     *         <code>name</code> from the task definition. If set to null, no new deployment is triggered. Otherwise, if
+     *         this configuration differs from the existing one, it triggers a new deployment.
+     */
+
+    public java.util.List<ServiceVolumeConfiguration> getVolumeConfigurations() {
+        if (volumeConfigurations == null) {
+            volumeConfigurations = new com.amazonaws.internal.SdkInternalList<ServiceVolumeConfiguration>();
+        }
+        return volumeConfigurations;
+    }
+
+    /**
+     * <p>
+     * The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size, volumeType, IOPS,
+     * throughput, snapshot and encryption in <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     * >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the <code>name</code>
+     * from the task definition. If set to null, no new deployment is triggered. Otherwise, if this configuration
+     * differs from the existing one, it triggers a new deployment.
+     * </p>
+     * 
+     * @param volumeConfigurations
+     *        The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size,
+     *        volumeType, IOPS, throughput, snapshot and encryption in <a href=
+     *        "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     *        >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the
+     *        <code>name</code> from the task definition. If set to null, no new deployment is triggered. Otherwise, if
+     *        this configuration differs from the existing one, it triggers a new deployment.
+     */
+
+    public void setVolumeConfigurations(java.util.Collection<ServiceVolumeConfiguration> volumeConfigurations) {
+        if (volumeConfigurations == null) {
+            this.volumeConfigurations = null;
+            return;
+        }
+
+        this.volumeConfigurations = new com.amazonaws.internal.SdkInternalList<ServiceVolumeConfiguration>(volumeConfigurations);
+    }
+
+    /**
+     * <p>
+     * The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size, volumeType, IOPS,
+     * throughput, snapshot and encryption in <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     * >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the <code>name</code>
+     * from the task definition. If set to null, no new deployment is triggered. Otherwise, if this configuration
+     * differs from the existing one, it triggers a new deployment.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setVolumeConfigurations(java.util.Collection)} or {@link #withVolumeConfigurations(java.util.Collection)}
+     * if you want to override the existing values.
+     * </p>
+     * 
+     * @param volumeConfigurations
+     *        The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size,
+     *        volumeType, IOPS, throughput, snapshot and encryption in <a href=
+     *        "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     *        >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the
+     *        <code>name</code> from the task definition. If set to null, no new deployment is triggered. Otherwise, if
+     *        this configuration differs from the existing one, it triggers a new deployment.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withVolumeConfigurations(ServiceVolumeConfiguration... volumeConfigurations) {
+        if (this.volumeConfigurations == null) {
+            setVolumeConfigurations(new com.amazonaws.internal.SdkInternalList<ServiceVolumeConfiguration>(volumeConfigurations.length));
+        }
+        for (ServiceVolumeConfiguration ele : volumeConfigurations) {
+            this.volumeConfigurations.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size, volumeType, IOPS,
+     * throughput, snapshot and encryption in <a
+     * href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     * >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the <code>name</code>
+     * from the task definition. If set to null, no new deployment is triggered. Otherwise, if this configuration
+     * differs from the existing one, it triggers a new deployment.
+     * </p>
+     * 
+     * @param volumeConfigurations
+     *        The details of the volume that was <code>configuredAtLaunch</code>. You can configure the size,
+     *        volumeType, IOPS, throughput, snapshot and encryption in <a href=
+     *        "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html"
+     *        >ServiceManagedEBSVolumeConfiguration</a>. The <code>name</code> of the volume must match the
+     *        <code>name</code> from the task definition. If set to null, no new deployment is triggered. Otherwise, if
+     *        this configuration differs from the existing one, it triggers a new deployment.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public UpdateServiceRequest withVolumeConfigurations(java.util.Collection<ServiceVolumeConfiguration> volumeConfigurations) {
+        setVolumeConfigurations(volumeConfigurations);
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object. This is useful for testing and debugging. Sensitive data will be
+     * redacted from this string using a placeholder value.
+     *
+     * @return A string representation of this object.
+     *
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getCluster() != null)
+            sb.append("Cluster: ").append(getCluster()).append(",");
+        if (getService() != null)
+            sb.append("Service: ").append(getService()).append(",");
+        if (getDesiredCount() != null)
+            sb.append("DesiredCount: ").append(getDesiredCount()).append(",");
+        if (getTaskDefinition() != null)
+            sb.append("TaskDefinition: ").append(getTaskDefinition()).append(",");
+        if (getCapacityProviderStrategy() != null)
+            sb.append("CapacityProviderStrategy: ").append(getCapacityProviderStrategy()).append(",");
+        if (getDeploymentConfiguration() != null)
+            sb.append("DeploymentConfiguration: ").append(getDeploymentConfiguration()).append(",");
+        if (getNetworkConfiguration() != null)
+            sb.append("NetworkConfiguration: ").append(getNetworkConfiguration()).append(",");
+        if (getPlacementConstraints() != null)
+            sb.append("PlacementConstraints: ").append(getPlacementConstraints()).append(",");
+        if (getPlacementStrategy() != null)
+            sb.append("PlacementStrategy: ").append(getPlacementStrategy()).append(",");
+        if (getPlatformVersion() != null)
+            sb.append("PlatformVersion: ").append(getPlatformVersion()).append(",");
+        if (getForceNewDeployment() != null)
+            sb.append("ForceNewDeployment: ").append(getForceNewDeployment()).append(",");
+        if (getHealthCheckGracePeriodSeconds() != null)
+            sb.append("HealthCheckGracePeriodSeconds: ").append(getHealthCheckGracePeriodSeconds()).append(",");
+        if (getEnableExecuteCommand() != null)
+            sb.append("EnableExecuteCommand: ").append(getEnableExecuteCommand()).append(",");
+        if (getEnableECSManagedTags() != null)
+            sb.append("EnableECSManagedTags: ").append(getEnableECSManagedTags()).append(",");
+        if (getLoadBalancers() != null)
+            sb.append("LoadBalancers: ").append(getLoadBalancers()).append(",");
+        if (getPropagateTags() != null)
+            sb.append("PropagateTags: ").append(getPropagateTags()).append(",");
+        if (getServiceRegistries() != null)
+            sb.append("ServiceRegistries: ").append(getServiceRegistries()).append(",");
+        if (getServiceConnectConfiguration() != null)
+            sb.append("ServiceConnectConfiguration: ").append(getServiceConnectConfiguration()).append(",");
+        if (getVolumeConfigurations() != null)
+            sb.append("VolumeConfigurations: ").append(getVolumeConfigurations());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof UpdateServiceRequest == false)
+            return false;
+        UpdateServiceRequest other = (UpdateServiceRequest) obj;
+        if (other.getCluster() == null ^ this.getCluster() == null)
+            return false;
+        if (other.getCluster() != null && other.getCluster().equals(this.getCluster()) == false)
+            return false;
+        if (other.getService() == null ^ this.getService() == null)
+            return false;
+        if (other.getService() != null && other.getService().equals(this.getService()) == false)
+            return false;
+        if (other.getDesiredCount() == null ^ this.getDesiredCount() == null)
+            return false;
+        if (other.getDesiredCount() != null && other.getDesiredCount().equals(this.getDesiredCount()) == false)
+            return false;
+        if (other.getTaskDefinition() == null ^ this.getTaskDefinition() == null)
+            return false;
+        if (other.getTaskDefinition() != null && other.getTaskDefinition().equals(this.getTaskDefinition()) == false)
+            return false;
+        if (other.getCapacityProviderStrategy() == null ^ this.getCapacityProviderStrategy() == null)
+            return false;
+        if (other.getCapacityProviderStrategy() != null && other.getCapacityProviderStrategy().equals(this.getCapacityProviderStrategy()) == false)
+            return false;
+        if (other.getDeploymentConfiguration() == null ^ this.getDeploymentConfiguration() == null)
+            return false;
+        if (other.getDeploymentConfiguration() != null && other.getDeploymentConfiguration().equals(this.getDeploymentConfiguration()) == false)
+            return false;
+        if (other.getNetworkConfiguration() == null ^ this.getNetworkConfiguration() == null)
+            return false;
+        if (other.getNetworkConfiguration() != null && other.getNetworkConfiguration().equals(this.getNetworkConfiguration()) == false)
+            return false;
+        if (other.getPlacementConstraints() == null ^ this.getPlacementConstraints() == null)
+            return false;
+        if (other.getPlacementConstraints() != null && other.getPlacementConstraints().equals(this.getPlacementConstraints()) == false)
+            return false;
+        if (other.getPlacementStrategy() == null ^ this.getPlacementStrategy() == null)
+            return false;
+        if (other.getPlacementStrategy() != null && other.getPlacementStrategy().equals(this.getPlacementStrategy()) == false)
+            return false;
+        if (other.getPlatformVersion() == null ^ this.getPlatformVersion() == null)
+            return false;
+        if (other.getPlatformVersion() != null && other.getPlatformVersion().equals(this.getPlatformVersion()) == false)
+            return false;
+        if (other.getForceNewDeployment() == null ^ this.getForceNewDeployment() == null)
+            return false;
+        if (other.getForceNewDeployment() != null && other.getForceNewDeployment().equals(this.getForceNewDeployment()) == false)
+            return false;
+        if (other.getHealthCheckGracePeriodSeconds() == null ^ this.getHealthCheckGracePeriodSeconds() == null)
+            return false;
+        if (other.getHealthCheckGracePeriodSeconds() != null
+                && other.getHealthCheckGracePeriodSeconds().equals(this.getHealthCheckGracePeriodSeconds()) == false)
+            return false;
+        if (other.getEnableExecuteCommand() == null ^ this.getEnableExecuteCommand() == null)
+            return false;
+        if (other.getEnableExecuteCommand() != null && other.getEnableExecuteCommand().equals(this.getEnableExecuteCommand()) == false)
+            return false;
+        if (other.getEnableECSManagedTags() == null ^ this.getEnableECSManagedTags() == null)
+            return false;
+        if (other.getEnableECSManagedTags() != null && other.getEnableECSManagedTags().equals(this.getEnableECSManagedTags()) == false)
+            return false;
+        if (other.getLoadBalancers() == null ^ this.getLoadBalancers() == null)
+            return false;
+        if (other.getLoadBalancers() != null && other.getLoadBalancers().equals(this.getLoadBalancers()) == false)
+            return false;
+        if (other.getPropagateTags() == null ^ this.getPropagateTags() == null)
+            return false;
+        if (other.getPropagateTags() != null && other.getPropagateTags().equals(this.getPropagateTags()) == false)
+            return false;
+        if (other.getServiceRegistries() == null ^ this.getServiceRegistries() == null)
+            return false;
+        if (other.getServiceRegistries() != null && other.getServiceRegistries().equals(this.getServiceRegistries()) == false)
+            return false;
+        if (other.getServiceConnectConfiguration() == null ^ this.getServiceConnectConfiguration() == null)
+            return false;
+        if (other.getServiceConnectConfiguration() != null && other.getServiceConnectConfiguration().equals(this.getServiceConnectConfiguration()) == false)
+            return false;
+        if (other.getVolumeConfigurations() == null ^ this.getVolumeConfigurations() == null)
+            return false;
+        if (other.getVolumeConfigurations() != null && other.getVolumeConfigurations().equals(this.getVolumeConfigurations()) == false)
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getCluster() == null) ? 0 : getCluster().hashCode());
+        hashCode = prime * hashCode + ((getService() == null) ? 0 : getService().hashCode());
+        hashCode = prime * hashCode + ((getDesiredCount() == null) ? 0 : getDesiredCount().hashCode());
+        hashCode = prime * hashCode + ((getTaskDefinition() == null) ? 0 : getTaskDefinition().hashCode());
+        hashCode = prime * hashCode + ((getCapacityProviderStrategy() == null) ? 0 : getCapacityProviderStrategy().hashCode());
+        hashCode = prime * hashCode + ((getDeploymentConfiguration() == null) ? 0 : getDeploymentConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getNetworkConfiguration() == null) ? 0 : getNetworkConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getPlacementConstraints() == null) ? 0 : getPlacementConstraints().hashCode());
+        hashCode = prime * hashCode + ((getPlacementStrategy() == null) ? 0 : getPlacementStrategy().hashCode());
+        hashCode = prime * hashCode + ((getPlatformVersion() == null) ? 0 : getPlatformVersion().hashCode());
+        hashCode = prime * hashCode + ((getForceNewDeployment() == null) ? 0 : getForceNewDeployment().hashCode());
+        hashCode = prime * hashCode + ((getHealthCheckGracePeriodSeconds() == null) ? 0 : getHealthCheckGracePeriodSeconds().hashCode());
+        hashCode = prime * hashCode + ((getEnableExecuteCommand() == null) ? 0 : getEnableExecuteCommand().hashCode());
+        hashCode = prime * hashCode + ((getEnableECSManagedTags() == null) ? 0 : getEnableECSManagedTags().hashCode());
+        hashCode = prime * hashCode + ((getLoadBalancers() == null) ? 0 : getLoadBalancers().hashCode());
+        hashCode = prime * hashCode + ((getPropagateTags() == null) ? 0 : getPropagateTags().hashCode());
+        hashCode = prime * hashCode + ((getServiceRegistries() == null) ? 0 : getServiceRegistries().hashCode());
+        hashCode = prime * hashCode + ((getServiceConnectConfiguration() == null) ? 0 : getServiceConnectConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getVolumeConfigurations() == null) ? 0 : getVolumeConfigurations().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public UpdateServiceRequest clone() {
+        return (UpdateServiceRequest) super.clone();
+    }
+
+}

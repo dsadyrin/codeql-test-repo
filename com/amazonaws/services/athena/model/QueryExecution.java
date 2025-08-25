@@ -1,0 +1,897 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.athena.model;
+
+import java.io.Serializable;
+import javax.annotation.Generated;
+import com.amazonaws.protocol.StructuredPojo;
+import com.amazonaws.protocol.ProtocolMarshaller;
+
+/**
+ * <p>
+ * Information about a single instance of a query execution.
+ * </p>
+ * 
+ * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/QueryExecution" target="_top">AWS API
+ *      Documentation</a>
+ */
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public class QueryExecution implements Serializable, Cloneable, StructuredPojo {
+
+    /**
+     * <p>
+     * The unique identifier for each query execution.
+     * </p>
+     */
+    private String queryExecutionId;
+    /**
+     * <p>
+     * The SQL query statements which the query execution ran.
+     * </p>
+     */
+    private String query;
+    /**
+     * <p>
+     * The type of query statement that was run. <code>DDL</code> indicates DDL query statements. <code>DML</code>
+     * indicates DML (Data Manipulation Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as <code>SHOW CREATE TABLE</code>,
+     * or <code>DESCRIBE TABLE</code>.
+     * </p>
+     */
+    private String statementType;
+    /**
+     * <p>
+     * The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used
+     * for query results. These are known as "client-side settings". If workgroup settings override client-side
+     * settings, then the query uses the location for the query results and the encryption configuration that are
+     * specified for the workgroup.
+     * </p>
+     */
+    private ResultConfiguration resultConfiguration;
+    /**
+     * <p>
+     * Specifies the query result reuse behavior that was used for the query.
+     * </p>
+     */
+    private ResultReuseConfiguration resultReuseConfiguration;
+    /**
+     * <p>
+     * The database in which the query execution occurred.
+     * </p>
+     */
+    private QueryExecutionContext queryExecutionContext;
+    /**
+     * <p>
+     * The completion date, current state, submission time, and state change reason (if applicable) for the query
+     * execution.
+     * </p>
+     */
+    private QueryExecutionStatus status;
+    /**
+     * <p>
+     * Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     * process, and the type of statement that was run.
+     * </p>
+     */
+    private QueryExecutionStatistics statistics;
+    /**
+     * <p>
+     * The name of the workgroup in which the query ran.
+     * </p>
+     */
+    private String workGroup;
+    /**
+     * <p>
+     * The engine version that executed the query.
+     * </p>
+     */
+    private EngineVersion engineVersion;
+    /**
+     * <p>
+     * A list of values for the parameters in a query. The values are applied sequentially to the parameters in the
+     * query in the order in which the parameters occur. The list of parameters is not returned in the response.
+     * </p>
+     */
+    private java.util.List<String> executionParameters;
+    /**
+     * <p>
+     * The kind of query statement that was run.
+     * </p>
+     */
+    private String substatementType;
+    /**
+     * <p>
+     * Specifies whether Amazon S3 access grants are enabled for query results.
+     * </p>
+     */
+    private QueryResultsS3AccessGrantsConfiguration queryResultsS3AccessGrantsConfiguration;
+
+    /**
+     * <p>
+     * The unique identifier for each query execution.
+     * </p>
+     * 
+     * @param queryExecutionId
+     *        The unique identifier for each query execution.
+     */
+
+    public void setQueryExecutionId(String queryExecutionId) {
+        this.queryExecutionId = queryExecutionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for each query execution.
+     * </p>
+     * 
+     * @return The unique identifier for each query execution.
+     */
+
+    public String getQueryExecutionId() {
+        return this.queryExecutionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for each query execution.
+     * </p>
+     * 
+     * @param queryExecutionId
+     *        The unique identifier for each query execution.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withQueryExecutionId(String queryExecutionId) {
+        setQueryExecutionId(queryExecutionId);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The SQL query statements which the query execution ran.
+     * </p>
+     * 
+     * @param query
+     *        The SQL query statements which the query execution ran.
+     */
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    /**
+     * <p>
+     * The SQL query statements which the query execution ran.
+     * </p>
+     * 
+     * @return The SQL query statements which the query execution ran.
+     */
+
+    public String getQuery() {
+        return this.query;
+    }
+
+    /**
+     * <p>
+     * The SQL query statements which the query execution ran.
+     * </p>
+     * 
+     * @param query
+     *        The SQL query statements which the query execution ran.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withQuery(String query) {
+        setQuery(query);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of query statement that was run. <code>DDL</code> indicates DDL query statements. <code>DML</code>
+     * indicates DML (Data Manipulation Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as <code>SHOW CREATE TABLE</code>,
+     * or <code>DESCRIBE TABLE</code>.
+     * </p>
+     * 
+     * @param statementType
+     *        The type of query statement that was run. <code>DDL</code> indicates DDL query statements.
+     *        <code>DML</code> indicates DML (Data Manipulation Language) query statements, such as
+     *        <code>CREATE TABLE AS SELECT</code>. <code>UTILITY</code> indicates query statements other than DDL and
+     *        DML, such as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE TABLE</code>.
+     * @see StatementType
+     */
+
+    public void setStatementType(String statementType) {
+        this.statementType = statementType;
+    }
+
+    /**
+     * <p>
+     * The type of query statement that was run. <code>DDL</code> indicates DDL query statements. <code>DML</code>
+     * indicates DML (Data Manipulation Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as <code>SHOW CREATE TABLE</code>,
+     * or <code>DESCRIBE TABLE</code>.
+     * </p>
+     * 
+     * @return The type of query statement that was run. <code>DDL</code> indicates DDL query statements.
+     *         <code>DML</code> indicates DML (Data Manipulation Language) query statements, such as
+     *         <code>CREATE TABLE AS SELECT</code>. <code>UTILITY</code> indicates query statements other than DDL and
+     *         DML, such as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE TABLE</code>.
+     * @see StatementType
+     */
+
+    public String getStatementType() {
+        return this.statementType;
+    }
+
+    /**
+     * <p>
+     * The type of query statement that was run. <code>DDL</code> indicates DDL query statements. <code>DML</code>
+     * indicates DML (Data Manipulation Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as <code>SHOW CREATE TABLE</code>,
+     * or <code>DESCRIBE TABLE</code>.
+     * </p>
+     * 
+     * @param statementType
+     *        The type of query statement that was run. <code>DDL</code> indicates DDL query statements.
+     *        <code>DML</code> indicates DML (Data Manipulation Language) query statements, such as
+     *        <code>CREATE TABLE AS SELECT</code>. <code>UTILITY</code> indicates query statements other than DDL and
+     *        DML, such as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE TABLE</code>.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     * @see StatementType
+     */
+
+    public QueryExecution withStatementType(String statementType) {
+        setStatementType(statementType);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of query statement that was run. <code>DDL</code> indicates DDL query statements. <code>DML</code>
+     * indicates DML (Data Manipulation Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as <code>SHOW CREATE TABLE</code>,
+     * or <code>DESCRIBE TABLE</code>.
+     * </p>
+     * 
+     * @param statementType
+     *        The type of query statement that was run. <code>DDL</code> indicates DDL query statements.
+     *        <code>DML</code> indicates DML (Data Manipulation Language) query statements, such as
+     *        <code>CREATE TABLE AS SELECT</code>. <code>UTILITY</code> indicates query statements other than DDL and
+     *        DML, such as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE TABLE</code>.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     * @see StatementType
+     */
+
+    public QueryExecution withStatementType(StatementType statementType) {
+        this.statementType = statementType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used
+     * for query results. These are known as "client-side settings". If workgroup settings override client-side
+     * settings, then the query uses the location for the query results and the encryption configuration that are
+     * specified for the workgroup.
+     * </p>
+     * 
+     * @param resultConfiguration
+     *        The location in Amazon S3 where query and calculation results are stored and the encryption option, if
+     *        any, used for query results. These are known as "client-side settings". If workgroup settings override
+     *        client-side settings, then the query uses the location for the query results and the encryption
+     *        configuration that are specified for the workgroup.
+     */
+
+    public void setResultConfiguration(ResultConfiguration resultConfiguration) {
+        this.resultConfiguration = resultConfiguration;
+    }
+
+    /**
+     * <p>
+     * The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used
+     * for query results. These are known as "client-side settings". If workgroup settings override client-side
+     * settings, then the query uses the location for the query results and the encryption configuration that are
+     * specified for the workgroup.
+     * </p>
+     * 
+     * @return The location in Amazon S3 where query and calculation results are stored and the encryption option, if
+     *         any, used for query results. These are known as "client-side settings". If workgroup settings override
+     *         client-side settings, then the query uses the location for the query results and the encryption
+     *         configuration that are specified for the workgroup.
+     */
+
+    public ResultConfiguration getResultConfiguration() {
+        return this.resultConfiguration;
+    }
+
+    /**
+     * <p>
+     * The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used
+     * for query results. These are known as "client-side settings". If workgroup settings override client-side
+     * settings, then the query uses the location for the query results and the encryption configuration that are
+     * specified for the workgroup.
+     * </p>
+     * 
+     * @param resultConfiguration
+     *        The location in Amazon S3 where query and calculation results are stored and the encryption option, if
+     *        any, used for query results. These are known as "client-side settings". If workgroup settings override
+     *        client-side settings, then the query uses the location for the query results and the encryption
+     *        configuration that are specified for the workgroup.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withResultConfiguration(ResultConfiguration resultConfiguration) {
+        setResultConfiguration(resultConfiguration);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the query result reuse behavior that was used for the query.
+     * </p>
+     * 
+     * @param resultReuseConfiguration
+     *        Specifies the query result reuse behavior that was used for the query.
+     */
+
+    public void setResultReuseConfiguration(ResultReuseConfiguration resultReuseConfiguration) {
+        this.resultReuseConfiguration = resultReuseConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies the query result reuse behavior that was used for the query.
+     * </p>
+     * 
+     * @return Specifies the query result reuse behavior that was used for the query.
+     */
+
+    public ResultReuseConfiguration getResultReuseConfiguration() {
+        return this.resultReuseConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies the query result reuse behavior that was used for the query.
+     * </p>
+     * 
+     * @param resultReuseConfiguration
+     *        Specifies the query result reuse behavior that was used for the query.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withResultReuseConfiguration(ResultReuseConfiguration resultReuseConfiguration) {
+        setResultReuseConfiguration(resultReuseConfiguration);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The database in which the query execution occurred.
+     * </p>
+     * 
+     * @param queryExecutionContext
+     *        The database in which the query execution occurred.
+     */
+
+    public void setQueryExecutionContext(QueryExecutionContext queryExecutionContext) {
+        this.queryExecutionContext = queryExecutionContext;
+    }
+
+    /**
+     * <p>
+     * The database in which the query execution occurred.
+     * </p>
+     * 
+     * @return The database in which the query execution occurred.
+     */
+
+    public QueryExecutionContext getQueryExecutionContext() {
+        return this.queryExecutionContext;
+    }
+
+    /**
+     * <p>
+     * The database in which the query execution occurred.
+     * </p>
+     * 
+     * @param queryExecutionContext
+     *        The database in which the query execution occurred.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withQueryExecutionContext(QueryExecutionContext queryExecutionContext) {
+        setQueryExecutionContext(queryExecutionContext);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The completion date, current state, submission time, and state change reason (if applicable) for the query
+     * execution.
+     * </p>
+     * 
+     * @param status
+     *        The completion date, current state, submission time, and state change reason (if applicable) for the query
+     *        execution.
+     */
+
+    public void setStatus(QueryExecutionStatus status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The completion date, current state, submission time, and state change reason (if applicable) for the query
+     * execution.
+     * </p>
+     * 
+     * @return The completion date, current state, submission time, and state change reason (if applicable) for the
+     *         query execution.
+     */
+
+    public QueryExecutionStatus getStatus() {
+        return this.status;
+    }
+
+    /**
+     * <p>
+     * The completion date, current state, submission time, and state change reason (if applicable) for the query
+     * execution.
+     * </p>
+     * 
+     * @param status
+     *        The completion date, current state, submission time, and state change reason (if applicable) for the query
+     *        execution.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withStatus(QueryExecutionStatus status) {
+        setStatus(status);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     * process, and the type of statement that was run.
+     * </p>
+     * 
+     * @param statistics
+     *        Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     *        process, and the type of statement that was run.
+     */
+
+    public void setStatistics(QueryExecutionStatistics statistics) {
+        this.statistics = statistics;
+    }
+
+    /**
+     * <p>
+     * Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     * process, and the type of statement that was run.
+     * </p>
+     * 
+     * @return Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     *         process, and the type of statement that was run.
+     */
+
+    public QueryExecutionStatistics getStatistics() {
+        return this.statistics;
+    }
+
+    /**
+     * <p>
+     * Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     * process, and the type of statement that was run.
+     * </p>
+     * 
+     * @param statistics
+     *        Query execution statistics, such as the amount of data scanned, the amount of time that the query took to
+     *        process, and the type of statement that was run.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withStatistics(QueryExecutionStatistics statistics) {
+        setStatistics(statistics);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the workgroup in which the query ran.
+     * </p>
+     * 
+     * @param workGroup
+     *        The name of the workgroup in which the query ran.
+     */
+
+    public void setWorkGroup(String workGroup) {
+        this.workGroup = workGroup;
+    }
+
+    /**
+     * <p>
+     * The name of the workgroup in which the query ran.
+     * </p>
+     * 
+     * @return The name of the workgroup in which the query ran.
+     */
+
+    public String getWorkGroup() {
+        return this.workGroup;
+    }
+
+    /**
+     * <p>
+     * The name of the workgroup in which the query ran.
+     * </p>
+     * 
+     * @param workGroup
+     *        The name of the workgroup in which the query ran.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withWorkGroup(String workGroup) {
+        setWorkGroup(workGroup);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The engine version that executed the query.
+     * </p>
+     * 
+     * @param engineVersion
+     *        The engine version that executed the query.
+     */
+
+    public void setEngineVersion(EngineVersion engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    /**
+     * <p>
+     * The engine version that executed the query.
+     * </p>
+     * 
+     * @return The engine version that executed the query.
+     */
+
+    public EngineVersion getEngineVersion() {
+        return this.engineVersion;
+    }
+
+    /**
+     * <p>
+     * The engine version that executed the query.
+     * </p>
+     * 
+     * @param engineVersion
+     *        The engine version that executed the query.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withEngineVersion(EngineVersion engineVersion) {
+        setEngineVersion(engineVersion);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of values for the parameters in a query. The values are applied sequentially to the parameters in the
+     * query in the order in which the parameters occur. The list of parameters is not returned in the response.
+     * </p>
+     * 
+     * @return A list of values for the parameters in a query. The values are applied sequentially to the parameters in
+     *         the query in the order in which the parameters occur. The list of parameters is not returned in the
+     *         response.
+     */
+
+    public java.util.List<String> getExecutionParameters() {
+        return executionParameters;
+    }
+
+    /**
+     * <p>
+     * A list of values for the parameters in a query. The values are applied sequentially to the parameters in the
+     * query in the order in which the parameters occur. The list of parameters is not returned in the response.
+     * </p>
+     * 
+     * @param executionParameters
+     *        A list of values for the parameters in a query. The values are applied sequentially to the parameters in
+     *        the query in the order in which the parameters occur. The list of parameters is not returned in the
+     *        response.
+     */
+
+    public void setExecutionParameters(java.util.Collection<String> executionParameters) {
+        if (executionParameters == null) {
+            this.executionParameters = null;
+            return;
+        }
+
+        this.executionParameters = new java.util.ArrayList<String>(executionParameters);
+    }
+
+    /**
+     * <p>
+     * A list of values for the parameters in a query. The values are applied sequentially to the parameters in the
+     * query in the order in which the parameters occur. The list of parameters is not returned in the response.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> This method appends the values to the existing list (if any). Use
+     * {@link #setExecutionParameters(java.util.Collection)} or {@link #withExecutionParameters(java.util.Collection)}
+     * if you want to override the existing values.
+     * </p>
+     * 
+     * @param executionParameters
+     *        A list of values for the parameters in a query. The values are applied sequentially to the parameters in
+     *        the query in the order in which the parameters occur. The list of parameters is not returned in the
+     *        response.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withExecutionParameters(String... executionParameters) {
+        if (this.executionParameters == null) {
+            setExecutionParameters(new java.util.ArrayList<String>(executionParameters.length));
+        }
+        for (String ele : executionParameters) {
+            this.executionParameters.add(ele);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of values for the parameters in a query. The values are applied sequentially to the parameters in the
+     * query in the order in which the parameters occur. The list of parameters is not returned in the response.
+     * </p>
+     * 
+     * @param executionParameters
+     *        A list of values for the parameters in a query. The values are applied sequentially to the parameters in
+     *        the query in the order in which the parameters occur. The list of parameters is not returned in the
+     *        response.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withExecutionParameters(java.util.Collection<String> executionParameters) {
+        setExecutionParameters(executionParameters);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The kind of query statement that was run.
+     * </p>
+     * 
+     * @param substatementType
+     *        The kind of query statement that was run.
+     */
+
+    public void setSubstatementType(String substatementType) {
+        this.substatementType = substatementType;
+    }
+
+    /**
+     * <p>
+     * The kind of query statement that was run.
+     * </p>
+     * 
+     * @return The kind of query statement that was run.
+     */
+
+    public String getSubstatementType() {
+        return this.substatementType;
+    }
+
+    /**
+     * <p>
+     * The kind of query statement that was run.
+     * </p>
+     * 
+     * @param substatementType
+     *        The kind of query statement that was run.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withSubstatementType(String substatementType) {
+        setSubstatementType(substatementType);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether Amazon S3 access grants are enabled for query results.
+     * </p>
+     * 
+     * @param queryResultsS3AccessGrantsConfiguration
+     *        Specifies whether Amazon S3 access grants are enabled for query results.
+     */
+
+    public void setQueryResultsS3AccessGrantsConfiguration(QueryResultsS3AccessGrantsConfiguration queryResultsS3AccessGrantsConfiguration) {
+        this.queryResultsS3AccessGrantsConfiguration = queryResultsS3AccessGrantsConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies whether Amazon S3 access grants are enabled for query results.
+     * </p>
+     * 
+     * @return Specifies whether Amazon S3 access grants are enabled for query results.
+     */
+
+    public QueryResultsS3AccessGrantsConfiguration getQueryResultsS3AccessGrantsConfiguration() {
+        return this.queryResultsS3AccessGrantsConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies whether Amazon S3 access grants are enabled for query results.
+     * </p>
+     * 
+     * @param queryResultsS3AccessGrantsConfiguration
+     *        Specifies whether Amazon S3 access grants are enabled for query results.
+     * @return Returns a reference to this object so that method calls can be chained together.
+     */
+
+    public QueryExecution withQueryResultsS3AccessGrantsConfiguration(QueryResultsS3AccessGrantsConfiguration queryResultsS3AccessGrantsConfiguration) {
+        setQueryResultsS3AccessGrantsConfiguration(queryResultsS3AccessGrantsConfiguration);
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object. This is useful for testing and debugging. Sensitive data will be
+     * redacted from this string using a placeholder value.
+     *
+     * @return A string representation of this object.
+     *
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getQueryExecutionId() != null)
+            sb.append("QueryExecutionId: ").append(getQueryExecutionId()).append(",");
+        if (getQuery() != null)
+            sb.append("Query: ").append(getQuery()).append(",");
+        if (getStatementType() != null)
+            sb.append("StatementType: ").append(getStatementType()).append(",");
+        if (getResultConfiguration() != null)
+            sb.append("ResultConfiguration: ").append(getResultConfiguration()).append(",");
+        if (getResultReuseConfiguration() != null)
+            sb.append("ResultReuseConfiguration: ").append(getResultReuseConfiguration()).append(",");
+        if (getQueryExecutionContext() != null)
+            sb.append("QueryExecutionContext: ").append(getQueryExecutionContext()).append(",");
+        if (getStatus() != null)
+            sb.append("Status: ").append(getStatus()).append(",");
+        if (getStatistics() != null)
+            sb.append("Statistics: ").append(getStatistics()).append(",");
+        if (getWorkGroup() != null)
+            sb.append("WorkGroup: ").append(getWorkGroup()).append(",");
+        if (getEngineVersion() != null)
+            sb.append("EngineVersion: ").append(getEngineVersion()).append(",");
+        if (getExecutionParameters() != null)
+            sb.append("ExecutionParameters: ").append(getExecutionParameters()).append(",");
+        if (getSubstatementType() != null)
+            sb.append("SubstatementType: ").append(getSubstatementType()).append(",");
+        if (getQueryResultsS3AccessGrantsConfiguration() != null)
+            sb.append("QueryResultsS3AccessGrantsConfiguration: ").append(getQueryResultsS3AccessGrantsConfiguration());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof QueryExecution == false)
+            return false;
+        QueryExecution other = (QueryExecution) obj;
+        if (other.getQueryExecutionId() == null ^ this.getQueryExecutionId() == null)
+            return false;
+        if (other.getQueryExecutionId() != null && other.getQueryExecutionId().equals(this.getQueryExecutionId()) == false)
+            return false;
+        if (other.getQuery() == null ^ this.getQuery() == null)
+            return false;
+        if (other.getQuery() != null && other.getQuery().equals(this.getQuery()) == false)
+            return false;
+        if (other.getStatementType() == null ^ this.getStatementType() == null)
+            return false;
+        if (other.getStatementType() != null && other.getStatementType().equals(this.getStatementType()) == false)
+            return false;
+        if (other.getResultConfiguration() == null ^ this.getResultConfiguration() == null)
+            return false;
+        if (other.getResultConfiguration() != null && other.getResultConfiguration().equals(this.getResultConfiguration()) == false)
+            return false;
+        if (other.getResultReuseConfiguration() == null ^ this.getResultReuseConfiguration() == null)
+            return false;
+        if (other.getResultReuseConfiguration() != null && other.getResultReuseConfiguration().equals(this.getResultReuseConfiguration()) == false)
+            return false;
+        if (other.getQueryExecutionContext() == null ^ this.getQueryExecutionContext() == null)
+            return false;
+        if (other.getQueryExecutionContext() != null && other.getQueryExecutionContext().equals(this.getQueryExecutionContext()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getStatistics() == null ^ this.getStatistics() == null)
+            return false;
+        if (other.getStatistics() != null && other.getStatistics().equals(this.getStatistics()) == false)
+            return false;
+        if (other.getWorkGroup() == null ^ this.getWorkGroup() == null)
+            return false;
+        if (other.getWorkGroup() != null && other.getWorkGroup().equals(this.getWorkGroup()) == false)
+            return false;
+        if (other.getEngineVersion() == null ^ this.getEngineVersion() == null)
+            return false;
+        if (other.getEngineVersion() != null && other.getEngineVersion().equals(this.getEngineVersion()) == false)
+            return false;
+        if (other.getExecutionParameters() == null ^ this.getExecutionParameters() == null)
+            return false;
+        if (other.getExecutionParameters() != null && other.getExecutionParameters().equals(this.getExecutionParameters()) == false)
+            return false;
+        if (other.getSubstatementType() == null ^ this.getSubstatementType() == null)
+            return false;
+        if (other.getSubstatementType() != null && other.getSubstatementType().equals(this.getSubstatementType()) == false)
+            return false;
+        if (other.getQueryResultsS3AccessGrantsConfiguration() == null ^ this.getQueryResultsS3AccessGrantsConfiguration() == null)
+            return false;
+        if (other.getQueryResultsS3AccessGrantsConfiguration() != null
+                && other.getQueryResultsS3AccessGrantsConfiguration().equals(this.getQueryResultsS3AccessGrantsConfiguration()) == false)
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getQueryExecutionId() == null) ? 0 : getQueryExecutionId().hashCode());
+        hashCode = prime * hashCode + ((getQuery() == null) ? 0 : getQuery().hashCode());
+        hashCode = prime * hashCode + ((getStatementType() == null) ? 0 : getStatementType().hashCode());
+        hashCode = prime * hashCode + ((getResultConfiguration() == null) ? 0 : getResultConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getResultReuseConfiguration() == null) ? 0 : getResultReuseConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getQueryExecutionContext() == null) ? 0 : getQueryExecutionContext().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getStatistics() == null) ? 0 : getStatistics().hashCode());
+        hashCode = prime * hashCode + ((getWorkGroup() == null) ? 0 : getWorkGroup().hashCode());
+        hashCode = prime * hashCode + ((getEngineVersion() == null) ? 0 : getEngineVersion().hashCode());
+        hashCode = prime * hashCode + ((getExecutionParameters() == null) ? 0 : getExecutionParameters().hashCode());
+        hashCode = prime * hashCode + ((getSubstatementType() == null) ? 0 : getSubstatementType().hashCode());
+        hashCode = prime * hashCode + ((getQueryResultsS3AccessGrantsConfiguration() == null) ? 0 : getQueryResultsS3AccessGrantsConfiguration().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public QueryExecution clone() {
+        try {
+            return (QueryExecution) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+        }
+    }
+
+    @com.amazonaws.annotation.SdkInternalApi
+    @Override
+    public void marshall(ProtocolMarshaller protocolMarshaller) {
+        com.amazonaws.services.athena.model.transform.QueryExecutionMarshaller.getInstance().marshall(this, protocolMarshaller);
+    }
+}

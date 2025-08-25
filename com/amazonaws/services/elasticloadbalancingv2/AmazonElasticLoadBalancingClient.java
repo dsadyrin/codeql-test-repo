@@ -1,0 +1,3769 @@
+/*
+ * Copyright 2019-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * the License. A copy of the License is located at
+ * 
+ * http://aws.amazon.com/apache2.0
+ * 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+package com.amazonaws.services.elasticloadbalancingv2;
+
+import org.w3c.dom.*;
+
+import java.net.*;
+import java.util.*;
+
+import javax.annotation.Generated;
+
+import org.apache.commons.logging.*;
+
+import com.amazonaws.*;
+import com.amazonaws.annotation.SdkInternalApi;
+import com.amazonaws.auth.*;
+
+import com.amazonaws.handlers.*;
+import com.amazonaws.http.*;
+import com.amazonaws.internal.*;
+import com.amazonaws.internal.auth.*;
+import com.amazonaws.metrics.*;
+import com.amazonaws.regions.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.*;
+import com.amazonaws.protocol.json.*;
+import com.amazonaws.util.AWSRequestMetrics.Field;
+import com.amazonaws.annotation.ThreadSafe;
+import com.amazonaws.client.AwsSyncClientParams;
+import com.amazonaws.client.builder.AdvancedConfig;
+
+import com.amazonaws.services.elasticloadbalancingv2.AmazonElasticLoadBalancingClientBuilder;
+import com.amazonaws.services.elasticloadbalancingv2.waiters.AmazonElasticLoadBalancingWaiters;
+
+import com.amazonaws.AmazonServiceException;
+
+import com.amazonaws.services.elasticloadbalancingv2.model.*;
+
+import com.amazonaws.services.elasticloadbalancingv2.model.transform.*;
+
+/**
+ * Client for accessing Elastic Load Balancing v2. All service calls made using this client are blocking, and will not
+ * return until the service call completes.
+ * <p>
+ * <fullname>Elastic Load Balancing</fullname>
+ * <p>
+ * A load balancer distributes incoming traffic across targets, such as your EC2 instances. This enables you to increase
+ * the availability of your application. The load balancer also monitors the health of its registered targets and
+ * ensures that it routes traffic only to healthy targets. You configure your load balancer to accept incoming traffic
+ * by specifying one or more listeners, which are configured with a protocol and port number for connections from
+ * clients to the load balancer. You configure a target group with a protocol and port number for connections from the
+ * load balancer to the targets, and with health check settings to be used when checking the health status of the
+ * targets.
+ * </p>
+ * <p>
+ * Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load
+ * Balancers, Gateway Load Balancers, and Classic Load Balancers. This reference covers the following load balancer
+ * types:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Application Load Balancer - Operates at the application layer (layer 7) and supports HTTP and HTTPS.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Network Load Balancer - Operates at the transport layer (layer 4) and supports TCP, TLS, and UDP.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Gateway Load Balancer - Operates at the network layer (layer 3).
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For more information, see the <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/">Elastic
+ * Load Balancing User Guide</a>.
+ * </p>
+ * <p>
+ * All Elastic Load Balancing operations are idempotent, which means that they complete at most one time. If you repeat
+ * an operation, it succeeds.
+ * </p>
+ */
+@ThreadSafe
+@Generated("com.amazonaws:aws-java-sdk-code-generator")
+public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient implements AmazonElasticLoadBalancing {
+
+    /** Provider for AWS credentials. */
+    private final AWSCredentialsProvider awsCredentialsProvider;
+
+    private static final Log log = LogFactory.getLog(AmazonElasticLoadBalancing.class);
+
+    /** Default signing name for the service. */
+    private static final String DEFAULT_SIGNING_NAME = "elasticloadbalancing";
+
+    private volatile AmazonElasticLoadBalancingWaiters waiters;
+
+    /** Client configuration factory providing ClientConfigurations tailored to this client */
+    protected static final ClientConfigurationFactory configFactory = new ClientConfigurationFactory();
+
+    private final AdvancedConfig advancedConfig;
+
+    /**
+     * Map of exception unmarshallers for all modeled exceptions
+     */
+    private final Map<String, Unmarshaller<AmazonServiceException, Node>> exceptionUnmarshallersMap = new HashMap<String, Unmarshaller<AmazonServiceException, Node>>();
+
+    /**
+     * List of exception unmarshallers for all modeled exceptions Even though this exceptionUnmarshallers is not used in
+     * Clients, this is not removed since this was directly used by Client extended classes. Using this list can cause
+     * performance impact.
+     */
+    protected final List<Unmarshaller<AmazonServiceException, Node>> exceptionUnmarshallers = new ArrayList<Unmarshaller<AmazonServiceException, Node>>();
+
+    protected Unmarshaller<AmazonServiceException, Node> defaultUnmarshaller;
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2. A credentials provider chain will
+     * be used that searches for credentials in this order:
+     * <ul>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2 metadata service</li>
+     * </ul>
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @see DefaultAWSCredentialsProviderChain
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#defaultClient()}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient() {
+        this(DefaultAWSCredentialsProviderChain.getInstance(), configFactory.getConfig());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2. A credentials provider chain will
+     * be used that searches for credentials in this order:
+     * <ul>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2 metadata service</li>
+     * </ul>
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param clientConfiguration
+     *        The client configuration options controlling how this client connects to Elastic Load Balancing v2 (ex:
+     *        proxy settings, retry counts, etc.).
+     *
+     * @see DefaultAWSCredentialsProviderChain
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withClientConfiguration(ClientConfiguration)}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(ClientConfiguration clientConfiguration) {
+        this(DefaultAWSCredentialsProviderChain.getInstance(), clientConfiguration);
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified AWS account
+     * credentials.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param awsCredentials
+     *        The AWS credentials (access key ID and secret key) to use when authenticating with AWS services.
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withCredentials(AWSCredentialsProvider)} for
+     *             example:
+     *             {@code AmazonElasticLoadBalancingClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(AWSCredentials awsCredentials) {
+        this(awsCredentials, configFactory.getConfig());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified AWS account
+     * credentials and client configuration options.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param awsCredentials
+     *        The AWS credentials (access key ID and secret key) to use when authenticating with AWS services.
+     * @param clientConfiguration
+     *        The client configuration options controlling how this client connects to Elastic Load Balancing v2 (ex:
+     *        proxy settings, retry counts, etc.).
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withCredentials(AWSCredentialsProvider)} and
+     *             {@link AmazonElasticLoadBalancingClientBuilder#withClientConfiguration(ClientConfiguration)}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(AWSCredentials awsCredentials, ClientConfiguration clientConfiguration) {
+        super(clientConfiguration);
+        this.awsCredentialsProvider = new StaticCredentialsProvider(awsCredentials);
+        this.advancedConfig = AdvancedConfig.EMPTY;
+        init();
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified AWS account
+     * credentials provider.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param awsCredentialsProvider
+     *        The AWS credentials provider which will provide credentials to authenticate requests with AWS services.
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withCredentials(AWSCredentialsProvider)}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(AWSCredentialsProvider awsCredentialsProvider) {
+        this(awsCredentialsProvider, configFactory.getConfig());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified AWS account
+     * credentials provider and client configuration options.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param awsCredentialsProvider
+     *        The AWS credentials provider which will provide credentials to authenticate requests with AWS services.
+     * @param clientConfiguration
+     *        The client configuration options controlling how this client connects to Elastic Load Balancing v2 (ex:
+     *        proxy settings, retry counts, etc.).
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withCredentials(AWSCredentialsProvider)} and
+     *             {@link AmazonElasticLoadBalancingClientBuilder#withClientConfiguration(ClientConfiguration)}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(AWSCredentialsProvider awsCredentialsProvider, ClientConfiguration clientConfiguration) {
+        this(awsCredentialsProvider, clientConfiguration, null);
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified AWS account
+     * credentials provider, client configuration options, and request metric collector.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param awsCredentialsProvider
+     *        The AWS credentials provider which will provide credentials to authenticate requests with AWS services.
+     * @param clientConfiguration
+     *        The client configuration options controlling how this client connects to Elastic Load Balancing v2 (ex:
+     *        proxy settings, retry counts, etc.).
+     * @param requestMetricCollector
+     *        optional request metric collector
+     * @deprecated use {@link AmazonElasticLoadBalancingClientBuilder#withCredentials(AWSCredentialsProvider)} and
+     *             {@link AmazonElasticLoadBalancingClientBuilder#withClientConfiguration(ClientConfiguration)} and
+     *             {@link AmazonElasticLoadBalancingClientBuilder#withMetricsCollector(RequestMetricCollector)}
+     */
+    @Deprecated
+    public AmazonElasticLoadBalancingClient(AWSCredentialsProvider awsCredentialsProvider, ClientConfiguration clientConfiguration,
+            RequestMetricCollector requestMetricCollector) {
+        super(clientConfiguration, requestMetricCollector);
+        this.awsCredentialsProvider = awsCredentialsProvider;
+        this.advancedConfig = AdvancedConfig.EMPTY;
+        init();
+    }
+
+    public static AmazonElasticLoadBalancingClientBuilder builder() {
+        return AmazonElasticLoadBalancingClientBuilder.standard();
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified parameters.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param clientParams
+     *        Object providing client parameters.
+     */
+    AmazonElasticLoadBalancingClient(AwsSyncClientParams clientParams) {
+        this(clientParams, false);
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on Elastic Load Balancing v2 using the specified parameters.
+     *
+     * <p>
+     * All service calls made using this new client object are blocking, and will not return until the service call
+     * completes.
+     *
+     * @param clientParams
+     *        Object providing client parameters.
+     */
+    AmazonElasticLoadBalancingClient(AwsSyncClientParams clientParams, boolean endpointDiscoveryEnabled) {
+        super(clientParams);
+        this.awsCredentialsProvider = clientParams.getCredentialsProvider();
+        this.advancedConfig = clientParams.getAdvancedConfig();
+        init();
+    }
+
+    private void init() {
+        if (exceptionUnmarshallersMap.get("UnsupportedProtocol") == null) {
+            exceptionUnmarshallersMap.put("UnsupportedProtocol", new UnsupportedProtocolExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new UnsupportedProtocolExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("AllocationIdNotFound") == null) {
+            exceptionUnmarshallersMap.put("AllocationIdNotFound", new AllocationIdNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new AllocationIdNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("DuplicateTargetGroupName") == null) {
+            exceptionUnmarshallersMap.put("DuplicateTargetGroupName", new DuplicateTargetGroupNameExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new DuplicateTargetGroupNameExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("RevocationContentNotFound") == null) {
+            exceptionUnmarshallersMap.put("RevocationContentNotFound", new RevocationContentNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new RevocationContentNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("LoadBalancerNotFound") == null) {
+            exceptionUnmarshallersMap.put("LoadBalancerNotFound", new LoadBalancerNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new LoadBalancerNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyLoadBalancers") == null) {
+            exceptionUnmarshallersMap.put("TooManyLoadBalancers", new TooManyLoadBalancersExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyLoadBalancersExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidConfigurationRequest") == null) {
+            exceptionUnmarshallersMap.put("InvalidConfigurationRequest", new InvalidConfigurationRequestExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidConfigurationRequestExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyActions") == null) {
+            exceptionUnmarshallersMap.put("TooManyActions", new TooManyActionsExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyActionsExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("DuplicateLoadBalancerName") == null) {
+            exceptionUnmarshallersMap.put("DuplicateLoadBalancerName", new DuplicateLoadBalancerNameExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new DuplicateLoadBalancerNameExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidLoadBalancerAction") == null) {
+            exceptionUnmarshallersMap.put("InvalidLoadBalancerAction", new InvalidLoadBalancerActionExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidLoadBalancerActionExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TrustStoreInUse") == null) {
+            exceptionUnmarshallersMap.put("TrustStoreInUse", new TrustStoreInUseExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TrustStoreInUseExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("CaCertificatesBundleNotFound") == null) {
+            exceptionUnmarshallersMap.put("CaCertificatesBundleNotFound", new CaCertificatesBundleNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new CaCertificatesBundleNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("CertificateNotFound") == null) {
+            exceptionUnmarshallersMap.put("CertificateNotFound", new CertificateNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new CertificateNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TargetGroupNotFound") == null) {
+            exceptionUnmarshallersMap.put("TargetGroupNotFound", new TargetGroupNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TargetGroupNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("SSLPolicyNotFound") == null) {
+            exceptionUnmarshallersMap.put("SSLPolicyNotFound", new SSLPolicyNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new SSLPolicyNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("ListenerNotFound") == null) {
+            exceptionUnmarshallersMap.put("ListenerNotFound", new ListenerNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new ListenerNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("PriorityInUse") == null) {
+            exceptionUnmarshallersMap.put("PriorityInUse", new PriorityInUseExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new PriorityInUseExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidRevocationContent") == null) {
+            exceptionUnmarshallersMap.put("InvalidRevocationContent", new InvalidRevocationContentExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidRevocationContentExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("DuplicateListener") == null) {
+            exceptionUnmarshallersMap.put("DuplicateListener", new DuplicateListenerExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new DuplicateListenerExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidScheme") == null) {
+            exceptionUnmarshallersMap.put("InvalidScheme", new InvalidSchemeExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidSchemeExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidSubnet") == null) {
+            exceptionUnmarshallersMap.put("InvalidSubnet", new InvalidSubnetExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidSubnetExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyTrustStores") == null) {
+            exceptionUnmarshallersMap.put("TooManyTrustStores", new TooManyTrustStoresExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyTrustStoresExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyTargets") == null) {
+            exceptionUnmarshallersMap.put("TooManyTargets", new TooManyTargetsExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyTargetsExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyUniqueTargetGroupsPerLoadBalancer") == null) {
+            exceptionUnmarshallersMap.put("TooManyUniqueTargetGroupsPerLoadBalancer", new TooManyUniqueTargetGroupsPerLoadBalancerExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyUniqueTargetGroupsPerLoadBalancerExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("ResourceInUse") == null) {
+            exceptionUnmarshallersMap.put("ResourceInUse", new ResourceInUseExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyRules") == null) {
+            exceptionUnmarshallersMap.put("TooManyRules", new TooManyRulesExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyRulesExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyCertificates") == null) {
+            exceptionUnmarshallersMap.put("TooManyCertificates", new TooManyCertificatesExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyCertificatesExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyTargetGroups") == null) {
+            exceptionUnmarshallersMap.put("TooManyTargetGroups", new TooManyTargetGroupsExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyTargetGroupsExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TargetGroupAssociationLimit") == null) {
+            exceptionUnmarshallersMap.put("TargetGroupAssociationLimit", new TargetGroupAssociationLimitExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TargetGroupAssociationLimitExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TrustStoreNotReady") == null) {
+            exceptionUnmarshallersMap.put("TrustStoreNotReady", new TrustStoreNotReadyExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TrustStoreNotReadyExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidSecurityGroup") == null) {
+            exceptionUnmarshallersMap.put("InvalidSecurityGroup", new InvalidSecurityGroupExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidSecurityGroupExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("IncompatibleProtocols") == null) {
+            exceptionUnmarshallersMap.put("IncompatibleProtocols", new IncompatibleProtocolsExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new IncompatibleProtocolsExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("RevocationIdNotFound") == null) {
+            exceptionUnmarshallersMap.put("RevocationIdNotFound", new RevocationIdNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new RevocationIdNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyListeners") == null) {
+            exceptionUnmarshallersMap.put("TooManyListeners", new TooManyListenersExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyListenersExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("ALPNPolicyNotFound") == null) {
+            exceptionUnmarshallersMap.put("ALPNPolicyNotFound", new ALPNPolicyNotSupportedExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new ALPNPolicyNotSupportedExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("OperationNotPermitted") == null) {
+            exceptionUnmarshallersMap.put("OperationNotPermitted", new OperationNotPermittedExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new OperationNotPermittedExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("DuplicateTagKeys") == null) {
+            exceptionUnmarshallersMap.put("DuplicateTagKeys", new DuplicateTagKeysExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new DuplicateTagKeysExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyTags") == null) {
+            exceptionUnmarshallersMap.put("TooManyTags", new TooManyTagsExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyTagsExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyRegistrationsForTargetId") == null) {
+            exceptionUnmarshallersMap.put("TooManyRegistrationsForTargetId", new TooManyRegistrationsForTargetIdExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyRegistrationsForTargetIdExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("DuplicateTrustStoreName") == null) {
+            exceptionUnmarshallersMap.put("DuplicateTrustStoreName", new DuplicateTrustStoreNameExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new DuplicateTrustStoreNameExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidCaCertificatesBundle") == null) {
+            exceptionUnmarshallersMap.put("InvalidCaCertificatesBundle", new InvalidCaCertificatesBundleExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidCaCertificatesBundleExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("InvalidTarget") == null) {
+            exceptionUnmarshallersMap.put("InvalidTarget", new InvalidTargetExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new InvalidTargetExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TrustStoreNotFound") == null) {
+            exceptionUnmarshallersMap.put("TrustStoreNotFound", new TrustStoreNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TrustStoreNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("TooManyTrustStoreRevocationEntries") == null) {
+            exceptionUnmarshallersMap.put("TooManyTrustStoreRevocationEntries", new TooManyTrustStoreRevocationEntriesExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new TooManyTrustStoreRevocationEntriesExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("SubnetNotFound") == null) {
+            exceptionUnmarshallersMap.put("SubnetNotFound", new SubnetNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new SubnetNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("AvailabilityZoneNotSupported") == null) {
+            exceptionUnmarshallersMap.put("AvailabilityZoneNotSupported", new AvailabilityZoneNotSupportedExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new AvailabilityZoneNotSupportedExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("RuleNotFound") == null) {
+            exceptionUnmarshallersMap.put("RuleNotFound", new RuleNotFoundExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new RuleNotFoundExceptionUnmarshaller());
+        if (exceptionUnmarshallersMap.get("HealthUnavailable") == null) {
+            exceptionUnmarshallersMap.put("HealthUnavailable", new HealthUnavailableExceptionUnmarshaller());
+        }
+        exceptionUnmarshallers.add(new HealthUnavailableExceptionUnmarshaller());
+        defaultUnmarshaller = new StandardErrorUnmarshaller(com.amazonaws.services.elasticloadbalancingv2.model.AmazonElasticLoadBalancingException.class);
+        exceptionUnmarshallers
+                .add(new StandardErrorUnmarshaller(com.amazonaws.services.elasticloadbalancingv2.model.AmazonElasticLoadBalancingException.class));
+
+        setServiceNameIntern(DEFAULT_SIGNING_NAME);
+        setEndpointPrefix(ENDPOINT_PREFIX);
+        // calling this.setEndPoint(...) will also modify the signer accordingly
+        this.setEndpoint("elasticloadbalancing.us-east-1.amazonaws.com");
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        requestHandler2s.addAll(chainFactory.newRequestHandlerChain("/com/amazonaws/services/elasticloadbalancingv2/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain("/com/amazonaws/services/elasticloadbalancingv2/request.handler2s"));
+        requestHandler2s.addAll(chainFactory.getGlobalHandlers());
+    }
+
+    /**
+     * <p>
+     * Adds the specified SSL server certificate to the certificate list for the specified HTTPS or TLS listener.
+     * </p>
+     * <p>
+     * If the certificate in already in the certificate list, the call is successful but the certificate is not added
+     * again.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html">HTTPS
+     * listeners</a> in the <i>Application Load Balancers Guide</i> or <a
+     * href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html">TLS listeners</a>
+     * in the <i>Network Load Balancers Guide</i>.
+     * </p>
+     * 
+     * @param addListenerCertificatesRequest
+     * @return Result of the AddListenerCertificates operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws TooManyCertificatesException
+     *         You've reached the limit on the number of certificates per load balancer.
+     * @throws CertificateNotFoundException
+     *         The specified certificate does not exist.
+     * @sample AmazonElasticLoadBalancing.AddListenerCertificates
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/AddListenerCertificates"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public AddListenerCertificatesResult addListenerCertificates(AddListenerCertificatesRequest request) {
+        request = beforeClientExecution(request);
+        return executeAddListenerCertificates(request);
+    }
+
+    @SdkInternalApi
+    final AddListenerCertificatesResult executeAddListenerCertificates(AddListenerCertificatesRequest addListenerCertificatesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(addListenerCertificatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AddListenerCertificatesRequest> request = null;
+        Response<AddListenerCertificatesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AddListenerCertificatesRequestMarshaller().marshall(super.beforeMarshalling(addListenerCertificatesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "AddListenerCertificates");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<AddListenerCertificatesResult> responseHandler = new StaxResponseHandler<AddListenerCertificatesResult>(
+                    new AddListenerCertificatesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your Application Load
+     * Balancers, Network Load Balancers, Gateway Load Balancers, target groups, trust stores, listeners, and rules.
+     * </p>
+     * <p>
+     * Each tag consists of a key and an optional value. If a resource already has a tag with the same key,
+     * <code>AddTags</code> updates its value.
+     * </p>
+     * 
+     * @param addTagsRequest
+     * @return Result of the AddTags operation returned by the service.
+     * @throws DuplicateTagKeysException
+     *         A tag key was specified more than once.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.AddTags
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/AddTags" target="_top">AWS
+     *      API Documentation</a>
+     */
+    @Override
+    public AddTagsResult addTags(AddTagsRequest request) {
+        request = beforeClientExecution(request);
+        return executeAddTags(request);
+    }
+
+    @SdkInternalApi
+    final AddTagsResult executeAddTags(AddTagsRequest addTagsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(addTagsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AddTagsRequest> request = null;
+        Response<AddTagsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AddTagsRequestMarshaller().marshall(super.beforeMarshalling(addTagsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "AddTags");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<AddTagsResult> responseHandler = new StaxResponseHandler<AddTagsResult>(new AddTagsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds the specified revocation file to the specified trust store.
+     * </p>
+     * 
+     * @param addTrustStoreRevocationsRequest
+     * @return Result of the AddTrustStoreRevocations operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws InvalidRevocationContentException
+     *         The provided revocation file is an invalid format, or uses an incorrect algorithm.
+     * @throws TooManyTrustStoreRevocationEntriesException
+     *         The specified trust store has too many revocation entries.
+     * @throws RevocationContentNotFoundException
+     *         The specified revocation file does not exist.
+     * @sample AmazonElasticLoadBalancing.AddTrustStoreRevocations
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/AddTrustStoreRevocations"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public AddTrustStoreRevocationsResult addTrustStoreRevocations(AddTrustStoreRevocationsRequest request) {
+        request = beforeClientExecution(request);
+        return executeAddTrustStoreRevocations(request);
+    }
+
+    @SdkInternalApi
+    final AddTrustStoreRevocationsResult executeAddTrustStoreRevocations(AddTrustStoreRevocationsRequest addTrustStoreRevocationsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(addTrustStoreRevocationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AddTrustStoreRevocationsRequest> request = null;
+        Response<AddTrustStoreRevocationsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AddTrustStoreRevocationsRequestMarshaller().marshall(super.beforeMarshalling(addTrustStoreRevocationsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "AddTrustStoreRevocations");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<AddTrustStoreRevocationsResult> responseHandler = new StaxResponseHandler<AddTrustStoreRevocationsResult>(
+                    new AddTrustStoreRevocationsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a listener for the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html">
+     * Listeners for your Application Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html">Listeners
+     * for your Network Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-listeners.html">Listeners for
+     * your Gateway Load Balancers</a>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple
+     * listeners with the same settings, each call succeeds.
+     * </p>
+     * 
+     * @param createListenerRequest
+     * @return Result of the CreateListener operation returned by the service.
+     * @throws DuplicateListenerException
+     *         A listener with the specified port already exists.
+     * @throws TooManyListenersException
+     *         You've reached the limit on the number of listeners per load balancer.
+     * @throws TooManyCertificatesException
+     *         You've reached the limit on the number of certificates per load balancer.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws TargetGroupAssociationLimitException
+     *         You've reached the limit on the number of load balancers per target group.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws IncompatibleProtocolsException
+     *         The specified configuration is not valid with this protocol.
+     * @throws SSLPolicyNotFoundException
+     *         The specified SSL policy does not exist.
+     * @throws CertificateNotFoundException
+     *         The specified certificate does not exist.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @throws TooManyRegistrationsForTargetIdException
+     *         You've reached the limit on the number of times a target can be registered with a load balancer.
+     * @throws TooManyTargetsException
+     *         You've reached the limit on the number of targets.
+     * @throws TooManyActionsException
+     *         You've reached the limit on the number of actions per rule.
+     * @throws InvalidLoadBalancerActionException
+     *         The requested action is not valid.
+     * @throws TooManyUniqueTargetGroupsPerLoadBalancerException
+     *         You've reached the limit on the number of unique target groups per load balancer across all listeners. If
+     *         a target group is used by multiple actions for a load balancer, it is counted as only one use.
+     * @throws ALPNPolicyNotSupportedException
+     *         The specified ALPN policy is not supported.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws TrustStoreNotReadyException
+     *         The specified trust store is not active.
+     * @sample AmazonElasticLoadBalancing.CreateListener
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateListener"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public CreateListenerResult createListener(CreateListenerRequest request) {
+        request = beforeClientExecution(request);
+        return executeCreateListener(request);
+    }
+
+    @SdkInternalApi
+    final CreateListenerResult executeCreateListener(CreateListenerRequest createListenerRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(createListenerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateListenerRequest> request = null;
+        Response<CreateListenerResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateListenerRequestMarshaller().marshall(super.beforeMarshalling(createListenerRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "CreateListener");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<CreateListenerResult> responseHandler = new StaxResponseHandler<CreateListenerResult>(
+                    new CreateListenerResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates an Application Load Balancer, Network Load Balancer, or Gateway Load Balancer.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html">
+     * Application Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancers.html">Network
+     * Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-load-balancers.html">Gateway
+     * Load Balancers</a>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple
+     * load balancers with the same settings, each call succeeds.
+     * </p>
+     * 
+     * @param createLoadBalancerRequest
+     * @return Result of the CreateLoadBalancer operation returned by the service.
+     * @throws DuplicateLoadBalancerNameException
+     *         A load balancer with the specified name already exists.
+     * @throws TooManyLoadBalancersException
+     *         You've reached the limit on the number of load balancers for your Amazon Web Services account.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws SubnetNotFoundException
+     *         The specified subnet does not exist.
+     * @throws InvalidSubnetException
+     *         The specified subnet is out of available addresses.
+     * @throws InvalidSecurityGroupException
+     *         The specified security group does not exist.
+     * @throws InvalidSchemeException
+     *         The requested scheme is not valid.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @throws DuplicateTagKeysException
+     *         A tag key was specified more than once.
+     * @throws ResourceInUseException
+     *         A specified resource is in use.
+     * @throws AllocationIdNotFoundException
+     *         The specified allocation ID does not exist.
+     * @throws AvailabilityZoneNotSupportedException
+     *         The specified Availability Zone is not supported.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @sample AmazonElasticLoadBalancing.CreateLoadBalancer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateLoadBalancer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public CreateLoadBalancerResult createLoadBalancer(CreateLoadBalancerRequest request) {
+        request = beforeClientExecution(request);
+        return executeCreateLoadBalancer(request);
+    }
+
+    @SdkInternalApi
+    final CreateLoadBalancerResult executeCreateLoadBalancer(CreateLoadBalancerRequest createLoadBalancerRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(createLoadBalancerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateLoadBalancerRequest> request = null;
+        Response<CreateLoadBalancerResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateLoadBalancerRequestMarshaller().marshall(super.beforeMarshalling(createLoadBalancerRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "CreateLoadBalancer");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<CreateLoadBalancerResult> responseHandler = new StaxResponseHandler<CreateLoadBalancerResult>(
+                    new CreateLoadBalancerResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a rule for the specified listener. The listener must be associated with an Application Load Balancer.
+     * </p>
+     * <p>
+     * Each rule consists of a priority, one or more actions, and one or more conditions. Rules are evaluated in
+     * priority order, from the lowest value to the highest value. When the conditions for a rule are met, its actions
+     * are performed. If the conditions for no rules are met, the actions for the default rule are performed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules"
+     * >Listener rules</a> in the <i>Application Load Balancers Guide</i>.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @return Result of the CreateRule operation returned by the service.
+     * @throws PriorityInUseException
+     *         The specified priority is in use.
+     * @throws TooManyTargetGroupsException
+     *         You've reached the limit on the number of target groups for your Amazon Web Services account.
+     * @throws TooManyRulesException
+     *         You've reached the limit on the number of rules per load balancer.
+     * @throws TargetGroupAssociationLimitException
+     *         You've reached the limit on the number of load balancers per target group.
+     * @throws IncompatibleProtocolsException
+     *         The specified configuration is not valid with this protocol.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws TooManyRegistrationsForTargetIdException
+     *         You've reached the limit on the number of times a target can be registered with a load balancer.
+     * @throws TooManyTargetsException
+     *         You've reached the limit on the number of targets.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @throws TooManyActionsException
+     *         You've reached the limit on the number of actions per rule.
+     * @throws InvalidLoadBalancerActionException
+     *         The requested action is not valid.
+     * @throws TooManyUniqueTargetGroupsPerLoadBalancerException
+     *         You've reached the limit on the number of unique target groups per load balancer across all listeners. If
+     *         a target group is used by multiple actions for a load balancer, it is counted as only one use.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @sample AmazonElasticLoadBalancing.CreateRule
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateRule"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public CreateRuleResult createRule(CreateRuleRequest request) {
+        request = beforeClientExecution(request);
+        return executeCreateRule(request);
+    }
+
+    @SdkInternalApi
+    final CreateRuleResult executeCreateRule(CreateRuleRequest createRuleRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(createRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateRuleRequest> request = null;
+        Response<CreateRuleResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateRuleRequestMarshaller().marshall(super.beforeMarshalling(createRuleRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "CreateRule");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<CreateRuleResult> responseHandler = new StaxResponseHandler<CreateRuleResult>(new CreateRuleResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a target group.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html">
+     * Target groups for your Application Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html">Target
+     * groups for your Network Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html">Target groups for
+     * your Gateway Load Balancers</a>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple
+     * target groups with the same settings, each call succeeds.
+     * </p>
+     * 
+     * @param createTargetGroupRequest
+     * @return Result of the CreateTargetGroup operation returned by the service.
+     * @throws DuplicateTargetGroupNameException
+     *         A target group with the specified name already exists.
+     * @throws TooManyTargetGroupsException
+     *         You've reached the limit on the number of target groups for your Amazon Web Services account.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @sample AmazonElasticLoadBalancing.CreateTargetGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateTargetGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public CreateTargetGroupResult createTargetGroup(CreateTargetGroupRequest request) {
+        request = beforeClientExecution(request);
+        return executeCreateTargetGroup(request);
+    }
+
+    @SdkInternalApi
+    final CreateTargetGroupResult executeCreateTargetGroup(CreateTargetGroupRequest createTargetGroupRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(createTargetGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateTargetGroupRequest> request = null;
+        Response<CreateTargetGroupResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateTargetGroupRequestMarshaller().marshall(super.beforeMarshalling(createTargetGroupRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "CreateTargetGroup");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<CreateTargetGroupResult> responseHandler = new StaxResponseHandler<CreateTargetGroupResult>(
+                    new CreateTargetGroupResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a trust store.
+     * </p>
+     * 
+     * @param createTrustStoreRequest
+     * @return Result of the CreateTrustStore operation returned by the service.
+     * @throws DuplicateTrustStoreNameException
+     *         A trust store with the specified name already exists.
+     * @throws TooManyTrustStoresException
+     *         You've reached the limit on the number of trust stores for your Amazon Web Services account.
+     * @throws InvalidCaCertificatesBundleException
+     *         The specified ca certificate bundle is in an invalid format, or corrupt.
+     * @throws CaCertificatesBundleNotFoundException
+     *         The specified ca certificate bundle does not exist.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @throws DuplicateTagKeysException
+     *         A tag key was specified more than once.
+     * @sample AmazonElasticLoadBalancing.CreateTrustStore
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateTrustStore"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public CreateTrustStoreResult createTrustStore(CreateTrustStoreRequest request) {
+        request = beforeClientExecution(request);
+        return executeCreateTrustStore(request);
+    }
+
+    @SdkInternalApi
+    final CreateTrustStoreResult executeCreateTrustStore(CreateTrustStoreRequest createTrustStoreRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(createTrustStoreRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateTrustStoreRequest> request = null;
+        Response<CreateTrustStoreResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateTrustStoreRequestMarshaller().marshall(super.beforeMarshalling(createTrustStoreRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "CreateTrustStore");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<CreateTrustStoreResult> responseHandler = new StaxResponseHandler<CreateTrustStoreResult>(
+                    new CreateTrustStoreResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified listener.
+     * </p>
+     * <p>
+     * Alternatively, your listener is deleted when you delete the load balancer to which it is attached.
+     * </p>
+     * 
+     * @param deleteListenerRequest
+     * @return Result of the DeleteListener operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws ResourceInUseException
+     *         A specified resource is in use.
+     * @sample AmazonElasticLoadBalancing.DeleteListener
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteListener"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeleteListenerResult deleteListener(DeleteListenerRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeleteListener(request);
+    }
+
+    @SdkInternalApi
+    final DeleteListenerResult executeDeleteListener(DeleteListenerRequest deleteListenerRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deleteListenerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteListenerRequest> request = null;
+        Response<DeleteListenerResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteListenerRequestMarshaller().marshall(super.beforeMarshalling(deleteListenerRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeleteListener");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeleteListenerResult> responseHandler = new StaxResponseHandler<DeleteListenerResult>(
+                    new DeleteListenerResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer. Deleting a load
+     * balancer also deletes its listeners.
+     * </p>
+     * <p>
+     * You can't delete a load balancer if deletion protection is enabled. If the load balancer does not exist or has
+     * already been deleted, the call succeeds.
+     * </p>
+     * <p>
+     * Deleting a load balancer does not affect its registered targets. For example, your EC2 instances continue to run
+     * and are still registered to their target groups. If you no longer need these EC2 instances, you can stop or
+     * terminate them.
+     * </p>
+     * 
+     * @param deleteLoadBalancerRequest
+     * @return Result of the DeleteLoadBalancer operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @throws ResourceInUseException
+     *         A specified resource is in use.
+     * @sample AmazonElasticLoadBalancing.DeleteLoadBalancer
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteLoadBalancer"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeleteLoadBalancerResult deleteLoadBalancer(DeleteLoadBalancerRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeleteLoadBalancer(request);
+    }
+
+    @SdkInternalApi
+    final DeleteLoadBalancerResult executeDeleteLoadBalancer(DeleteLoadBalancerRequest deleteLoadBalancerRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deleteLoadBalancerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteLoadBalancerRequest> request = null;
+        Response<DeleteLoadBalancerResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteLoadBalancerRequestMarshaller().marshall(super.beforeMarshalling(deleteLoadBalancerRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeleteLoadBalancer");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeleteLoadBalancerResult> responseHandler = new StaxResponseHandler<DeleteLoadBalancerResult>(
+                    new DeleteLoadBalancerResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified rule.
+     * </p>
+     * <p>
+     * You can't delete the default rule.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @return Result of the DeleteRule operation returned by the service.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @sample AmazonElasticLoadBalancing.DeleteRule
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteRule"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeleteRuleResult deleteRule(DeleteRuleRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeleteRule(request);
+    }
+
+    @SdkInternalApi
+    final DeleteRuleResult executeDeleteRule(DeleteRuleRequest deleteRuleRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deleteRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteRuleRequest> request = null;
+        Response<DeleteRuleResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteRuleRequestMarshaller().marshall(super.beforeMarshalling(deleteRuleRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeleteRule");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeleteRuleResult> responseHandler = new StaxResponseHandler<DeleteRuleResult>(new DeleteRuleResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified target group.
+     * </p>
+     * <p>
+     * You can delete a target group if it is not referenced by any actions. Deleting a target group also deletes any
+     * associated health checks. Deleting a target group does not affect its registered targets. For example, any EC2
+     * instances continue to run until you stop or terminate them.
+     * </p>
+     * 
+     * @param deleteTargetGroupRequest
+     * @return Result of the DeleteTargetGroup operation returned by the service.
+     * @throws ResourceInUseException
+     *         A specified resource is in use.
+     * @sample AmazonElasticLoadBalancing.DeleteTargetGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteTargetGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeleteTargetGroupResult deleteTargetGroup(DeleteTargetGroupRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeleteTargetGroup(request);
+    }
+
+    @SdkInternalApi
+    final DeleteTargetGroupResult executeDeleteTargetGroup(DeleteTargetGroupRequest deleteTargetGroupRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deleteTargetGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTargetGroupRequest> request = null;
+        Response<DeleteTargetGroupResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTargetGroupRequestMarshaller().marshall(super.beforeMarshalling(deleteTargetGroupRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeleteTargetGroup");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeleteTargetGroupResult> responseHandler = new StaxResponseHandler<DeleteTargetGroupResult>(
+                    new DeleteTargetGroupResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a trust store.
+     * </p>
+     * 
+     * @param deleteTrustStoreRequest
+     * @return Result of the DeleteTrustStore operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws TrustStoreInUseException
+     *         The specified trust store is currently in use.
+     * @sample AmazonElasticLoadBalancing.DeleteTrustStore
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteTrustStore"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeleteTrustStoreResult deleteTrustStore(DeleteTrustStoreRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeleteTrustStore(request);
+    }
+
+    @SdkInternalApi
+    final DeleteTrustStoreResult executeDeleteTrustStore(DeleteTrustStoreRequest deleteTrustStoreRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deleteTrustStoreRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTrustStoreRequest> request = null;
+        Response<DeleteTrustStoreResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTrustStoreRequestMarshaller().marshall(super.beforeMarshalling(deleteTrustStoreRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeleteTrustStore");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeleteTrustStoreResult> responseHandler = new StaxResponseHandler<DeleteTrustStoreResult>(
+                    new DeleteTrustStoreResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deregisters the specified targets from the specified target group. After the targets are deregistered, they no
+     * longer receive traffic from the load balancer.
+     * </p>
+     * <p>
+     * The load balancer stops sending requests to targets that are deregistering, but uses connection draining to
+     * ensure that in-flight traffic completes on the existing connections. This deregistration delay is configured by
+     * default but can be updated for each target group.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#deregistration-delay"
+     * > Deregistration delay</a> in the <i>Application Load Balancers User Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#deregistration-delay"
+     * > Deregistration delay</a> in the <i>Network Load Balancers User Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a
+     * href="https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html#deregistration-delay">
+     * Deregistration delay</a> in the <i>Gateway Load Balancers User Guide</i>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Note: If the specified target does not exist, the action returns successfully.
+     * </p>
+     * 
+     * @param deregisterTargetsRequest
+     * @return Result of the DeregisterTargets operation returned by the service.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws InvalidTargetException
+     *         The specified target does not exist, is not in the same VPC as the target group, or has an unsupported
+     *         instance type.
+     * @sample AmazonElasticLoadBalancing.DeregisterTargets
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeregisterTargets"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DeregisterTargetsResult deregisterTargets(DeregisterTargetsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDeregisterTargets(request);
+    }
+
+    @SdkInternalApi
+    final DeregisterTargetsResult executeDeregisterTargets(DeregisterTargetsRequest deregisterTargetsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(deregisterTargetsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeregisterTargetsRequest> request = null;
+        Response<DeregisterTargetsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeregisterTargetsRequestMarshaller().marshall(super.beforeMarshalling(deregisterTargetsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DeregisterTargets");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DeregisterTargetsResult> responseHandler = new StaxResponseHandler<DeregisterTargetsResult>(
+                    new DeregisterTargetsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the current Elastic Load Balancing resource limits for your Amazon Web Services account.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html">Quotas
+     * for your Application Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-limits.html">Quotas for
+     * your Network Load Balancers</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/quotas-limits.html">Quotas for your
+     * Gateway Load Balancers</a>
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param describeAccountLimitsRequest
+     * @return Result of the DescribeAccountLimits operation returned by the service.
+     * @sample AmazonElasticLoadBalancing.DescribeAccountLimits
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeAccountLimits"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeAccountLimitsResult describeAccountLimits(DescribeAccountLimitsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeAccountLimits(request);
+    }
+
+    @SdkInternalApi
+    final DescribeAccountLimitsResult executeDescribeAccountLimits(DescribeAccountLimitsRequest describeAccountLimitsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeAccountLimitsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeAccountLimitsRequest> request = null;
+        Response<DescribeAccountLimitsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeAccountLimitsRequestMarshaller().marshall(super.beforeMarshalling(describeAccountLimitsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeAccountLimits");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeAccountLimitsResult> responseHandler = new StaxResponseHandler<DescribeAccountLimitsResult>(
+                    new DescribeAccountLimitsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the default certificate and the certificate list for the specified HTTPS or TLS listener.
+     * </p>
+     * <p>
+     * If the default certificate is also in the certificate list, it appears twice in the results (once with
+     * <code>IsDefault</code> set to true and once with <code>IsDefault</code> set to false).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#https-listener-certificates"
+     * >SSL certificates</a> in the <i>Application Load Balancers Guide</i> or <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#tls-listener-certificate"
+     * >Server certificates</a> in the <i>Network Load Balancers Guide</i>.
+     * </p>
+     * 
+     * @param describeListenerCertificatesRequest
+     * @return Result of the DescribeListenerCertificates operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeListenerCertificates
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeListenerCertificates"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeListenerCertificatesResult describeListenerCertificates(DescribeListenerCertificatesRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeListenerCertificates(request);
+    }
+
+    @SdkInternalApi
+    final DescribeListenerCertificatesResult executeDescribeListenerCertificates(DescribeListenerCertificatesRequest describeListenerCertificatesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeListenerCertificatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeListenerCertificatesRequest> request = null;
+        Response<DescribeListenerCertificatesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeListenerCertificatesRequestMarshaller().marshall(super.beforeMarshalling(describeListenerCertificatesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeListenerCertificates");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeListenerCertificatesResult> responseHandler = new StaxResponseHandler<DescribeListenerCertificatesResult>(
+                    new DescribeListenerCertificatesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified listeners or the listeners for the specified Application Load Balancer, Network Load
+     * Balancer, or Gateway Load Balancer. You must specify either a load balancer or one or more listeners.
+     * </p>
+     * 
+     * @param describeListenersRequest
+     * @return Result of the DescribeListeners operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @sample AmazonElasticLoadBalancing.DescribeListeners
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeListeners"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeListenersResult describeListeners(DescribeListenersRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeListeners(request);
+    }
+
+    @SdkInternalApi
+    final DescribeListenersResult executeDescribeListeners(DescribeListenersRequest describeListenersRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeListenersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeListenersRequest> request = null;
+        Response<DescribeListenersResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeListenersRequestMarshaller().marshall(super.beforeMarshalling(describeListenersRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeListeners");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeListenersResult> responseHandler = new StaxResponseHandler<DescribeListenersResult>(
+                    new DescribeListenersResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the attributes for the specified Application Load Balancer, Network Load Balancer, or Gateway Load
+     * Balancer.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-attributes"
+     * >Load balancer attributes</a> in the <i>Application Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancers.html#load-balancer-attributes"
+     * >Load balancer attributes</a> in the <i>Network Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-load-balancers.html#load-balancer-attributes"
+     * >Load balancer attributes</a> in the <i>Gateway Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param describeLoadBalancerAttributesRequest
+     * @return Result of the DescribeLoadBalancerAttributes operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeLoadBalancerAttributes
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeLoadBalancerAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeLoadBalancerAttributesResult describeLoadBalancerAttributes(DescribeLoadBalancerAttributesRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeLoadBalancerAttributes(request);
+    }
+
+    @SdkInternalApi
+    final DescribeLoadBalancerAttributesResult executeDescribeLoadBalancerAttributes(DescribeLoadBalancerAttributesRequest describeLoadBalancerAttributesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeLoadBalancerAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeLoadBalancerAttributesRequest> request = null;
+        Response<DescribeLoadBalancerAttributesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeLoadBalancerAttributesRequestMarshaller().marshall(super.beforeMarshalling(describeLoadBalancerAttributesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeLoadBalancerAttributes");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeLoadBalancerAttributesResult> responseHandler = new StaxResponseHandler<DescribeLoadBalancerAttributesResult>(
+                    new DescribeLoadBalancerAttributesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified load balancers or all of your load balancers.
+     * </p>
+     * 
+     * @param describeLoadBalancersRequest
+     * @return Result of the DescribeLoadBalancers operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeLoadBalancers
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeLoadBalancers"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeLoadBalancersResult describeLoadBalancers(DescribeLoadBalancersRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeLoadBalancers(request);
+    }
+
+    @SdkInternalApi
+    final DescribeLoadBalancersResult executeDescribeLoadBalancers(DescribeLoadBalancersRequest describeLoadBalancersRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeLoadBalancersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeLoadBalancersRequest> request = null;
+        Response<DescribeLoadBalancersResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeLoadBalancersRequestMarshaller().marshall(super.beforeMarshalling(describeLoadBalancersRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeLoadBalancers");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeLoadBalancersResult> responseHandler = new StaxResponseHandler<DescribeLoadBalancersResult>(
+                    new DescribeLoadBalancersResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified rules or the rules for the specified listener. You must specify either a listener or one
+     * or more rules.
+     * </p>
+     * 
+     * @param describeRulesRequest
+     * @return Result of the DescribeRules operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @sample AmazonElasticLoadBalancing.DescribeRules
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeRules"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeRulesResult describeRules(DescribeRulesRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeRules(request);
+    }
+
+    @SdkInternalApi
+    final DescribeRulesResult executeDescribeRules(DescribeRulesRequest describeRulesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeRulesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeRulesRequest> request = null;
+        Response<DescribeRulesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeRulesRequestMarshaller().marshall(super.beforeMarshalling(describeRulesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeRules");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeRulesResult> responseHandler = new StaxResponseHandler<DescribeRulesResult>(new DescribeRulesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified policies or all policies used for SSL negotiation.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies"
+     * >Security policies</a> in the <i>Application Load Balancers Guide</i> or <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#describe-ssl-policies"
+     * >Security policies</a> in the <i>Network Load Balancers Guide</i>.
+     * </p>
+     * 
+     * @param describeSSLPoliciesRequest
+     * @return Result of the DescribeSSLPolicies operation returned by the service.
+     * @throws SSLPolicyNotFoundException
+     *         The specified SSL policy does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeSSLPolicies
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeSSLPolicies"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeSSLPoliciesResult describeSSLPolicies(DescribeSSLPoliciesRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeSSLPolicies(request);
+    }
+
+    @SdkInternalApi
+    final DescribeSSLPoliciesResult executeDescribeSSLPolicies(DescribeSSLPoliciesRequest describeSSLPoliciesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeSSLPoliciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeSSLPoliciesRequest> request = null;
+        Response<DescribeSSLPoliciesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeSSLPoliciesRequestMarshaller().marshall(super.beforeMarshalling(describeSSLPoliciesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeSSLPolicies");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeSSLPoliciesResult> responseHandler = new StaxResponseHandler<DescribeSSLPoliciesResult>(
+                    new DescribeSSLPoliciesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the tags for the specified Elastic Load Balancing resources. You can describe the tags for one or more
+     * Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, or rules.
+     * </p>
+     * 
+     * @param describeTagsRequest
+     * @return Result of the DescribeTags operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTags
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTags"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTagsResult describeTags(DescribeTagsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTags(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTagsResult executeDescribeTags(DescribeTagsRequest describeTagsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTagsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTagsRequest> request = null;
+        Response<DescribeTagsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTagsRequestMarshaller().marshall(super.beforeMarshalling(describeTagsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTags");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTagsResult> responseHandler = new StaxResponseHandler<DescribeTagsResult>(new DescribeTagsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the attributes for the specified target group.
+     * </p>
+     * <p>
+     * For more information, see the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-attributes"
+     * >Target group attributes</a> in the <i>Application Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#target-group-attributes"
+     * >Target group attributes</a> in the <i>Network Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html#target-group-attributes"
+     * >Target group attributes</a> in the <i>Gateway Load Balancers Guide</i>
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param describeTargetGroupAttributesRequest
+     * @return Result of the DescribeTargetGroupAttributes operation returned by the service.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTargetGroupAttributes
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTargetGroupAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTargetGroupAttributesResult describeTargetGroupAttributes(DescribeTargetGroupAttributesRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTargetGroupAttributes(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTargetGroupAttributesResult executeDescribeTargetGroupAttributes(DescribeTargetGroupAttributesRequest describeTargetGroupAttributesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTargetGroupAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTargetGroupAttributesRequest> request = null;
+        Response<DescribeTargetGroupAttributesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTargetGroupAttributesRequestMarshaller().marshall(super.beforeMarshalling(describeTargetGroupAttributesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTargetGroupAttributes");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTargetGroupAttributesResult> responseHandler = new StaxResponseHandler<DescribeTargetGroupAttributesResult>(
+                    new DescribeTargetGroupAttributesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified target groups or all of your target groups. By default, all target groups are described.
+     * Alternatively, you can specify one of the following to filter the results: the ARN of the load balancer, the
+     * names of one or more target groups, or the ARNs of one or more target groups.
+     * </p>
+     * 
+     * @param describeTargetGroupsRequest
+     * @return Result of the DescribeTargetGroups operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTargetGroups
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTargetGroups"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTargetGroupsResult describeTargetGroups(DescribeTargetGroupsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTargetGroups(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTargetGroupsResult executeDescribeTargetGroups(DescribeTargetGroupsRequest describeTargetGroupsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTargetGroupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTargetGroupsRequest> request = null;
+        Response<DescribeTargetGroupsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTargetGroupsRequestMarshaller().marshall(super.beforeMarshalling(describeTargetGroupsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTargetGroups");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTargetGroupsResult> responseHandler = new StaxResponseHandler<DescribeTargetGroupsResult>(
+                    new DescribeTargetGroupsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the health of the specified targets or all of your targets.
+     * </p>
+     * 
+     * @param describeTargetHealthRequest
+     * @return Result of the DescribeTargetHealth operation returned by the service.
+     * @throws InvalidTargetException
+     *         The specified target does not exist, is not in the same VPC as the target group, or has an unsupported
+     *         instance type.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws HealthUnavailableException
+     *         The health of the specified targets could not be retrieved due to an internal error.
+     * @sample AmazonElasticLoadBalancing.DescribeTargetHealth
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTargetHealth"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTargetHealthResult describeTargetHealth(DescribeTargetHealthRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTargetHealth(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTargetHealthResult executeDescribeTargetHealth(DescribeTargetHealthRequest describeTargetHealthRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTargetHealthRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTargetHealthRequest> request = null;
+        Response<DescribeTargetHealthResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTargetHealthRequestMarshaller().marshall(super.beforeMarshalling(describeTargetHealthRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTargetHealth");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTargetHealthResult> responseHandler = new StaxResponseHandler<DescribeTargetHealthResult>(
+                    new DescribeTargetHealthResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes all resources associated with the specified trust store.
+     * </p>
+     * 
+     * @param describeTrustStoreAssociationsRequest
+     * @return Result of the DescribeTrustStoreAssociations operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTrustStoreAssociations
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTrustStoreAssociations"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTrustStoreAssociationsResult describeTrustStoreAssociations(DescribeTrustStoreAssociationsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTrustStoreAssociations(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTrustStoreAssociationsResult executeDescribeTrustStoreAssociations(DescribeTrustStoreAssociationsRequest describeTrustStoreAssociationsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTrustStoreAssociationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTrustStoreAssociationsRequest> request = null;
+        Response<DescribeTrustStoreAssociationsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTrustStoreAssociationsRequestMarshaller().marshall(super.beforeMarshalling(describeTrustStoreAssociationsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTrustStoreAssociations");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTrustStoreAssociationsResult> responseHandler = new StaxResponseHandler<DescribeTrustStoreAssociationsResult>(
+                    new DescribeTrustStoreAssociationsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the revocation files in use by the specified trust store arn, or revocation ID.
+     * </p>
+     * 
+     * @param describeTrustStoreRevocationsRequest
+     * @return Result of the DescribeTrustStoreRevocations operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws RevocationIdNotFoundException
+     *         The specified revocation ID does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTrustStoreRevocations
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTrustStoreRevocations"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTrustStoreRevocationsResult describeTrustStoreRevocations(DescribeTrustStoreRevocationsRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTrustStoreRevocations(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTrustStoreRevocationsResult executeDescribeTrustStoreRevocations(DescribeTrustStoreRevocationsRequest describeTrustStoreRevocationsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTrustStoreRevocationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTrustStoreRevocationsRequest> request = null;
+        Response<DescribeTrustStoreRevocationsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTrustStoreRevocationsRequestMarshaller().marshall(super.beforeMarshalling(describeTrustStoreRevocationsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTrustStoreRevocations");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTrustStoreRevocationsResult> responseHandler = new StaxResponseHandler<DescribeTrustStoreRevocationsResult>(
+                    new DescribeTrustStoreRevocationsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes all trust stores for a given account by trust store arn’s or name.
+     * </p>
+     * 
+     * @param describeTrustStoresRequest
+     * @return Result of the DescribeTrustStores operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.DescribeTrustStores
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeTrustStores"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public DescribeTrustStoresResult describeTrustStores(DescribeTrustStoresRequest request) {
+        request = beforeClientExecution(request);
+        return executeDescribeTrustStores(request);
+    }
+
+    @SdkInternalApi
+    final DescribeTrustStoresResult executeDescribeTrustStores(DescribeTrustStoresRequest describeTrustStoresRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(describeTrustStoresRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTrustStoresRequest> request = null;
+        Response<DescribeTrustStoresResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTrustStoresRequestMarshaller().marshall(super.beforeMarshalling(describeTrustStoresRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "DescribeTrustStores");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DescribeTrustStoresResult> responseHandler = new StaxResponseHandler<DescribeTrustStoresResult>(
+                    new DescribeTrustStoresResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the ca certificate bundle.
+     * </p>
+     * <p>
+     * This action returns a pre-signed S3 URI which is active for ten minutes.
+     * </p>
+     * 
+     * @param getTrustStoreCaCertificatesBundleRequest
+     * @return Result of the GetTrustStoreCaCertificatesBundle operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.GetTrustStoreCaCertificatesBundle
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/GetTrustStoreCaCertificatesBundle"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public GetTrustStoreCaCertificatesBundleResult getTrustStoreCaCertificatesBundle(GetTrustStoreCaCertificatesBundleRequest request) {
+        request = beforeClientExecution(request);
+        return executeGetTrustStoreCaCertificatesBundle(request);
+    }
+
+    @SdkInternalApi
+    final GetTrustStoreCaCertificatesBundleResult executeGetTrustStoreCaCertificatesBundle(
+            GetTrustStoreCaCertificatesBundleRequest getTrustStoreCaCertificatesBundleRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(getTrustStoreCaCertificatesBundleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTrustStoreCaCertificatesBundleRequest> request = null;
+        Response<GetTrustStoreCaCertificatesBundleResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTrustStoreCaCertificatesBundleRequestMarshaller().marshall(super.beforeMarshalling(getTrustStoreCaCertificatesBundleRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "GetTrustStoreCaCertificatesBundle");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<GetTrustStoreCaCertificatesBundleResult> responseHandler = new StaxResponseHandler<GetTrustStoreCaCertificatesBundleResult>(
+                    new GetTrustStoreCaCertificatesBundleResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the specified revocation file.
+     * </p>
+     * <p>
+     * This action returns a pre-signed S3 URI which is active for ten minutes.
+     * </p>
+     * 
+     * @param getTrustStoreRevocationContentRequest
+     * @return Result of the GetTrustStoreRevocationContent operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws RevocationIdNotFoundException
+     *         The specified revocation ID does not exist.
+     * @sample AmazonElasticLoadBalancing.GetTrustStoreRevocationContent
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/GetTrustStoreRevocationContent"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public GetTrustStoreRevocationContentResult getTrustStoreRevocationContent(GetTrustStoreRevocationContentRequest request) {
+        request = beforeClientExecution(request);
+        return executeGetTrustStoreRevocationContent(request);
+    }
+
+    @SdkInternalApi
+    final GetTrustStoreRevocationContentResult executeGetTrustStoreRevocationContent(GetTrustStoreRevocationContentRequest getTrustStoreRevocationContentRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(getTrustStoreRevocationContentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTrustStoreRevocationContentRequest> request = null;
+        Response<GetTrustStoreRevocationContentResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTrustStoreRevocationContentRequestMarshaller().marshall(super.beforeMarshalling(getTrustStoreRevocationContentRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "GetTrustStoreRevocationContent");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<GetTrustStoreRevocationContentResult> responseHandler = new StaxResponseHandler<GetTrustStoreRevocationContentResult>(
+                    new GetTrustStoreRevocationContentResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Replaces the specified properties of the specified listener. Any properties that you do not specify remain
+     * unchanged.
+     * </p>
+     * <p>
+     * Changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy and default certificate
+     * properties. If you change the protocol from HTTP to HTTPS, or from TCP to TLS, you must add the security policy
+     * and default certificate properties.
+     * </p>
+     * <p>
+     * To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire
+     * list. For example, to add an action, specify a list with the current actions plus the new action.
+     * </p>
+     * 
+     * @param modifyListenerRequest
+     * @return Result of the ModifyListener operation returned by the service.
+     * @throws DuplicateListenerException
+     *         A listener with the specified port already exists.
+     * @throws TooManyListenersException
+     *         You've reached the limit on the number of listeners per load balancer.
+     * @throws TooManyCertificatesException
+     *         You've reached the limit on the number of certificates per load balancer.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws TargetGroupAssociationLimitException
+     *         You've reached the limit on the number of load balancers per target group.
+     * @throws IncompatibleProtocolsException
+     *         The specified configuration is not valid with this protocol.
+     * @throws SSLPolicyNotFoundException
+     *         The specified SSL policy does not exist.
+     * @throws CertificateNotFoundException
+     *         The specified certificate does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @throws TooManyRegistrationsForTargetIdException
+     *         You've reached the limit on the number of times a target can be registered with a load balancer.
+     * @throws TooManyTargetsException
+     *         You've reached the limit on the number of targets.
+     * @throws TooManyActionsException
+     *         You've reached the limit on the number of actions per rule.
+     * @throws InvalidLoadBalancerActionException
+     *         The requested action is not valid.
+     * @throws TooManyUniqueTargetGroupsPerLoadBalancerException
+     *         You've reached the limit on the number of unique target groups per load balancer across all listeners. If
+     *         a target group is used by multiple actions for a load balancer, it is counted as only one use.
+     * @throws ALPNPolicyNotSupportedException
+     *         The specified ALPN policy is not supported.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws TrustStoreNotReadyException
+     *         The specified trust store is not active.
+     * @sample AmazonElasticLoadBalancing.ModifyListener
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyListener"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyListenerResult modifyListener(ModifyListenerRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyListener(request);
+    }
+
+    @SdkInternalApi
+    final ModifyListenerResult executeModifyListener(ModifyListenerRequest modifyListenerRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyListenerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyListenerRequest> request = null;
+        Response<ModifyListenerResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyListenerRequestMarshaller().marshall(super.beforeMarshalling(modifyListenerRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyListener");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyListenerResult> responseHandler = new StaxResponseHandler<ModifyListenerResult>(
+                    new ModifyListenerResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Modifies the specified attributes of the specified Application Load Balancer, Network Load Balancer, or Gateway
+     * Load Balancer.
+     * </p>
+     * <p>
+     * If any of the specified attributes can't be modified as requested, the call fails. Any existing attributes that
+     * you do not modify retain their current values.
+     * </p>
+     * 
+     * @param modifyLoadBalancerAttributesRequest
+     * @return Result of the ModifyLoadBalancerAttributes operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @sample AmazonElasticLoadBalancing.ModifyLoadBalancerAttributes
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyLoadBalancerAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyLoadBalancerAttributesResult modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyLoadBalancerAttributes(request);
+    }
+
+    @SdkInternalApi
+    final ModifyLoadBalancerAttributesResult executeModifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest modifyLoadBalancerAttributesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyLoadBalancerAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyLoadBalancerAttributesRequest> request = null;
+        Response<ModifyLoadBalancerAttributesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyLoadBalancerAttributesRequestMarshaller().marshall(super.beforeMarshalling(modifyLoadBalancerAttributesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyLoadBalancerAttributes");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyLoadBalancerAttributesResult> responseHandler = new StaxResponseHandler<ModifyLoadBalancerAttributesResult>(
+                    new ModifyLoadBalancerAttributesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Replaces the specified properties of the specified rule. Any properties that you do not specify are unchanged.
+     * </p>
+     * <p>
+     * To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire
+     * list. For example, to add an action, specify a list with the current actions plus the new action.
+     * </p>
+     * 
+     * @param modifyRuleRequest
+     * @return Result of the ModifyRule operation returned by the service.
+     * @throws TargetGroupAssociationLimitException
+     *         You've reached the limit on the number of load balancers per target group.
+     * @throws IncompatibleProtocolsException
+     *         The specified configuration is not valid with this protocol.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @throws TooManyRegistrationsForTargetIdException
+     *         You've reached the limit on the number of times a target can be registered with a load balancer.
+     * @throws TooManyTargetsException
+     *         You've reached the limit on the number of targets.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws UnsupportedProtocolException
+     *         The specified protocol is not supported.
+     * @throws TooManyActionsException
+     *         You've reached the limit on the number of actions per rule.
+     * @throws InvalidLoadBalancerActionException
+     *         The requested action is not valid.
+     * @throws TooManyUniqueTargetGroupsPerLoadBalancerException
+     *         You've reached the limit on the number of unique target groups per load balancer across all listeners. If
+     *         a target group is used by multiple actions for a load balancer, it is counted as only one use.
+     * @sample AmazonElasticLoadBalancing.ModifyRule
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyRule"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyRuleResult modifyRule(ModifyRuleRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyRule(request);
+    }
+
+    @SdkInternalApi
+    final ModifyRuleResult executeModifyRule(ModifyRuleRequest modifyRuleRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyRuleRequest> request = null;
+        Response<ModifyRuleResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyRuleRequestMarshaller().marshall(super.beforeMarshalling(modifyRuleRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyRule");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyRuleResult> responseHandler = new StaxResponseHandler<ModifyRuleResult>(new ModifyRuleResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Modifies the health checks used when evaluating the health state of the targets in the specified target group.
+     * </p>
+     * 
+     * @param modifyTargetGroupRequest
+     * @return Result of the ModifyTargetGroup operation returned by the service.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @sample AmazonElasticLoadBalancing.ModifyTargetGroup
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyTargetGroup"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyTargetGroupResult modifyTargetGroup(ModifyTargetGroupRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyTargetGroup(request);
+    }
+
+    @SdkInternalApi
+    final ModifyTargetGroupResult executeModifyTargetGroup(ModifyTargetGroupRequest modifyTargetGroupRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyTargetGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyTargetGroupRequest> request = null;
+        Response<ModifyTargetGroupResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyTargetGroupRequestMarshaller().marshall(super.beforeMarshalling(modifyTargetGroupRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyTargetGroup");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyTargetGroupResult> responseHandler = new StaxResponseHandler<ModifyTargetGroupResult>(
+                    new ModifyTargetGroupResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Modifies the specified attributes of the specified target group.
+     * </p>
+     * 
+     * @param modifyTargetGroupAttributesRequest
+     * @return Result of the ModifyTargetGroupAttributes operation returned by the service.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @sample AmazonElasticLoadBalancing.ModifyTargetGroupAttributes
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyTargetGroupAttributes"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyTargetGroupAttributesResult modifyTargetGroupAttributes(ModifyTargetGroupAttributesRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyTargetGroupAttributes(request);
+    }
+
+    @SdkInternalApi
+    final ModifyTargetGroupAttributesResult executeModifyTargetGroupAttributes(ModifyTargetGroupAttributesRequest modifyTargetGroupAttributesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyTargetGroupAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyTargetGroupAttributesRequest> request = null;
+        Response<ModifyTargetGroupAttributesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyTargetGroupAttributesRequestMarshaller().marshall(super.beforeMarshalling(modifyTargetGroupAttributesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyTargetGroupAttributes");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyTargetGroupAttributesResult> responseHandler = new StaxResponseHandler<ModifyTargetGroupAttributesResult>(
+                    new ModifyTargetGroupAttributesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Update the ca certificate bundle for a given trust store.
+     * </p>
+     * 
+     * @param modifyTrustStoreRequest
+     * @return Result of the ModifyTrustStore operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws InvalidCaCertificatesBundleException
+     *         The specified ca certificate bundle is in an invalid format, or corrupt.
+     * @throws CaCertificatesBundleNotFoundException
+     *         The specified ca certificate bundle does not exist.
+     * @sample AmazonElasticLoadBalancing.ModifyTrustStore
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyTrustStore"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public ModifyTrustStoreResult modifyTrustStore(ModifyTrustStoreRequest request) {
+        request = beforeClientExecution(request);
+        return executeModifyTrustStore(request);
+    }
+
+    @SdkInternalApi
+    final ModifyTrustStoreResult executeModifyTrustStore(ModifyTrustStoreRequest modifyTrustStoreRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(modifyTrustStoreRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ModifyTrustStoreRequest> request = null;
+        Response<ModifyTrustStoreResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ModifyTrustStoreRequestMarshaller().marshall(super.beforeMarshalling(modifyTrustStoreRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "ModifyTrustStore");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ModifyTrustStoreResult> responseHandler = new StaxResponseHandler<ModifyTrustStoreResult>(
+                    new ModifyTrustStoreResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Registers the specified targets with the specified target group.
+     * </p>
+     * <p>
+     * If the target is an EC2 instance, it must be in the <code>running</code> state when you register it.
+     * </p>
+     * <p>
+     * By default, the load balancer routes requests to registered targets using the protocol and port for the target
+     * group. Alternatively, you can override the port for a target when you register it. You can register each EC2
+     * instance or IP address with the same target group multiple times using different ports.
+     * </p>
+     * <p>
+     * With a Network Load Balancer, you cannot register instances by instance ID if they have the following instance
+     * types: C1, CC1, CC2, CG1, CG2, CR1, CS1, G1, G2, HI1, HS1, M1, M2, M3, and T1. You can register instances of
+     * these types by IP address.
+     * </p>
+     * 
+     * @param registerTargetsRequest
+     * @return Result of the RegisterTargets operation returned by the service.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws TooManyTargetsException
+     *         You've reached the limit on the number of targets.
+     * @throws InvalidTargetException
+     *         The specified target does not exist, is not in the same VPC as the target group, or has an unsupported
+     *         instance type.
+     * @throws TooManyRegistrationsForTargetIdException
+     *         You've reached the limit on the number of times a target can be registered with a load balancer.
+     * @sample AmazonElasticLoadBalancing.RegisterTargets
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/RegisterTargets"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public RegisterTargetsResult registerTargets(RegisterTargetsRequest request) {
+        request = beforeClientExecution(request);
+        return executeRegisterTargets(request);
+    }
+
+    @SdkInternalApi
+    final RegisterTargetsResult executeRegisterTargets(RegisterTargetsRequest registerTargetsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(registerTargetsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RegisterTargetsRequest> request = null;
+        Response<RegisterTargetsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RegisterTargetsRequestMarshaller().marshall(super.beforeMarshalling(registerTargetsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "RegisterTargets");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<RegisterTargetsResult> responseHandler = new StaxResponseHandler<RegisterTargetsResult>(
+                    new RegisterTargetsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified certificate from the certificate list for the specified HTTPS or TLS listener.
+     * </p>
+     * 
+     * @param removeListenerCertificatesRequest
+     * @return Result of the RemoveListenerCertificates operation returned by the service.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @sample AmazonElasticLoadBalancing.RemoveListenerCertificates
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/RemoveListenerCertificates"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public RemoveListenerCertificatesResult removeListenerCertificates(RemoveListenerCertificatesRequest request) {
+        request = beforeClientExecution(request);
+        return executeRemoveListenerCertificates(request);
+    }
+
+    @SdkInternalApi
+    final RemoveListenerCertificatesResult executeRemoveListenerCertificates(RemoveListenerCertificatesRequest removeListenerCertificatesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(removeListenerCertificatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RemoveListenerCertificatesRequest> request = null;
+        Response<RemoveListenerCertificatesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RemoveListenerCertificatesRequestMarshaller().marshall(super.beforeMarshalling(removeListenerCertificatesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "RemoveListenerCertificates");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<RemoveListenerCertificatesResult> responseHandler = new StaxResponseHandler<RemoveListenerCertificatesResult>(
+                    new RemoveListenerCertificatesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified tags from the specified Elastic Load Balancing resources. You can remove the tags for one
+     * or more Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, or
+     * rules.
+     * </p>
+     * 
+     * @param removeTagsRequest
+     * @return Result of the RemoveTags operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws TargetGroupNotFoundException
+     *         The specified target group does not exist.
+     * @throws ListenerNotFoundException
+     *         The specified listener does not exist.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws TooManyTagsException
+     *         You've reached the limit on the number of tags for this resource.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @sample AmazonElasticLoadBalancing.RemoveTags
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/RemoveTags"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public RemoveTagsResult removeTags(RemoveTagsRequest request) {
+        request = beforeClientExecution(request);
+        return executeRemoveTags(request);
+    }
+
+    @SdkInternalApi
+    final RemoveTagsResult executeRemoveTags(RemoveTagsRequest removeTagsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(removeTagsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RemoveTagsRequest> request = null;
+        Response<RemoveTagsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RemoveTagsRequestMarshaller().marshall(super.beforeMarshalling(removeTagsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "RemoveTags");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<RemoveTagsResult> responseHandler = new StaxResponseHandler<RemoveTagsResult>(new RemoveTagsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified revocation file from the specified trust store.
+     * </p>
+     * 
+     * @param removeTrustStoreRevocationsRequest
+     * @return Result of the RemoveTrustStoreRevocations operation returned by the service.
+     * @throws TrustStoreNotFoundException
+     *         The specified trust store does not exist.
+     * @throws RevocationIdNotFoundException
+     *         The specified revocation ID does not exist.
+     * @sample AmazonElasticLoadBalancing.RemoveTrustStoreRevocations
+     * @see <a
+     *      href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/RemoveTrustStoreRevocations"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public RemoveTrustStoreRevocationsResult removeTrustStoreRevocations(RemoveTrustStoreRevocationsRequest request) {
+        request = beforeClientExecution(request);
+        return executeRemoveTrustStoreRevocations(request);
+    }
+
+    @SdkInternalApi
+    final RemoveTrustStoreRevocationsResult executeRemoveTrustStoreRevocations(RemoveTrustStoreRevocationsRequest removeTrustStoreRevocationsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(removeTrustStoreRevocationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RemoveTrustStoreRevocationsRequest> request = null;
+        Response<RemoveTrustStoreRevocationsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RemoveTrustStoreRevocationsRequestMarshaller().marshall(super.beforeMarshalling(removeTrustStoreRevocationsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "RemoveTrustStoreRevocations");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<RemoveTrustStoreRevocationsResult> responseHandler = new StaxResponseHandler<RemoveTrustStoreRevocationsResult>(
+                    new RemoveTrustStoreRevocationsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the type of IP addresses used by the subnets of the specified load balancer.
+     * </p>
+     * 
+     * @param setIpAddressTypeRequest
+     * @return Result of the SetIpAddressType operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws InvalidSubnetException
+     *         The specified subnet is out of available addresses.
+     * @sample AmazonElasticLoadBalancing.SetIpAddressType
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/SetIpAddressType"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public SetIpAddressTypeResult setIpAddressType(SetIpAddressTypeRequest request) {
+        request = beforeClientExecution(request);
+        return executeSetIpAddressType(request);
+    }
+
+    @SdkInternalApi
+    final SetIpAddressTypeResult executeSetIpAddressType(SetIpAddressTypeRequest setIpAddressTypeRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(setIpAddressTypeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetIpAddressTypeRequest> request = null;
+        Response<SetIpAddressTypeResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetIpAddressTypeRequestMarshaller().marshall(super.beforeMarshalling(setIpAddressTypeRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "SetIpAddressType");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<SetIpAddressTypeResult> responseHandler = new StaxResponseHandler<SetIpAddressTypeResult>(
+                    new SetIpAddressTypeResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the priorities of the specified rules.
+     * </p>
+     * <p>
+     * You can reorder the rules as long as there are no priority conflicts in the new order. Any existing rules that
+     * you do not specify retain their current priority.
+     * </p>
+     * 
+     * @param setRulePrioritiesRequest
+     * @return Result of the SetRulePriorities operation returned by the service.
+     * @throws RuleNotFoundException
+     *         The specified rule does not exist.
+     * @throws PriorityInUseException
+     *         The specified priority is in use.
+     * @throws OperationNotPermittedException
+     *         This operation is not allowed.
+     * @sample AmazonElasticLoadBalancing.SetRulePriorities
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/SetRulePriorities"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public SetRulePrioritiesResult setRulePriorities(SetRulePrioritiesRequest request) {
+        request = beforeClientExecution(request);
+        return executeSetRulePriorities(request);
+    }
+
+    @SdkInternalApi
+    final SetRulePrioritiesResult executeSetRulePriorities(SetRulePrioritiesRequest setRulePrioritiesRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(setRulePrioritiesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetRulePrioritiesRequest> request = null;
+        Response<SetRulePrioritiesResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetRulePrioritiesRequestMarshaller().marshall(super.beforeMarshalling(setRulePrioritiesRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "SetRulePriorities");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<SetRulePrioritiesResult> responseHandler = new StaxResponseHandler<SetRulePrioritiesResult>(
+                    new SetRulePrioritiesResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Associates the specified security groups with the specified Application Load Balancer or Network Load Balancer.
+     * The specified security groups override the previously associated security groups.
+     * </p>
+     * <p>
+     * You can't perform this operation on a Network Load Balancer unless you specified a security group for the load
+     * balancer when you created it.
+     * </p>
+     * <p>
+     * You can't associate a security group with a Gateway Load Balancer.
+     * </p>
+     * 
+     * @param setSecurityGroupsRequest
+     * @return Result of the SetSecurityGroups operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws InvalidSecurityGroupException
+     *         The specified security group does not exist.
+     * @sample AmazonElasticLoadBalancing.SetSecurityGroups
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/SetSecurityGroups"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public SetSecurityGroupsResult setSecurityGroups(SetSecurityGroupsRequest request) {
+        request = beforeClientExecution(request);
+        return executeSetSecurityGroups(request);
+    }
+
+    @SdkInternalApi
+    final SetSecurityGroupsResult executeSetSecurityGroups(SetSecurityGroupsRequest setSecurityGroupsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(setSecurityGroupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetSecurityGroupsRequest> request = null;
+        Response<SetSecurityGroupsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetSecurityGroupsRequestMarshaller().marshall(super.beforeMarshalling(setSecurityGroupsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "SetSecurityGroups");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<SetSecurityGroupsResult> responseHandler = new StaxResponseHandler<SetSecurityGroupsResult>(
+                    new SetSecurityGroupsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Enables the Availability Zones for the specified public subnets for the specified Application Load Balancer,
+     * Network Load Balancer or Gateway Load Balancer. The specified subnets replace the previously enabled subnets.
+     * </p>
+     * <p>
+     * When you specify subnets for a Network Load Balancer, or Gateway Load Balancer you must include all subnets that
+     * were enabled previously, with their existing configurations, plus any additional subnets.
+     * </p>
+     * 
+     * @param setSubnetsRequest
+     * @return Result of the SetSubnets operation returned by the service.
+     * @throws LoadBalancerNotFoundException
+     *         The specified load balancer does not exist.
+     * @throws InvalidConfigurationRequestException
+     *         The requested configuration is not valid.
+     * @throws SubnetNotFoundException
+     *         The specified subnet does not exist.
+     * @throws InvalidSubnetException
+     *         The specified subnet is out of available addresses.
+     * @throws AllocationIdNotFoundException
+     *         The specified allocation ID does not exist.
+     * @throws AvailabilityZoneNotSupportedException
+     *         The specified Availability Zone is not supported.
+     * @sample AmazonElasticLoadBalancing.SetSubnets
+     * @see <a href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/SetSubnets"
+     *      target="_top">AWS API Documentation</a>
+     */
+    @Override
+    public SetSubnetsResult setSubnets(SetSubnetsRequest request) {
+        request = beforeClientExecution(request);
+        return executeSetSubnets(request);
+    }
+
+    @SdkInternalApi
+    final SetSubnetsResult executeSetSubnets(SetSubnetsRequest setSubnetsRequest) {
+
+        ExecutionContext executionContext = createExecutionContext(setSubnetsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetSubnetsRequest> request = null;
+        Response<SetSubnetsResult> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetSubnetsRequestMarshaller().marshall(super.beforeMarshalling(setSubnetsRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+                request.addHandlerContext(HandlerContextKey.CLIENT_ENDPOINT, endpoint);
+                request.addHandlerContext(HandlerContextKey.ENDPOINT_OVERRIDDEN, isEndpointOverridden());
+                request.addHandlerContext(HandlerContextKey.SIGNING_REGION, getSigningRegion());
+                request.addHandlerContext(HandlerContextKey.SERVICE_ID, "Elastic Load Balancing v2");
+                request.addHandlerContext(HandlerContextKey.OPERATION_NAME, "SetSubnets");
+                request.addHandlerContext(HandlerContextKey.ADVANCED_CONFIG, advancedConfig);
+
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<SetSubnetsResult> responseHandler = new StaxResponseHandler<SetSubnetsResult>(new SetSubnetsResultStaxUnmarshaller());
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * Returns additional metadata for a previously executed successful, request, typically used for debugging issues
+     * where a service isn't acting as expected. This data isn't considered part of the result data returned by an
+     * operation, so it's available through this separate, diagnostic interface.
+     * <p>
+     * Response metadata is only cached for a limited period of time, so if you need to access this extra diagnostic
+     * information for an executed request, you should use this method to retrieve it as soon as possible after
+     * executing the request.
+     *
+     * @param request
+     *        The originally executed request
+     *
+     * @return The response metadata for the specified request, or null if none is available.
+     */
+    public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
+        return client.getResponseMetadataForRequest(request);
+    }
+
+    /**
+     * Normal invoke with authentication. Credentials are required and may be overriden at the request level.
+     **/
+    private <X, Y extends AmazonWebServiceRequest> Response<X> invoke(Request<Y> request, HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
+            ExecutionContext executionContext) {
+
+        return invoke(request, responseHandler, executionContext, null, null);
+    }
+
+    /**
+     * Normal invoke with authentication. Credentials are required and may be overriden at the request level.
+     **/
+    private <X, Y extends AmazonWebServiceRequest> Response<X> invoke(Request<Y> request, HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
+            ExecutionContext executionContext, URI cachedEndpoint, URI uriFromEndpointTrait) {
+
+        executionContext.setCredentialsProvider(CredentialUtils.getCredentialsProvider(request.getOriginalRequest(), awsCredentialsProvider));
+
+        return doInvoke(request, responseHandler, executionContext, cachedEndpoint, uriFromEndpointTrait);
+    }
+
+    /**
+     * Invoke with no authentication. Credentials are not required and any credentials set on the client or request will
+     * be ignored for this operation.
+     **/
+    private <X, Y extends AmazonWebServiceRequest> Response<X> anonymousInvoke(Request<Y> request,
+            HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler, ExecutionContext executionContext) {
+
+        return doInvoke(request, responseHandler, executionContext, null, null);
+    }
+
+    /**
+     * Invoke the request using the http client. Assumes credentials (or lack thereof) have been configured in the
+     * ExecutionContext beforehand.
+     **/
+    private <X, Y extends AmazonWebServiceRequest> Response<X> doInvoke(Request<Y> request, HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
+            ExecutionContext executionContext, URI discoveredEndpoint, URI uriFromEndpointTrait) {
+
+        if (discoveredEndpoint != null) {
+            request.setEndpoint(discoveredEndpoint);
+            request.getOriginalRequest().getRequestClientOptions().appendUserAgent("endpoint-discovery");
+        } else if (uriFromEndpointTrait != null) {
+            request.setEndpoint(uriFromEndpointTrait);
+        } else {
+            request.setEndpoint(endpoint);
+        }
+
+        request.setTimeOffset(timeOffset);
+
+        DefaultErrorResponseHandler errorResponseHandler = new DefaultErrorResponseHandler(exceptionUnmarshallersMap, defaultUnmarshaller);
+
+        return client.execute(request, responseHandler, errorResponseHandler, executionContext);
+    }
+
+    @Override
+    public AmazonElasticLoadBalancingWaiters waiters() {
+        if (waiters == null) {
+            synchronized (this) {
+                if (waiters == null) {
+                    waiters = new AmazonElasticLoadBalancingWaiters(this);
+                }
+            }
+        }
+        return waiters;
+    }
+
+    @Override
+    public void shutdown() {
+        super.shutdown();
+        if (waiters != null) {
+            waiters.shutdown();
+        }
+    }
+
+}

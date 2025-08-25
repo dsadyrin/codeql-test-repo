@@ -1,9 +1,3 @@
 Manifest-Version: 1.0
-Implementation-Title: Apache Commons Text
-Implementation-Version: 1.9
-Specification-Vendor: The Apache Software Foundation
-Specification-Title: Apache Commons Text
-Created-By: Maven Source Plugin 3.2.1
-Specification-Version: 1.9
-Implementation-Vendor: The Apache Software Foundation
+Created-By: Maven Source Plugin 3.3.0
 
