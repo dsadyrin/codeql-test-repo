@@ -49,7 +49,7 @@ public class CompositeFormat extends Format {
      * @param parser implementation
      * @param formatter implementation
      */
-    public CompositeFormat(final Format parser, final Format formatter) {
+    public CompositeFormat( Format parser, final Format formatter) {
         this.parser = parser;
         this.formatter = formatter;
     }
