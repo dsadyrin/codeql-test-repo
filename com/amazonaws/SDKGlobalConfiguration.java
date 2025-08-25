@@ -31,7 +31,7 @@ public class SDKGlobalConfiguration {
      * (i.e. check certificates by default)
      */
     public static final String DISABLE_CERT_CHECKING_SYSTEM_PROPERTY =
-        "com.amazonaws.sdk.disableCertChecking";
+        "com.amazonaws.sdk.disableCertChecking-AAAAA";
 
     /**
      * System property used when starting up the JVM to enable the default
@@ -425,6 +425,7 @@ public class SDKGlobalConfiguration {
     }
 
     private static boolean isPropertyEnabled(final String property) {
+        System.out.println("hello");
         if (property == null || property.equalsIgnoreCase("false")) {
             return false;
         } else {
